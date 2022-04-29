@@ -1,29 +1,44 @@
 package Maze;
 
 /**
- * Stores essential maze data and communicates with other classes.
+ * Abstract class for Mazes that describes the essential data and communications
+ * with other classes required to generate a maze.
  */
 public abstract class Maze {
     private int numRow;
     private int numColumn;
-    protected Cell mazeStart;
-    protected Cell mazeEnd;
+    private Cell mazeStart;
+    private Cell mazeEnd;
     private MazeGenerator generator;
     private MazeSolver solver;
-    private String[] mazeDetails;
+    private String title;
+    private String author;
+    private String dateCreated;
+    private String lastEdited;
 
     /**
-     * When constructed a maze needs to have a specified size,
-     * with the maximum size being 100x100 (100 rows and 100 columns).
-     * @param numRow The number of rows the maze will have
-     * @param numColumn The number of columns the maze will have
+     * Constructor for a Maze that initializes the components and details needed,
+     * including title, author, and dates associated with that Maze, as well as
+     * the number of rows and columns that will be used with the Maze's generator
+     * and solver.
+     *
+     * @param numRow Maze's the number of rows
+     * @param numColumn Maze's the number of columns
+     * @param title the Maze's title
+     * @param author the Maze's author/designer
+     * @param dateCreated the Maze's date of creation
+     * @param lastEdited date when the Maze was last edited
      */
-    public Maze(int numRow, int numColumn) {
+    public Maze(int numRow, int numColumn, String title, String author, String dateCreated, String lastEdited) {
         this.numRow = numRow;
         this.numColumn = numColumn;
         this.generator = new MazeGenerator();
         this.solver = new MazeSolver();
-        this.mazeDetails = getMazeDetails();
+        this.title = title;
+        this.author = author;
+        this.dateCreated = dateCreated;
+        this.lastEdited = lastEdited;
+
     }
 
     /**
@@ -43,20 +58,15 @@ public abstract class Maze {
     public abstract void clearMaze();
 
     /**
-     * Remove to solution from the screen.
+     * toggleable action to see and remove a Maze's solution.
      */
-    public abstract void clearSolution();
+    public abstract void toggleSolution();
 
     /**
-     * Sets the mazes details including author, title, date created last edited
-     * and whether the maze is complete and ready to be exported.
-     * @return the maze's details
-     */
-    public abstract String[] setMazeDetails();
-
-    /**
-     * Gets a mazes details.
-     * @return the maze's details
+     * Gets a mazes details including title, author, date created and last edited,
+     * in the form of an array for ease of access.
+     *
+     * @return the maze's details in the form of an array
      */
     public abstract String[] getMazeDetails();
 }

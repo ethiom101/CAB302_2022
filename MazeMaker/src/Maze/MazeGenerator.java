@@ -8,7 +8,7 @@ public class MazeGenerator {
     private Cell end;
 
     /**
-     * Constructor for a generated maze
+     * Empty constructor
      */
     public MazeGenerator() {
 
@@ -37,7 +37,7 @@ public class MazeGenerator {
 
     /**
      * Gets statistics about a maze including the percentage of cells that are
-     * reach by a solution, the percentage of cells that are dead ends, and more.
+     * reached by a solution, the percentage of cells that are dead ends, and more.
      */
     public void getStatistics() {
 

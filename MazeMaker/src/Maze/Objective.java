@@ -1,29 +1,29 @@
 package Maze;
 
 /**
- * Cell type used in Children Mazes to indicate the start and end of a maze
- * with images
+ * Cell type used to indicate the start and end points of a Maze. These cells
+ * are never walls.
  */
 public class Objective extends Cell {
         private String imagePath;
 
     /**
-     * Constructor for the start and end images of a children maze
+     * Constructs an objective cell that will be used in correspondence with an algorithm
+     * to indicate the start and end of a Maze.
      *
-     * @param size size of the cell
-     * @param row row that the cell is in
-     * @param column column that the cell is in
-     * @param imagePath the local path to the image
+     * @param size   the size of all cells
+     * @param row    which row(s) the cell occupies
+     * @param column which column(s) the cell occupies
+     * @param isWall states whether the cell is a wall
      */
-    public Objective(int size, int row, int column, String imagePath) {
-        super(size, row, column);
-        this.imagePath = imagePath;
+    public Objective(int size, int row, int column, boolean isWall) {
+        super(size, row, column, isWall);
     }
 
+
     @Override
-    public int setSize() {
+    public void setSize(int size) {
         //...TODO
-        return 0;
     }
 
     @Override
@@ -61,9 +61,8 @@ public class Objective extends Cell {
 
     /**
      * Upload images to be used for the start and end of a maze.
-     * @param imagePath path to local file containing image
      */
-    public void uploadImage(String imagePath) {
+    public void uploadImage() {
         //...TODO
     }
 }
