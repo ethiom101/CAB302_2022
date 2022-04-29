@@ -11,12 +11,15 @@ public class ChildrenMaze extends Maze {
 
     private Objective startImage;
     private Objective endImage;
+    private final int maxSize;
 
     /**
      * Constructor for a Maze that initializes the components and details needed,
      * including title, author, and dates associated with that Maze, as well as
      * the number of rows and columns that will be used with the Maze's generator
-     * and solver.
+     * and solver. The constructor will also initialize the maximum size that a
+     * children's maze is allowed to be, this will help for these type of mazes
+     * to stay consistent with each other.
      *
      * @param numRow      Maze's the number of rows
      * @param numColumn   Maze's the number of columns
@@ -27,6 +30,7 @@ public class ChildrenMaze extends Maze {
      */
     public ChildrenMaze(int numRow, int numColumn, String title, String author, String dateCreated, String lastEdited) {
         super(numRow, numColumn, title, author, dateCreated, lastEdited);
+        maxSize = 0; //not implemented
     }
 
 
