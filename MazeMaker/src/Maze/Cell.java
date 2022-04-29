@@ -1,16 +1,17 @@
 package Maze;
 
 /**
+ * A form of a unit used quantify the inner workings of a maze.
  * Each row and column of a maze consists of a single cell. The main
  * cell of a maze is a wall, but cells can also be occupied by logos that can
  * also act as walls. For children's mazes the cells at the start and end of a
- * maze are occupied by images.
+ * maze are indicated by images, while adult mazes are indicated by arrows.
  */
 public abstract class Cell {
     private int size;
     private int row;
     private int column;
-    private boolean isWall;
+    private boolean wall;
 
     /**
      * Constructs a cell that will be used in correspondence with an algorithm
@@ -19,20 +20,22 @@ public abstract class Cell {
      * @param size   the size of all cells
      * @param row    which row(s) the cell occupies
      * @param column which column(s) the cell occupies
+     * @param isWall states whether the cell contains a wall
      */
-    public Cell(int size, int row, int column) {
+    public Cell(int size, int row, int column, boolean isWall) {
         this.size = size;
         this.row = row;
         this.column = column;
+        this.wall = isWall;
     }
 
     /**
      * The size of cells occupying the maze changes based on the size of the maze.
      * Smaller mazes will have larger cell sizes ("occupy a larger size per cell").
      *
-     * @return size that all cells occupying a maze will be
+     * @param size size that all cells occupying a maze will be
      */
-    public abstract int setSize();
+    public abstract void setSize(int size);
 
     /**
      * Gets the maze's cell size.

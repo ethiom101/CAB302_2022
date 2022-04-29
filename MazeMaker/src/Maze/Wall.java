@@ -1,26 +1,28 @@
 package Maze;
 
 /**
- * Main cell type that creates all the Walls in the maze
+ * Cell type that is not able to be passed through, also takes up majority of
+ * a Maze as a maze is made up of Walls.
  */
 public class Wall extends Cell {
 
+
     /**
-     * Constructor for wall in the maze
+     * Constructs a cell that will be used in correspondence with an algorithm
+     * to generate a full maze of these cells.
      *
-     * @param size size of the cell
-     * @param row row that the cell occupies
-     * @param column column that the cell occupies
+     * @param size   the size of all cells
+     * @param row    which row(s) the cell occupies
+     * @param column which column(s) the cell occupies
+     * @param isWall states whether the cell contains a wall
      */
-    public Wall(int size, int row, int column) {
-        super(size, row, column);
+    public Wall(int size, int row, int column, boolean isWall) {
+        super(size, row, column, isWall);
     }
 
     @Override
-    public int setSize() {
+    public void setSize(int size) {
         //...TODO
-
-        return 0;
     }
 
     @Override

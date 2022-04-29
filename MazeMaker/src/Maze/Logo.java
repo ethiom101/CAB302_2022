@@ -1,29 +1,30 @@
 package Maze;
 
 /**
- * Logo that is an image that can be placed in the maze as a Wall
+ * A type of wall that always has walls on every side of the cell, in
+ * other words is fully encased by walls. A logo takes the appearance of an
+ * image that can be placed in the maze and occupy larger or smaller areas than
+ * other cells.
  */
-public class Logo extends Cell {
+public class Logo extends Wall {
     private String imagePath;
 
     /**
-     * Constructor for a Logo that can be placed in the maze as a cell with
-     * walls around each side
+     * Constructs a logo that will be used in correspondence with an algorithm
+     * to place one of these cells in the maze that can be removed or added later.
      *
-     * @param size size of the cell
-     * @param row row(s) the cell occupies
-     * @param column column(s) the cell occupies
-     * @param imagePath local image path
+     * @param size   the size of all cells
+     * @param row    which row(s) the cell occupies
+     * @param column which column(s) the cell occupies
+     * @param isWall states whether the cell contains a wall
      */
-    public Logo(int size, int row, int column, String imagePath) {
-        super(size, row, column);
-        this.imagePath = imagePath;
+    public Logo(int size, int row, int column, boolean isWall) {
+        super(size, row, column, isWall);
     }
 
     @Override
-    public int setSize() {
+    public void setSize(int size) {
         //...TODO
-        return 0;
     }
 
     @Override

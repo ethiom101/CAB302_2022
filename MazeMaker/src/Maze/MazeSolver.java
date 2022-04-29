@@ -4,12 +4,12 @@ package Maze;
  * Provides a solution to a maze.
  */
 public class MazeSolver {
-    private int startPoint;
-    private int endPoint;
+    private Cell startPoint;
+    private Cell endPoint;
 
 
     /**
-     * Constructor for a mazes solution
+     * Empty constructor.
      */
     public MazeSolver() {
     }
