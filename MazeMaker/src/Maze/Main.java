@@ -13,6 +13,7 @@ public class Main {
         JFrame frame = new JFrame("app");
         frame.setContentPane(new TheGUI().window);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setJMenuBar(TheGUI.createMenu());
         frame.pack();
         frame.setVisible(true);
     }
