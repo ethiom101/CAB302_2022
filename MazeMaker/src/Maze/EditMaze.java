@@ -2,18 +2,13 @@ package Maze;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import static Maze.EditMaze.editMaze;
-
-public class ViewMaze {
-
+public class EditMaze {
     public static void main(String[] args){
-        viewMaze();
+        editMaze();
     }
 
-    public static void viewMaze(){
+    public static void editMaze(){
         JFrame frame = new JFrame();
 
         JPanel panel = new JPanel();
@@ -22,10 +17,6 @@ public class ViewMaze {
         panel.setPreferredSize(new Dimension(450,250));
 
         Button editMaze = new Button("Edit Maze");
-        editMaze.addActionListener((event)-> {
-            editMaze_Func();
-            System.out.print("yes");
-        });
         Button toggleSolution = new Button("Toggle Solution");
         Button exportMaze = new Button("Export Maze");
         Button saveMaze = new Button("Save Maze");
@@ -48,13 +39,9 @@ public class ViewMaze {
 
         frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("View Maze");
+        frame.setTitle("Edit Maze");
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static void editMaze_Func(){
-        editMaze();
     }
 
 }

@@ -14,6 +14,7 @@ public class MazeGenerator {
 
     }
 
+
     /**
      * Gets a starting point for a maze.
      */
