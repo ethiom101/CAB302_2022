@@ -4,7 +4,7 @@ package Maze;
  * Cell type used to indicate the start and end points of a Maze. These cells
  * are never walls.
  */
-public class Objective extends Cell {
+public class Objective extends CellOLD {
         private String imagePath;
 
     /**

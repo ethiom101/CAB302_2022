@@ -7,9 +7,9 @@ package Maze;
 public abstract class Maze {
     private int numRow;
     private int numColumn;
-    private Cell mazeStart;
-    private Cell mazeEnd;
-    private MazeGenerator generator;
+    private CellOLD mazeStart;
+    private CellOLD mazeEnd;
+    private MazeGeneratorOLD generator;
     private MazeSolver solver;
     private String title;
     private String author;
@@ -32,7 +32,7 @@ public abstract class Maze {
     public Maze(int numRow, int numColumn, String title, String author, String dateCreated, String lastEdited) {
         this.numRow = numRow;
         this.numColumn = numColumn;
-        this.generator = new MazeGenerator();
+        this.generator = new MazeGeneratorOLD();
         this.solver = new MazeSolver();
         this.title = title;
         this.author = author;
