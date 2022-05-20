@@ -23,7 +23,7 @@ public class cell {
         this.posy=posy;
     }
 
-
+    //Getters and Setters
     public boolean getStart(){
         return start;
     }

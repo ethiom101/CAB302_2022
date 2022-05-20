@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding new cell class and mazegenerator, should run fine">
-      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGeneratorOLD.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/doc/Maze/Cell.html" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/doc/Maze/Cell.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/doc/Maze/Logo.html" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/doc/Maze/Logo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/doc/Maze/MazeGenerator.html" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/doc/Maze/MazeGenerator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/doc/Maze/Objective.html" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/doc/Maze/Objective.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/doc/Maze/Wall.html" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/doc/Maze/Wall.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/CellOLD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Maze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Objective.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/cell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652843175038</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Adding new cell class and mazegenerator, should run fine">
+      <created>1652942903445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652942903445</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
