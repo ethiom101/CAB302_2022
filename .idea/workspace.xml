@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding new cell class and mazegenerator, should run fine">
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding comments to mazegenerator and cell">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
   </component>
-  <component name="RunManager" selected="Application.MazeGenerator">
+  <component name="RunManager" selected="Application.EditMaze">
+    <configuration name="EditMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.EditMaze" />
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maze.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.Main" />
       <module name="Assignment" />
@@ -103,8 +119,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MazeGenerator" />
+        <item itemvalue="Application.EditMaze" />
         <item itemvalue="Application.ViewMaze" />
+        <item itemvalue="Application.MazeGenerator" />
         <item itemvalue="Application.MazeGenLouis" />
         <item itemvalue="Application.Main" />
       </list>
@@ -140,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652942903445</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Adding comments to mazegenerator and cell">
+      <created>1653025298867</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653025298867</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +189,7 @@
     <MESSAGE value="Adding Edit Maze page" />
     <MESSAGE value="Adding stuff" />
     <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding new cell class and mazegenerator, should run fine" />
+    <MESSAGE value="Adding comments to mazegenerator and cell" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding comments to mazegenerator and cell" />
   </component>
 </project>

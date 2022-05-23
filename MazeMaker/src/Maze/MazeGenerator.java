@@ -1,13 +1,8 @@
 package Maze;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
@@ -15,28 +10,32 @@ import javax.swing.border.MatteBorder;
 public class MazeGenerator
 {
     //Grid size, cause its one value it must be square, can split it to x and y later
-    private static int gridsize = 50;
+    private static int gridsize = 10;
     //Grid
-    public static cell[][] grid = new cell[gridsize][gridsize];
+    public static cell[][] gridFinal = new cell[gridsize][gridsize];
 
-    /**
-     * Just to test
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        cell[][] grid2 = createmaze(0,0,grid);
-        drawMaze(grid2);
-
+//    /**
+//     * Just to test
+//     * @param args
+//     */
+//    public static void main(String[] args)
+//    {
+//        cell[][] grid2 = createmaze(0,0,grid);
+//        drawMaze(grid2);
+//    }
+    public MazeGenerator(int gridsize){
+        this.gridsize = gridsize;
+        this.gridFinal = createmaze(0,0, gridFinal);
+        //drawMaze(grid2);
     }
 
     /**
      * Draws the maze
-     * @param grid input the cell array to be drawn
      */
-    public static void drawMaze(cell[][] grid){
+    public static JPanel drawMaze(){
+        cell[][] grid = gridFinal;
         //Set up frame and panel
-        JFrame frame = new JFrame("Maze");
+        //JFrame frame = new JFrame("Maze");
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(gridsize,gridsize));
 
@@ -46,7 +45,7 @@ public class MazeGenerator
                 //Each cell is a label with borders
                 JLabel label = new JLabel();
                 Border blackline = BorderFactory.createLineBorder(Color.black);
-                System.out.println("Cell "+i+" "+j+" has north "+grid[i][j].getWall(1)+" has south "+grid[i][j].getWall(2)+" has west "+grid[i][j].getWall(3)+" has east"+grid[i][j].getWall(4));
+                //System.out.println("Cell "+i+" "+j+" has north "+grid[i][j].getWall(1)+" has south "+grid[i][j].getWall(2)+" has west "+grid[i][j].getWall(3)+" has east"+grid[i][j].getWall(4));
 
                 //Each wall is represented by an int
                 int north = 0;
@@ -83,11 +82,11 @@ public class MazeGenerator
             }
         }
         panel.setPreferredSize(new Dimension(400,400));
-        frame.getContentPane().add(panel);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+//        frame.getContentPane().add(panel);
+//        frame.pack();
+//        frame.setVisible(true);
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        return panel;
     }
 
     /**
@@ -125,7 +124,7 @@ public class MazeGenerator
         //Once there are no more unvisitied neighbours then go backwards until you find an unvisited neighbour then start again
         //Finish once we go back to the start cell
         while(!finish){
-            System.out.println("Current cell is "+Integer.toString(current.getPosx())+" "+Integer.toString(current.getPosy())+" and is visited? "+current.getVisit());
+            //System.out.println("Current cell is "+Integer.toString(current.getPosx())+" "+Integer.toString(current.getPosy())+" and is visited? "+current.getVisit());
 
             //Check a cell for unvisited neighbours and get the list of directions (N S E W) they are in relation to the current cell
             ArrayList<String> unvisited = getListUnvisited(current);
@@ -182,32 +181,32 @@ public class MazeGenerator
         int[] directionValue = directionValue(listDirection.get(0));
 
         //set visited and the parent cell of the new cell to be the current cell
-        grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setParent(current);
-        grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setVisit();
+        gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setParent(current);
+        gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setVisit();
 
         //Check direction and delete walls on the current and parent cell
         if(listDirection.get(0)=="N"){
-            grid[current.getPosx()][current.getPosy()].setWall(1);
-            grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(2);
+            gridFinal[current.getPosx()][current.getPosy()].setWall(1);
+            gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(2);
         }else if(listDirection.get(0)=="S"){
-            grid[current.getPosx()][current.getPosy()].setWall(2);
-            grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(1);
+            gridFinal[current.getPosx()][current.getPosy()].setWall(2);
+            gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(1);
         }
         else if(listDirection.get(0)=="W"){
-            grid[current.getPosx()][current.getPosy()].setWall(3);
-            grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(4);
+            gridFinal[current.getPosx()][current.getPosy()].setWall(3);
+            gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(4);
         }
         else if(listDirection.get(0)=="E"){
-            grid[current.getPosx()][current.getPosy()].setWall(4);
-            grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(3);
+            gridFinal[current.getPosx()][current.getPosy()].setWall(4);
+            gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(3);
         }
 
         //set child of current cell
-        cell newCurrent = grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
-        grid[current.getPosx()][current.getPosy()].setChildren(newCurrent);
+        cell newCurrent = gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
+        gridFinal[current.getPosx()][current.getPosy()].setChildren(newCurrent);
 
         //return child
-        return grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
+        return gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
 
     }
 
@@ -220,7 +219,7 @@ public class MazeGenerator
 
         //Get parent cell of the current cell
         cell newCurrent = current.getParent();
-        System.out.println("Parent is "+newCurrent.getPosx()+" "+newCurrent.getPosy());
+        //System.out.println("Parent is "+newCurrent.getPosx()+" "+newCurrent.getPosy());
         return newCurrent;
     }
 
@@ -265,7 +264,7 @@ public class MazeGenerator
         //Go through the list of directions and remove them if they have been visited already
         for(int i = 0;i<size;i++){
             int[] directionValue = directionValue(direction.get(i));
-            if (grid[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].getVisit()==true){
+            if (gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].getVisit()==true){
                 String toRemove = direction.get(i);
                 returnDirection.remove(toRemove);
             }

@@ -5,21 +5,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static Maze.EditMaze.editMaze;
+//import static Maze.EditMaze.editMaze;
 
 public class ViewMaze {
 
-    public static void main(String[] args){
-        viewMaze();
+    //Testing
+    public static void main(String[] args)
+    {
+        ViewMaze viewMaze = new ViewMaze();
+
     }
 
-    public static void viewMaze(){
+    public ViewMaze(){
         JFrame frame = new JFrame();
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(450,250));
+        panel.setPreferredSize(new Dimension(550,450));
 
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
@@ -35,8 +38,10 @@ public class ViewMaze {
 
         JPanel centrePanel = new JPanel();
         JLabel label = new JLabel("Stock Maze");
-        centrePanel.add(label);
+        MazeGenerator bruh = new MazeGenerator(10);
+        centrePanel.add(bruh.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        centrePanel.setPreferredSize(new Dimension(400,400));
 
         eastPanel.add(editMaze);
         eastPanel.add(toggleSolution);
@@ -46,7 +51,7 @@ public class ViewMaze {
         panel.add(eastPanel,BorderLayout.WEST);
         panel.add(centrePanel,BorderLayout.CENTER);
 
-        frame.add(panel,BorderLayout.CENTER);
+        frame.getContentPane().add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("View Maze");
         frame.pack();
@@ -54,7 +59,7 @@ public class ViewMaze {
     }
 
     public static void editMaze_Func(){
-        editMaze();
+        EditMaze editMaze = new EditMaze();
     }
 
 }
