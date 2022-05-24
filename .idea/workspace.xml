@@ -42,7 +42,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MazeMaker/src" />
   </component>
   <component name="RunManager" selected="Application.EditMaze">
     <configuration name="EditMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
