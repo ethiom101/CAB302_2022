@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd6efc32-9379-4be9-9ccd-47e0cb7ca3e6" name="Changes" comment="a">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" afterDir="false" />
-    </list>
+    <list default="true" id="fd6efc32-9379-4be9-9ccd-47e0cb7ca3e6" name="Changes" comment="Pushing" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -161,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653025298867</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Pushing">
+      <created>1653370175080</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653370175080</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,6 +190,7 @@
     <MESSAGE value="Adding stuff" />
     <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
     <MESSAGE value="Adding comments to mazegenerator and cell" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding comments to mazegenerator and cell" />
+    <MESSAGE value="Pushing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pushing" />
   </component>
 </project>
