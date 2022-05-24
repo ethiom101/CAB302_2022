@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fd6efc32-9379-4be9-9ccd-47e0cb7ca3e6" name="Changes" comment="Pushing" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -46,9 +44,48 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
   </component>
-  <component name="RunManager" selected="Application.ViewMaze">
+  <component name="RunManager" selected="Application.EditMaze">
+    <configuration name="EditMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.EditMaze" />
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maze.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.Main" />
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maze.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MazeGenLouis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.MazeGenLouis" />
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maze.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MazeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.MazeGenerator" />
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
@@ -75,7 +112,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.EditMaze" />
         <item itemvalue="Application.ViewMaze" />
+        <item itemvalue="Application.MazeGenerator" />
+        <item itemvalue="Application.MazeGenLouis" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -83,12 +123,48 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="" />
+      <changelist id="fd6efc32-9379-4be9-9ccd-47e0cb7ca3e6" name="Changes" comment="a" />
       <created>1650886384560</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650886384560</updated>
     </task>
+    <task id="LOCAL-00001" summary="Adding Edit Maze page">
+      <created>1652509772498</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1652509772498</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adding stuff">
+      <created>1652843175038</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652843175038</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adding new cell class and mazegenerator, should run fine">
+      <created>1652942903445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652942903445</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Adding comments to mazegenerator and cell">
+      <created>1653025298867</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653025298867</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Pushing">
+      <created>1653370175080</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653370175080</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,5 +186,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Adding Edit Maze page" />
+    <MESSAGE value="Adding stuff" />
+    <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
+    <MESSAGE value="Adding comments to mazegenerator and cell" />
+    <MESSAGE value="Pushing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pushing" />
   </component>
 </project>

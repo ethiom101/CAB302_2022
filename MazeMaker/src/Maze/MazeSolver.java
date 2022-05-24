@@ -4,8 +4,8 @@ package Maze;
  * Provides a solution to a maze.
  */
 public class MazeSolver {
-    private Cell startPoint;
-    private Cell endPoint;
+    private CellOLD startPoint;
+    private CellOLD endPoint;
 
 
     /**

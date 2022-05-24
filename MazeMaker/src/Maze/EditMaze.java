@@ -2,21 +2,15 @@ package Maze;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-//import static Maze.EditMaze.editMaze;
-
-public class ViewMaze {
-
+public class EditMaze {
     //Testing
-    public static void main(String[] args)
-    {
-        ViewMaze viewMaze = new ViewMaze();
-
+    public static void main(String[] args){
+        EditMaze editMaze = new EditMaze();
     }
 
-    public ViewMaze(){
+
+    public EditMaze(){
         JFrame frame = new JFrame();
 
         JPanel panel = new JPanel();
@@ -25,10 +19,6 @@ public class ViewMaze {
         panel.setPreferredSize(new Dimension(550,450));
 
         Button editMaze = new Button("Edit Maze");
-        editMaze.addActionListener((event)-> {
-            editMaze_Func();
-            System.out.print("yes");
-        });
         Button toggleSolution = new Button("Toggle Solution");
         Button exportMaze = new Button("Export Maze");
         Button saveMaze = new Button("Save Maze");
@@ -37,11 +27,9 @@ public class ViewMaze {
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         JPanel centrePanel = new JPanel();
-        JLabel label = new JLabel("Stock Maze");
         MazeGenerator bruh = new MazeGenerator(10);
         centrePanel.add(bruh.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        centrePanel.setPreferredSize(new Dimension(400,400));
 
         eastPanel.add(editMaze);
         eastPanel.add(toggleSolution);
@@ -51,15 +39,11 @@ public class ViewMaze {
         panel.add(eastPanel,BorderLayout.WEST);
         panel.add(centrePanel,BorderLayout.CENTER);
 
-        frame.getContentPane().add(panel,BorderLayout.CENTER);
+        frame.add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("View Maze");
+        frame.setTitle("Edit Maze");
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static void editMaze_Func(){
-        EditMaze editMaze = new EditMaze();
     }
 
 }

@@ -7,7 +7,7 @@ package Maze;
  * also act as walls. For children's mazes the cells at the start and end of a
  * maze are indicated by images, while adult mazes are indicated by arrows.
  */
-public abstract class Cell {
+public abstract class CellOLD {
     private int size;
     private int row;
     private int column;
@@ -22,7 +22,7 @@ public abstract class Cell {
      * @param column which column(s) the cell occupies
      * @param isWall states whether the cell contains a wall
      */
-    public Cell(int size, int row, int column, boolean isWall) {
+    public CellOLD(int size, int row, int column, boolean isWall) {
         this.size = size;
         this.row = row;
         this.column = column;
