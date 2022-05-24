@@ -4,7 +4,7 @@ package Maze;
  * Cell type that is not able to be passed through, also takes up majority of
  * a Maze as a maze is made up of Walls.
  */
-public class Wall extends Cell {
+public class Wall extends CellOLD {
 
 
     /**
