@@ -2,6 +2,8 @@ package Maze;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EditMaze {
     //Testing
@@ -22,6 +24,31 @@ public class EditMaze {
         Button toggleSolution = new Button("Toggle Solution");
         Button exportMaze = new Button("Export Maze");
         Button saveMaze = new Button("Save Maze");
+
+        editMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Edit Maze Button Pressed");
+            }
+        });
+        toggleSolution.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Toggle Solution Button Pressed");
+            }
+        });
+        exportMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Export Button Pressed");
+            }
+        });
+        saveMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Save Maze Button Pressed");
+            }
+        });
 
         JPanel eastPanel = new JPanel(new GridLayout(0,1));
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
