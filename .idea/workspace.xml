@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding comments to mazegenerator and cell">
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="no idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/TheGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/TheGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/CreateMazePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" afterDir="false" />
     </list>
@@ -164,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653025298867</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="no idea">
+      <created>1653647818832</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653647818832</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +200,7 @@
     <MESSAGE value="Adding stuff" />
     <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
     <MESSAGE value="Adding comments to mazegenerator and cell" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding comments to mazegenerator and cell" />
+    <MESSAGE value="no idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="no idea" />
   </component>
 </project>

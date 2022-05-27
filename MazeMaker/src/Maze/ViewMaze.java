@@ -38,7 +38,7 @@ public class ViewMaze {
 
         JPanel centrePanel = new JPanel();
         JLabel label = new JLabel("Stock Maze");
-        MazeGenerator bruh = new MazeGenerator(10);
+        MazeGenerator bruh = new MazeGenerator(10,10);
         centrePanel.add(bruh.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         centrePanel.setPreferredSize(new Dimension(400,400));
