@@ -27,11 +27,20 @@ public class ViewMaze {
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
             editMaze_Func();
-            System.out.print("yes");
+            System.out.println("Open 'edit maze' Menu");
         });
         Button toggleSolution = new Button("Toggle Solution");
+        toggleSolution.addActionListener((event)-> {
+            System.out.println("Open 'toggle solution' Menu, what does this trigger?");
+        });
         Button exportMaze = new Button("Export Maze");
+        exportMaze.addActionListener((event)-> {
+            System.out.println("Open 'export Maze' Menu, what does this trigger?");
+        });
         Button saveMaze = new Button("Save Maze");
+        saveMaze.addActionListener((event)-> {
+            System.out.println("Open 'save maze' Menu, what does this trigger?");
+        });
 
         JPanel eastPanel = new JPanel(new GridLayout(0,1));
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
