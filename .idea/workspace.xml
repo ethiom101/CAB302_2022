@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="no idea">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/TheGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/TheGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/CreateMazePage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" afterDir="false" />
-    </list>
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding a Create New Maze Page where the user will fill out information needed to auto generate a maze" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +44,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
   </component>
-  <component name="RunManager" selected="Application.EditMaze">
+  <component name="RunManager" selected="Application.CreateNewMaze">
+    <configuration name="CreateNewMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.CreateNewMaze" />
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maze.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EditMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.EditMaze" />
       <module name="Assignment" />
@@ -81,21 +84,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MazeGenLouis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Maze.MazeGenLouis" />
-      <module name="Assignment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Maze.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MazeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Maze.MazeGenerator" />
+    <configuration name="MainPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.MainPage" />
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
@@ -122,11 +112,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CreateNewMaze" />
+        <item itemvalue="Application.MainPage" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.EditMaze" />
         <item itemvalue="Application.ViewMaze" />
-        <item itemvalue="Application.MazeGenerator" />
-        <item itemvalue="Application.MazeGenLouis" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +164,35 @@
       <option name="project" value="LOCAL" />
       <updated>1653647818832</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding X and Y to maze generator and creating create maze page">
+      <created>1653648123958</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653648123958</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Allowing non square mazes and making View/Edit maze classes take a maze as a parameter so we are working on the same maze">
+      <created>1653789578622</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653789578622</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Adding a Main Page where the program will start and the user will first use">
+      <created>1653790793381</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653790793381</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Adding a Create New Maze Page where the user will fill out information needed to auto generate a maze">
+      <created>1653792213381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1653792213381</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,6 +219,10 @@
     <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
     <MESSAGE value="Adding comments to mazegenerator and cell" />
     <MESSAGE value="no idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="no idea" />
+    <MESSAGE value="adding X and Y to maze generator and creating create maze page" />
+    <MESSAGE value="Allowing non square mazes and making View/Edit maze classes take a maze as a parameter so we are working on the same maze" />
+    <MESSAGE value="Adding a Main Page where the program will start and the user will first use" />
+    <MESSAGE value="Adding a Create New Maze Page where the user will fill out information needed to auto generate a maze" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding a Create New Maze Page where the user will fill out information needed to auto generate a maze" />
   </component>
 </project>

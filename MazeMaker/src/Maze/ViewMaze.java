@@ -12,11 +12,11 @@ public class ViewMaze {
     //Testing
     public static void main(String[] args)
     {
-        ViewMaze viewMaze = new ViewMaze();
-
+        MazeGenerator bruh = new MazeGenerator(20,10);
+        ViewMaze viewMaze = new ViewMaze(bruh);
     }
 
-    public ViewMaze(){
+    public ViewMaze(MazeGenerator maze){
         JFrame frame = new JFrame();
 
         JPanel panel = new JPanel();
@@ -26,29 +26,20 @@ public class ViewMaze {
 
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
-            editMaze_Func();
-            System.out.println("Open 'edit maze' Menu");
+            editMaze_Func(maze);
+            System.out.print("yes");
         });
         Button toggleSolution = new Button("Toggle Solution");
-        toggleSolution.addActionListener((event)-> {
-            System.out.println("Open 'toggle solution' Menu, what does this trigger?");
-        });
         Button exportMaze = new Button("Export Maze");
-        exportMaze.addActionListener((event)-> {
-            System.out.println("Open 'export Maze' Menu, what does this trigger?");
-        });
         Button saveMaze = new Button("Save Maze");
-        saveMaze.addActionListener((event)-> {
-            System.out.println("Open 'save maze' Menu, what does this trigger?");
-        });
 
         JPanel eastPanel = new JPanel(new GridLayout(0,1));
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         JPanel centrePanel = new JPanel();
         JLabel label = new JLabel("Stock Maze");
-        MazeGenerator bruh = new MazeGenerator(10,10);
-        centrePanel.add(bruh.drawMaze());
+
+        centrePanel.add(maze.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         centrePanel.setPreferredSize(new Dimension(400,400));
 
@@ -67,8 +58,8 @@ public class ViewMaze {
         frame.setVisible(true);
     }
 
-    public static void editMaze_Func(){
-        EditMaze editMaze = new EditMaze();
+    public static void editMaze_Func(MazeGenerator maze){
+        EditMaze editMaze = new EditMaze(maze);
     }
 
 }
