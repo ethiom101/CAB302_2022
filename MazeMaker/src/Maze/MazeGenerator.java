@@ -10,10 +10,10 @@ import javax.swing.border.MatteBorder;
 public class MazeGenerator
 {
     //Grid size, cause its one value it must be square, can split it to x and y later
-    private static int gridX = 10;
-    private static int gridY = 10;
+    private static int gridX;
+    private static int gridY;
     //Grid
-    public static cell[][] gridFinal = new cell[gridX][gridY];
+    public static cell[][] gridFinal = new cell[100][100];
 
 //    /**
 //     * Just to test
@@ -39,11 +39,12 @@ public class MazeGenerator
         //Set up frame and panel
         //JFrame frame = new JFrame("Maze");
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(gridX, gridY));
+        panel.setLayout(new GridLayout(gridY, gridX));
 
+        int bruh = 0;
         //Draw maze
-        for(int i = 0; i< gridX; i++){
-            for(int j = 0; j< gridY; j++){
+        for(int i = 0; i< gridY; i++){
+            for(int j = 0; j< gridX; j++){
                 //Each cell is a label with borders
                 JLabel label = new JLabel();
                 Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -79,7 +80,8 @@ public class MazeGenerator
                 }
                 //set border of label
                 label.setBorder( new MatteBorder(north, west, south, east, Color.black));
-                //label.setText(i+" "+j);
+                label.setText(String.valueOf(bruh));
+                bruh++;
                 panel.add(label);
             }
         }
@@ -101,7 +103,8 @@ public class MazeGenerator
     public static cell[][] createmaze(int x, int y, cell[][] grid){
         //Initialise the cells of the grid
         for(int i = 0; i< gridX; i++){
-            for(int j = 0; j< gridY; j++){
+            for(int j = 0; j<gridY; j++){
+                //System.out.println(i+" "+j);
                 grid[i][j] = new cell(i,j);
             }
         }
@@ -256,7 +259,7 @@ public class MazeGenerator
             direction.remove("N");
             returnDirection.remove("N");
         }
-        else if(current.getPosy()== gridX -1){
+        else if(current.getPosy()== gridY -1){
             direction.remove("S");
             returnDirection.remove("S");
         }
@@ -301,6 +304,9 @@ public class MazeGenerator
             System.out.print("ERROR not a valid direction");
         }
         return bruh;
+    }
+    public static cell[][] returnGird(){
+        return gridFinal;
     }
 
     //Unused

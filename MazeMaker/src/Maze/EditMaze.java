@@ -8,11 +8,12 @@ import java.awt.event.ActionListener;
 public class EditMaze {
     //Testing
     public static void main(String[] args){
-        EditMaze editMaze = new EditMaze();
+        MazeGenerator bruh = new MazeGenerator(20,10);
+        EditMaze editMaze = new EditMaze(bruh);
     }
 
 
-    public EditMaze(){
+    public EditMaze(MazeGenerator maze){
         JFrame frame = new JFrame();
 
         JPanel panel = new JPanel();
@@ -20,10 +21,10 @@ public class EditMaze {
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(550,450));
 
-        Button editMaze = new Button("Edit Maze");
+        Button editMaze = new Button("Edit Walls");
         Button toggleSolution = new Button("Toggle Solution");
-        Button exportMaze = new Button("Export Maze");
-        Button saveMaze = new Button("Save Maze");
+        Button exportMaze = new Button("Edit End Points");
+        Button saveMaze = new Button("Edit Logo");
 
         editMaze.addActionListener(new ActionListener() {
             @Override
@@ -54,8 +55,8 @@ public class EditMaze {
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         JPanel centrePanel = new JPanel();
-        MazeGenerator bruh = new MazeGenerator(10,10);
-        centrePanel.add(bruh.drawMaze());
+
+        centrePanel.add(maze.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         eastPanel.add(editMaze);
