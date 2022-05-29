@@ -55,7 +55,6 @@ public class EditMaze {
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         JPanel centrePanel = new JPanel();
-
         centrePanel.add(maze.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
