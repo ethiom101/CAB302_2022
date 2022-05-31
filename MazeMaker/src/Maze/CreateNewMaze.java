@@ -7,6 +7,7 @@ public class CreateNewMaze {
     public static void main(String[] args){
         CreateNewMaze bruh = new CreateNewMaze();
     }
+
     public CreateNewMaze(){
         JFrame frame = new JFrame();
 
@@ -16,13 +17,19 @@ public class CreateNewMaze {
         panel.setPreferredSize(new Dimension(550,450));
 
         JLabel mazeType = new JLabel("Maze Type");
-        JLabel mazeSize = new JLabel("Maze Size");
+        JLabel mazeRows = new JLabel("Maze Rows");
+        JLabel mazeCols = new JLabel("Maze Columns");
         JLabel logoImage = new JLabel("Logo Image");
         JLabel title = new JLabel("Maze Generator");
 
         JTextField mazeTypeText = new JTextField();
-        JTextField mazeSizeText = new JTextField();
+        JTextField mazeRowsText = new JTextField();
+        JTextField mazeColsText = new JTextField();
         JButton createMaze = new JButton("Create Maze");
+        createMaze.addActionListener((e)->{
+            new ViewMaze(new MazeGenerator(Integer.parseInt(mazeRowsText.getText()),Integer.parseInt(mazeColsText.getText())));
+            frame.dispose();
+        });
         JButton back = new JButton("Back");
         JButton chooseImage = new JButton("Choose Image");
 
@@ -35,7 +42,8 @@ public class CreateNewMaze {
         JPanel eastPanel = new JPanel(new GridLayout(0,1));
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         eastPanel.add(mazeTypeText);
-        eastPanel.add(mazeSizeText);
+        eastPanel.add(mazeRowsText);
+        eastPanel.add(mazeColsText);
         eastPanel.add(chooseImage);
 
 
@@ -46,7 +54,8 @@ public class CreateNewMaze {
         JPanel westPanel = new JPanel(new GridLayout(0,1));
         westPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         westPanel.add(mazeType);
-        westPanel.add(mazeSize);
+        westPanel.add(mazeRows);
+        westPanel.add(mazeCols);
         westPanel.add(logoImage);
 
         JPanel southPanel = new JPanel(new GridLayout(0,1));

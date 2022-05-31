@@ -14,6 +14,8 @@ public class MazeGenerator
     private static int gridY;
     //Grid
     public static cell[][] gridFinal = new cell[100][100];
+    public static ArrayList<cell> solution = new ArrayList<cell>();
+    public static boolean toggle = false;
 
 //    /**
 //     * Just to test
@@ -78,10 +80,14 @@ public class MazeGenerator
                     label.setOpaque(true);
                     label.setBackground(Color.red);
                 }
+                if(toggle==true&&solution.contains(grid[j][i])&&!grid[j][i].getEnd()){
+                    label.setOpaque(true);
+                    label.setBackground(Color.pink);
+                }
                 //set border of label
                 label.setBorder( new MatteBorder(north, west, south, east, Color.black));
-                label.setText(String.valueOf(bruh));
-                bruh++;
+//                label.setText(String.valueOf(bruh));
+//                bruh++;
                 panel.add(label);
             }
         }
@@ -91,6 +97,9 @@ public class MazeGenerator
 //        frame.setVisible(true);
 //        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return panel;
+    }
+    public static void toggleSolution(){
+        toggle = !toggle;
     }
 
     /**
@@ -166,6 +175,9 @@ public class MazeGenerator
                 //Go forward
                 cell newCurrent = forward(current,unvisited);
                 current = newCurrent;
+                if(!hasSetEnd){
+                    solution.add(current);
+                }
             }
         }
         //Once everything is done and the maze is made then return the maze

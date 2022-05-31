@@ -17,7 +17,11 @@ public class MainPage {
 
         Button browse = new Button("Browse Maze's");
         Button createMaze = new Button("Create Maze");
-        Button importFiles = new Button("Edit End Points");
+        createMaze.addActionListener((e)->{
+            new CreateNewMaze();
+            frame.dispose();
+        });
+        Button importFiles = new Button("Import Files");
         Button exit = new Button("Exit");
         JLabel title = new JLabel("Maze Solver");
 

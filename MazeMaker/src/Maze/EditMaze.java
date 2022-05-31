@@ -20,7 +20,6 @@ public class EditMaze {
 
     public EditMaze(MazeGenerator maze) throws IOException {
 
-
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         panel.setLayout(new BorderLayout());
@@ -62,6 +61,13 @@ public class EditMaze {
 
         centrePanel.add(maze.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        toggleSolution.addActionListener((e)->{
+            centrePanel.removeAll();
+            maze.toggleSolution();
+            centrePanel.add(maze.drawMaze());
+            frame.revalidate();
+            System.out.println("Hello");
+        });
 
         eastPanel.add(editMaze);
         eastPanel.add(toggleSolution);

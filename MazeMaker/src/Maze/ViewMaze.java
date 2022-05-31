@@ -13,7 +13,7 @@ public class ViewMaze {
     //Testing
     public static void main(String[] args)
     {
-        MazeGenerator bruh = new MazeGenerator(20,10);
+        MazeGenerator bruh = new MazeGenerator(10,10);
         ViewMaze viewMaze = new ViewMaze(bruh);
     }
 
@@ -28,7 +28,8 @@ public class ViewMaze {
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
             try {
-                editMaze_Func(maze);
+                new EditMaze(maze);
+                frame.dispose();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,6 +48,13 @@ public class ViewMaze {
         centrePanel.add(maze.drawMaze());
         centrePanel.setBorder(BorderFactory.createLineBorder(Color.black));
         centrePanel.setPreferredSize(new Dimension(400,400));
+        toggleSolution.addActionListener((e)->{
+            centrePanel.removeAll();
+            maze.toggleSolution();
+            centrePanel.add(maze.drawMaze());
+            frame.revalidate();
+            System.out.println("Hello");
+        });
 
         eastPanel.add(editMaze);
         eastPanel.add(toggleSolution);
