@@ -30,7 +30,7 @@ public class EditMaze extends JFrame {
     // item picker
     public JPanel itemPicker = new JPanel();
     public String[] items = {"Start", "End", "Wall", "Logo",};
-    public JComboBox itemSelector = new JComboBox(items);
+    public JComboBox<String> itemSelector = new JComboBox<>(items);
     public JButton changeImage = new JButton("Change Image");
     public JButton resetImage = new JButton("Reset");
     public JRadioButton topWall = new JRadioButton("Top");
@@ -355,7 +355,7 @@ public class EditMaze extends JFrame {
                 // don't save and exit
                 System.out.println("Don't Save");
                 this.dispose();
-                HomePage homePage = new HomePage();
+                new HomePage();
             }
         });
 

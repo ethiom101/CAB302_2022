@@ -22,7 +22,7 @@ public class HomePage extends JFrame {
         newMaze.setPreferredSize(new Dimension(200, 200));
         newMaze.addActionListener(e -> {
             this.dispose();
-            EditMaze editMaze = new EditMaze();
+            new EditMaze();
         });
         this.add(browseMaze);
         browseMaze.setPreferredSize(new Dimension(200, 200));
