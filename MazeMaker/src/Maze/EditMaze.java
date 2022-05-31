@@ -26,6 +26,7 @@ public class EditMaze {
         Button exportMaze = new Button("Edit End Points");
         Button saveMaze = new Button("Edit Logo");
 
+        //Action Listeners for buttons to do things
         editMaze.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
