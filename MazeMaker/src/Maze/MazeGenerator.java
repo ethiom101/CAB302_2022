@@ -1,12 +1,13 @@
 package Maze;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 
 public class MazeGenerator {
 
@@ -14,8 +15,8 @@ public class MazeGenerator {
     private static int gridX;
     private static int gridY;
     //Grid
-    public static cell[][] gridFinal = new cell[100][100];
-    public static ArrayList<cell> solution = new ArrayList<cell>();
+    public static Cell[][] gridFinal = new Cell[100][100];
+    public ArrayList<Cell> solution = new ArrayList<Cell>();
     public static boolean toggle = false;
 
 
@@ -38,16 +39,16 @@ public class MazeGenerator {
     /**
      * Draws the maze
      */
-    public static JPanel drawMaze(){
+    public JPanel drawMaze(){
 
 
-        cell[][] grid = gridFinal;
+        Cell[][] grid = gridFinal;
         //Set up frame and panel
         //JFrame frame = new JFrame("Maze");
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(gridY, gridX));
+        panel.setBackground(Color.WHITE);
 
-        int bruh = 0;
         //Draw maze
         for(int i = 0; i< gridY; i++){
             for(int j = 0; j< gridX; j++){
@@ -98,20 +99,27 @@ public class MazeGenerator {
 //                label.setText(String.valueOf(bruh));
 //                bruh++;
                 panel.add(label);
+                label.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        System.out.println("Hello");
+                    }
+                });
             }
         }
-        panel.setPreferredSize(new Dimension(400,400));
 //        frame.getContentPane().add(panel);
-//        frame.pack();
 //        frame.setVisible(true);
 //        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         return panel;
     }
-    public static void toggleSolution(){
+    public void toggleSolution(){
         toggle = !toggle;
     }
-    public static String cellDistribution(){
-        return String.valueOf((solution.size()+1.0)/(gridX*gridY)*100)+"%";
+
+    public String cellDistribution(){
+        String cellDist = "";
+        cellDist = (solution.size() + 1.0) / (gridX * gridY) * 100 +"%";
+        return cellDist;
     }
 
     /**
@@ -121,24 +129,24 @@ public class MazeGenerator {
      * @param grid grid
      * @return the updated grid
      */
-    public static cell[][] createmaze(int x, int y, cell[][] grid){
+    public Cell[][] createmaze(int x, int y, Cell[][] grid){
         //Initialise the cells of the grid
         for(int i = 0; i< gridX; i++){
             for(int j = 0; j<gridY; j++){
                 //System.out.println(i+" "+j);
-                grid[i][j] = new cell(i,j);
+                grid[i][j] = new Cell(i,j);
             }
         }
         //Start point
         grid[x][y].setVisit();
         grid[x][y].setStart();
-        cell start = grid[x][y];
+        Cell start = grid[x][y];
 
         //Variable to the end cell
-        cell end;
+        Cell end;
 
         //Variable to track the current cell we are working on
-        cell current = grid[x][y];
+        Cell current = grid[x][y];
 
         //Checks if the end cell has been choosen and if the maze doing is finished
         Boolean hasSetEnd = false;
@@ -166,7 +174,7 @@ public class MazeGenerator {
                 }
 
                 //get the parent cell and go backwards
-                cell newCurrent = backward(current);
+                Cell newCurrent = backward(current);
                 current = newCurrent;
 
                 //If the parent cell is the start cell then end cause the maze is done
@@ -185,7 +193,7 @@ public class MazeGenerator {
             //If there are univisted neighbours then go forward
             else{
                 //Go forward
-                cell newCurrent = forward(current,unvisited);
+                Cell newCurrent = forward(current,unvisited);
                 current = newCurrent;
                 if(!hasSetEnd){
                     solution.add(current);
@@ -202,7 +210,7 @@ public class MazeGenerator {
      * @param listDirection List of the directions where there are unvisited neighbours
      * @return
      */
-    public static cell forward(cell current,ArrayList<String> listDirection){
+    public static Cell forward(Cell current, ArrayList<String> listDirection){
         //Shuffle the list of directions so maze generator is more random
         Collections.shuffle(listDirection);
         //Choose the first direction from randomised list
@@ -231,7 +239,7 @@ public class MazeGenerator {
         }
 
         //set child of current cell
-        cell newCurrent = gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
+        Cell newCurrent = gridFinal[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
         gridFinal[current.getPosx()][current.getPosy()].setChildren(newCurrent);
 
         //return child
@@ -244,16 +252,16 @@ public class MazeGenerator {
      * @param current current cell
      * @return the parent cell
      */
-    public static cell backward(cell current){
+    public static Cell backward(Cell current){
 
         //Get parent cell of the current cell
-        cell newCurrent = current.getParent();
+        Cell newCurrent = current.getParent();
         //System.out.println("Parent is "+newCurrent.getPosx()+" "+newCurrent.getPosy());
         return newCurrent;
     }
 
     //Get a list of directions of unvisited neighbours
-    public static ArrayList<String> getListUnvisited(cell current){
+    public static ArrayList<String> getListUnvisited(Cell current){
 
         //Create two lists of directions (NSWE). Had to make two because it was acting up
         ArrayList<String> direction = new ArrayList<String>();
@@ -329,7 +337,7 @@ public class MazeGenerator {
         }
         return bruh;
     }
-    public static cell[][] returnGird(){
+    public static Cell[][] returnGird(){
         return gridFinal;
     }
 

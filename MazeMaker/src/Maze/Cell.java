@@ -2,14 +2,14 @@ package Maze;
 
 import java.util.ArrayList;
 
-public class cell {
+public class Cell {
     private int posx;
     private int posy;
     private Boolean visited = false;
     private int value=0;
 
-    private cell parent;
-    private ArrayList<cell> children = new ArrayList<cell>();
+    private Cell parent;
+    private ArrayList<Cell> children = new ArrayList<Cell>();
 
     private boolean northWall = true;
     private boolean southWall = true;
@@ -18,7 +18,7 @@ public class cell {
     private boolean start = false;
     private boolean end = false;
 
-    public cell(int posx,int posy){
+    public Cell(int posx, int posy){
         this.posx=posx;
         this.posy=posy;
     }
@@ -59,13 +59,13 @@ public class cell {
         }
         return false;
     }
-    public cell getParent(){
+    public Cell getParent(){
         return parent;
     }
-    public void setParent(cell parent){
+    public void setParent(Cell parent){
         this.parent=parent;
     }
-    public void setChildren(cell child){
+    public void setChildren(Cell child){
         this.children.add(child);
     }
     public int getPosx(){
