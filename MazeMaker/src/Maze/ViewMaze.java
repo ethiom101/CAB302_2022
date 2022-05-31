@@ -24,14 +24,28 @@ public class ViewMaze {
         panel.setLayout(new BorderLayout());
         panel.setPreferredSize(new Dimension(550,450));
 
+        //Buttons and ActionListeners
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
+            //Do things that edits the maze n stuff
             editMaze_Func(maze);
-            System.out.println("yes");
+            System.out.println("EditMaze menu generated");
         });
         Button toggleSolution = new Button("Toggle Solution");
+        toggleSolution.addActionListener((event)-> {
+            //Do a thing here that shows/hides the maze solution
+            System.out.println("Toggle Solution button pressed");
+        });
         Button exportMaze = new Button("Export Maze");
+        exportMaze.addActionListener((event)-> {
+            //Do thing here that outputs maze as image or whatever
+            System.out.println("Export Maze button pressed");
+        });
         Button saveMaze = new Button("Save Maze");
+        saveMaze.addActionListener((event)-> {
+            //Do thing here that saves maze to menu
+            System.out.println("Save Maze button pressed");
+        });
 
         JPanel eastPanel = new JPanel(new GridLayout(0,1));
         eastPanel.setBorder(BorderFactory.createLineBorder(Color.black));
