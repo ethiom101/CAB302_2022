@@ -27,7 +27,7 @@ public class ViewMaze {
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
             editMaze_Func(maze);
-            System.out.print("yes");
+            System.out.println("yes");
         });
         Button toggleSolution = new Button("Toggle Solution");
         Button exportMaze = new Button("Export Maze");
