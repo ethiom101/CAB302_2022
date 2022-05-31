@@ -4,30 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="no idea">
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/CreateNewMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/CreateNewMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/AdultMaze.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/CellOLD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ChildrenMaze.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Database.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Logo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Maze.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGeneratorOLD.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeSolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Objective.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Wall.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +50,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
   </component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.ViewMaze">
     <configuration name="CreateNewMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.CreateNewMaze" />
       <module name="Assignment" />
@@ -136,8 +118,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainPage" />
         <item itemvalue="Application.ViewMaze" />
+        <item itemvalue="Application.MainPage" />
         <item itemvalue="Application.EditMaze" />
         <item itemvalue="Application.CreateNewMaze" />
         <item itemvalue="Application.Main" />
@@ -188,7 +170,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653647818832</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution">
+      <created>1653986486875</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653986486875</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution">
+      <created>1653986531757</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1653986531757</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,6 +211,7 @@
     <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
     <MESSAGE value="Adding comments to mazegenerator and cell" />
     <MESSAGE value="no idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="no idea" />
+    <MESSAGE value="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution" />
   </component>
 </project>

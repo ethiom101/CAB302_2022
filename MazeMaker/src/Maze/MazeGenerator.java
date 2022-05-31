@@ -101,6 +101,9 @@ public class MazeGenerator
     public static void toggleSolution(){
         toggle = !toggle;
     }
+    public static String cellDistribution(){
+        return String.valueOf((solution.size()+1.0)/(gridX*gridY)*100)+"%";
+    }
 
     /**
      *

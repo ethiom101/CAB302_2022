@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Arrays;
 
 //import static Maze.EditMaze.editMaze;
 
@@ -53,7 +54,6 @@ public class ViewMaze {
             maze.toggleSolution();
             centrePanel.add(maze.drawMaze());
             frame.revalidate();
-            System.out.println("Hello");
         });
 
         eastPanel.add(editMaze);
@@ -61,8 +61,15 @@ public class ViewMaze {
         eastPanel.add(exportMaze);
         eastPanel.add(saveMaze);
 
+        JPanel southPanel = new JPanel();
+        JLabel cellDist = new JLabel("Cell Distribution: ");
+        JLabel cellDistNo = new JLabel(maze.cellDistribution());
+        southPanel.add(cellDist);
+        southPanel.add(cellDistNo);
+
         panel.add(eastPanel,BorderLayout.WEST);
         panel.add(centrePanel,BorderLayout.CENTER);
+        panel.add(southPanel,BorderLayout.SOUTH);
 
         frame.getContentPane().add(panel,BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
