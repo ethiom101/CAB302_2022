@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 //import static Maze.EditMaze.editMaze;
 
@@ -26,7 +27,11 @@ public class ViewMaze {
 
         Button editMaze = new Button("Edit Maze");
         editMaze.addActionListener((event)-> {
-            editMaze_Func(maze);
+            try {
+                editMaze_Func(maze);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("yes");
         });
         Button toggleSolution = new Button("Toggle Solution");
@@ -58,7 +63,7 @@ public class ViewMaze {
         frame.setVisible(true);
     }
 
-    public static void editMaze_Func(MazeGenerator maze){
+    public static void editMaze_Func(MazeGenerator maze) throws IOException {
         EditMaze editMaze = new EditMaze(maze);
     }
 

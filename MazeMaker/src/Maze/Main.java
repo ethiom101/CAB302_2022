@@ -3,8 +3,6 @@ package Maze;
 import GUI.TheGUI;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Locale;
 
 public class Main {
 
