@@ -31,6 +31,10 @@ public class CreateNewMaze {
             frame.dispose();
         });
         JButton back = new JButton("Back");
+        back.addActionListener((e)->{
+            new MainPage();
+            frame.dispose();
+        });
         JButton chooseImage = new JButton("Choose Image");
 
         JPanel northPanel = new JPanel(new GridLayout(0,2));

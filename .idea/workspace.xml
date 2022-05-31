@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/ViewMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" afterDir="false" />
-    </list>
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding Cell Distribution" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
   </component>
-  <component name="RunManager" selected="Application.ViewMaze">
+  <component name="RunManager" selected="Application.MainPage">
     <configuration name="CreateNewMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.CreateNewMaze" />
       <module name="Assignment" />
@@ -118,8 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ViewMaze" />
         <item itemvalue="Application.MainPage" />
+        <item itemvalue="Application.ViewMaze" />
         <item itemvalue="Application.EditMaze" />
         <item itemvalue="Application.CreateNewMaze" />
         <item itemvalue="Application.Main" />
@@ -184,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653986531757</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adding Cell Distribution">
+      <created>1653988015032</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653988015032</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +213,7 @@
     <MESSAGE value="Adding comments to mazegenerator and cell" />
     <MESSAGE value="no idea" />
     <MESSAGE value="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution" />
+    <MESSAGE value="Adding Cell Distribution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding Cell Distribution" />
   </component>
 </project>
