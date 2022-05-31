@@ -6,9 +6,10 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
+import javax.swing.plaf.synth.SynthTextAreaUI;
 
-public class MazeGenerator
-{
+public class MazeGenerator {
+
     //Grid size, cause its one value it must be square, can split it to x and y later
     private static int gridX;
     private static int gridY;
@@ -16,6 +17,7 @@ public class MazeGenerator
     public static cell[][] gridFinal = new cell[100][100];
     public static ArrayList<cell> solution = new ArrayList<cell>();
     public static boolean toggle = false;
+
 
 //    /**
 //     * Just to test
@@ -37,6 +39,8 @@ public class MazeGenerator
      * Draws the maze
      */
     public static JPanel drawMaze(){
+
+
         cell[][] grid = gridFinal;
         //Set up frame and panel
         //JFrame frame = new JFrame("Maze");
@@ -73,8 +77,13 @@ public class MazeGenerator
 
                 //Colour start and end cells
                 if(grid[j][i].getStart()){
-                    label.setOpaque(true);
-                    label.setBackground(Color.blue);
+                    ImageIcon testImage = new ImageIcon("start.png");
+                    Image image = testImage.getImage(); // transform it
+                    Image newImage = image.getScaledInstance((400 / gridX), (400 / gridY),  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+                    testImage = new ImageIcon(newImage);
+                    label.setIcon(testImage);
+                    // label.setOpaque(true);
+                    // label.setBackground(Color.blue);
                 }
                 if(grid[j][i].getEnd()){
                     label.setOpaque(true);

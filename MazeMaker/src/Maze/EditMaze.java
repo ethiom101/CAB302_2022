@@ -11,7 +11,7 @@ public class EditMaze {
     JPanel centrePanel = new JPanel();
     //Testing
     public static void main(String[] args) throws IOException {
-        MazeGenerator bruh = new MazeGenerator(20,10);
+        MazeGenerator bruh = new MazeGenerator(5,5);
         EditMaze editMaze = new EditMaze(bruh);
         // Uncomment to export maze as image
         // ExportImage.exportImage(editMaze.centrePanel,"maze.png");
