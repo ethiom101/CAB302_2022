@@ -1,0 +1,16 @@
+DROP DATABASE IF EXISTS `mazes`;
+CREATE DATABASE `mazes` DEFAULT CHARACTER SET utf8mb4;
+USE `mazes`;
+
+CREATE TABLE IF NOT EXISTS `test` 
+(
+	`ID` int NOT NULL AUTO_INCREMENT,
+    `Name` char(35) NOT NULL DEFAULT '',
+    `CreateDate` TIMESTAMP NOT NULL DEFAULT '',
+    `EditDate` DATETIME NOT NULL DEFAULT '',
+    `Mazeinfo` char(256) NOT NULL DEFAULT '',
+    PRIMARY KEY (`ID`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+LOAD DATA INFILE 'data.txt' INTO TABLE mazes.test;
+
