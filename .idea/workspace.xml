@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="ActionListeners for 'ViewMaze'">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/EditMaze.java" afterDir="false" />
-    </list>
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding Cell Distribution" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,14 +23,6 @@
   <component name="Git.Settings">
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -55,7 +44,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
   </component>
-  <component name="RunManager" selected="Application.ViewMaze">
+  <component name="RunManager" selected="Application.MainPage">
+    <configuration name="CreateNewMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.CreateNewMaze" />
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Maze.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EditMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.EditMaze" />
       <module name="Assignment" />
@@ -82,21 +84,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MazeGenLouis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Maze.MazeGenLouis" />
-      <module name="Assignment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Maze.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MazeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Maze.MazeGenerator" />
+    <configuration name="MainPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Maze.MainPage" />
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
@@ -123,11 +112,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainPage" />
         <item itemvalue="Application.ViewMaze" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.EditMaze" />
-        <item itemvalue="Application.MazeGenerator" />
-        <item itemvalue="Application.MazeGenLouis" />
+        <item itemvalue="Application.CreateNewMaze" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -175,21 +164,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653647818832</updated>
     </task>
-    <task id="LOCAL-00006" summary="Steven- make the menu items in 'main' have a purpose&#10;Only with 'new' so far">
-      <created>1653967206710</created>
+    <task id="LOCAL-00006" summary="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution">
+      <created>1653986486875</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1653967206710</updated>
+      <updated>1653986486875</updated>
     </task>
-    <task id="LOCAL-00007" summary="ActionListeners for 'ViewMaze'">
-      <created>1653967817481</created>
+    <task id="LOCAL-00007" summary="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution">
+      <created>1653986531757</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1653967817481</updated>
+      <updated>1653986531757</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adding Cell Distribution">
+      <created>1653988015032</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653988015032</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,8 +212,8 @@
     <MESSAGE value="Adding new cell class and mazegenerator, should run fine" />
     <MESSAGE value="Adding comments to mazegenerator and cell" />
     <MESSAGE value="no idea" />
-    <MESSAGE value="Steven- make the menu items in 'main' have a purpose&#10;Only with 'new' so far" />
-    <MESSAGE value="ActionListeners for 'ViewMaze'" />
-    <option name="LAST_COMMIT_MESSAGE" value="ActionListeners for 'ViewMaze'" />
+    <MESSAGE value="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution" />
+    <MESSAGE value="Adding Cell Distribution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding Cell Distribution" />
   </component>
 </project>
