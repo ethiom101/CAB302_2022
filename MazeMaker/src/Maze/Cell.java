@@ -29,7 +29,6 @@ public class Cell extends JLabel {
         this.column = column;
         this.cellSize = cellSize;
 
-
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -56,6 +55,7 @@ public class Cell extends JLabel {
                         if ((rightWall.isSelected())) {
                             drawRightWall();
                         }
+
 
 
 
