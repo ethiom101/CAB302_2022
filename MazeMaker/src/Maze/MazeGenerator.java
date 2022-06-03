@@ -17,8 +17,8 @@ public class MazeGenerator {
     private static int gridX;
     private static int gridY;
     //Grid
-    public static Cell[][] cells = new Cell[100][100];
-    public ArrayList<Cell> solution = new ArrayList<Cell>();
+    public static CellOld[][] cells = new CellOld[100][100];
+    public ArrayList<CellOld> solution = new ArrayList<CellOld>();
     public static boolean toggle = false;
 
 
@@ -43,7 +43,7 @@ public class MazeGenerator {
      */
     public JPanel drawMaze(){
 
-        Cell[][] grid = cells;
+        CellOld[][] grid = cells;
         //Set up frame and panel
         //JFrame frame = new JFrame("Maze");
         JPanel panel = new JPanel();
@@ -149,24 +149,24 @@ public class MazeGenerator {
      * @param grid grid
      * @return the updated grid
      */
-    public Cell[][] createmaze(int x, int y, Cell[][] grid){
+    public CellOld[][] createmaze(int x, int y, CellOld[][] grid){
         //Initialise the cells of the grid
         for(int i = 0; i< gridX; i++){
             for(int j = 0; j<gridY; j++){
                 //System.out.println(i+" "+j);
-                grid[i][j] = new Cell(i,j);
+                grid[i][j] = new CellOld(i,j);
             }
         }
         //Start point
         grid[x][y].setVisit();
         grid[x][y].setStart();
-        Cell start = grid[x][y];
+        CellOld start = grid[x][y];
 
         //Variable to the end cell
-        Cell end;
+        CellOld end;
 
         //Variable to track the current cell we are working on
-        Cell current = grid[x][y];
+        CellOld current = grid[x][y];
 
         //Checks if the end cell has been choosen and if the maze doing is finished
         Boolean hasSetEnd = false;
@@ -194,7 +194,7 @@ public class MazeGenerator {
                 }
 
                 //get the parent cell and go backwards
-                Cell newCurrent = backward(current);
+                CellOld newCurrent = backward(current);
                 current = newCurrent;
 
                 //If the parent cell is the start cell then end cause the maze is done
@@ -213,7 +213,7 @@ public class MazeGenerator {
             //If there are univisted neighbours then go forward
             else{
                 //Go forward
-                Cell newCurrent = forward(current,unvisited);
+                CellOld newCurrent = forward(current,unvisited);
                 current = newCurrent;
                 if(!hasSetEnd){
                     solution.add(current);
@@ -230,7 +230,7 @@ public class MazeGenerator {
      * @param listDirection List of the directions where there are unvisited neighbours
      * @return
      */
-    public static Cell forward(Cell current, ArrayList<String> listDirection){
+    public static CellOld forward(CellOld current, ArrayList<String> listDirection){
         //Shuffle the list of directions so maze generator is more random
         Collections.shuffle(listDirection);
         //Choose the first direction from randomised list
@@ -259,7 +259,7 @@ public class MazeGenerator {
         }
 
         //set child of current cell
-        Cell newCurrent = cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
+        CellOld newCurrent = cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
         cells[current.getPosx()][current.getPosy()].setChildren(newCurrent);
 
         //return child
@@ -272,12 +272,12 @@ public class MazeGenerator {
      * @param current current cell
      * @return the parent cell
      */
-    public static Cell backward(Cell current){
+    public static CellOld backward(CellOld current){
         return current.getParent();
     }
 
     //Get a list of directions of unvisited neighbours
-    public static ArrayList<String> getListUnvisited(Cell current){
+    public static ArrayList<String> getListUnvisited(CellOld current){
 
         //Create two lists of directions (NSWE). Had to make two because it was acting up
         ArrayList<String> direction = new ArrayList<String>();
@@ -353,7 +353,7 @@ public class MazeGenerator {
         }
         return bruh;
     }
-    public static Cell[][] returnGird(){
+    public static CellOld[][] returnGird(){
         return cells;
     }
 }
