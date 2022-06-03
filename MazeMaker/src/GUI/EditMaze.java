@@ -403,8 +403,24 @@ public class EditMaze extends JFrame {
         sideBar.add(generateMaze);
         generateMaze.setPreferredSize(new Dimension(150, 40));
         generateMaze.addActionListener(e -> {
+            this.mazeWidth = (int) mazeRows.getValue();
+            this.mazeHeight = (int) mazeColumns.getValue();
+            this.cellSize = cellSlider.getValue();
+            Grid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
+            mazePanel.removeAll();
             Grid.drawMaze();
             Grid.toggleGeno();
+            mazePanel.add(Grid);
+            Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+            Grid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+            Grid.revalidate();
+            Grid.repaint();
+            Grid.setCellSize(cellSize);
+            mazePanel.revalidate();
+            mazePanel.repaint();
+
+            this.pack();
+
             // generate maze implementation
 
             //mazePanel.removeAll();
