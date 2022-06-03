@@ -34,13 +34,6 @@ public class Grid extends JPanel {
         }
     }
 
-    // public void resetMaze(){
-    //     for (int row=0;row<w;row++) {
-    //         for (int col =0;col<w;col++) {
-    //             grid[row][col].resetCell();
-    //         }
-    //     }
-    // }
     public int getColumns() {
         return this.columns;
     }

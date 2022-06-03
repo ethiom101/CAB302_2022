@@ -28,6 +28,8 @@ public class Cell extends JLabel {
         this.row = row;
         this.column = column;
         this.cellSize = cellSize;
+
+
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -230,7 +232,6 @@ public class Cell extends JLabel {
             }
         }
     }
-
 
     public void drawWall() {
         // set top

@@ -10,7 +10,7 @@ public class HomePage extends JFrame {
 
     public HomePage() {
         // Frame
-        this.setTitle("Edit Maze");
+        this.setTitle("Maze Maker");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(700, 300 );
         this.setResizable(false);
