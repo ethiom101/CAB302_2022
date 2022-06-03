@@ -44,7 +44,21 @@ public class Cell extends JLabel {
                     }
 
                     if (itemSelector.getSelectedItem() == "Wall") {
-                        drawWall();
+                        if ((topWall.isSelected())) {
+                            drawTopWall();
+                        }
+                        if ((leftWall.isSelected())) {
+                            drawLeftWall();
+                        }
+                        if ((downWall.isSelected())) {
+                            drawDownWall();
+                        }
+                        if ((rightWall.isSelected())) {
+                            drawRightWall();
+                        }
+
+
+
                     }
                     if (itemSelector.getSelectedItem() == "Logo") {
                         drawLogo(logo);
@@ -60,7 +74,6 @@ public class Cell extends JLabel {
     public void drawStart(ImageIcon start) {
         start = (resizeImage(start, Grid.getCellSize(), Grid.getCellSize()));
         if (this.isStart) {
-            System.out.println("yes");
             this.setIcon(null);
             this.isStart = false;
             Grid.setStart(null);
@@ -233,20 +246,18 @@ public class Cell extends JLabel {
         }
     }
 
-    public void drawWall() {
-        // set top
-        if (topWall.isSelected()) {
-            if (!isWall[0]) {
-                drawWall[0] = strokeSize;
-                isWall[0] = true;
-            } else {
-                drawWall[0] = 0;
-                isWall[0] = false;
-            }
-            this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+    public void drawTopWall() {
+        if (!isWall[0]) {
+            drawWall[0] = strokeSize;
+            isWall[0] = true;
+        } else {
+            drawWall[0] = 0;
+            isWall[0] = false;
         }
-        // set left
-        if (leftWall.isSelected()) {
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+    }
+
+    public void drawLeftWall() {
             if (!isWall[1]) {
                 drawWall[1] = strokeSize;
                 isWall[1] = true;
@@ -255,9 +266,9 @@ public class Cell extends JLabel {
                 isWall[1] = false;
             }
             this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-        }
-        // set down
-        if (downWall.isSelected()) {
+    }
+
+    public void drawDownWall() {
             if (!isWall[2]) {
                 drawWall[2] = strokeSize;
                 isWall[2] = true;
@@ -266,8 +277,9 @@ public class Cell extends JLabel {
                 isWall[2] = false;
             }
             this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-        }
-        // set right
+    }
+
+    public void drawRightWall() {
         if (rightWall.isSelected()) {
             if (!isWall[3]) {
                 drawWall[3] = strokeSize;
@@ -314,7 +326,33 @@ public class Cell extends JLabel {
         this.setIcon(resizeImage(image, cellSize, cellSize));
     }
 
+    public boolean isStart() {
+        return isStart;
+    }
 
+    public boolean isEnd() {
+        return isEnd;
+    }
+
+    public boolean isLogo() {
+        return isLogo;
+    }
+
+    public boolean isTopWall() {
+        return isWall[0];
+    }
+
+    public boolean isLeftWall() {
+        return isWall[1];
+    }
+
+    public boolean isDownWall() {
+        return isWall[2];
+    }
+
+    public boolean isRightWall() {
+        return isWall[3];
+    }
 
     public int getRow() {
         return this.row;
