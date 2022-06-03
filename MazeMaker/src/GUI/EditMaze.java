@@ -49,8 +49,8 @@ public class EditMaze extends JFrame {
     public static JRadioButton rightWall = new JRadioButton("Right");
     public ButtonGroup wallSelections = new ButtonGroup();
     public JPanel selectedImage = new JPanel();
-    ImageIcon startIMG = new ImageIcon("arrow.png");
-    ImageIcon endIMG = new ImageIcon("arrow.png");
+    ImageIcon startIMG = Cell.start;
+    ImageIcon endIMG = Cell.end;
     public JLabel startImage = new JLabel();
     public JLabel endImage = new JLabel();
     public JLabel logoImage = new JLabel();
