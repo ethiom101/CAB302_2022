@@ -403,6 +403,8 @@ public class EditMaze extends JFrame {
         sideBar.add(generateMaze);
         generateMaze.setPreferredSize(new Dimension(150, 40));
         generateMaze.addActionListener(e -> {
+            Grid.drawMaze();
+            Grid.toggleGeno();
             // generate maze implementation
 
             //mazePanel.removeAll();
@@ -419,6 +421,8 @@ public class EditMaze extends JFrame {
         sideBar.add(toggleSolution);
         toggleSolution.setPreferredSize(new Dimension(150, 40));
         toggleSolution.addActionListener(e -> {
+            Grid.drawSolution();
+            Grid.toggle();
             // toggle solution implementation
 
             // System.out.println("Toggle Solution");

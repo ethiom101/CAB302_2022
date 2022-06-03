@@ -4,7 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding Cell Distribution" />
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution (toggle solution does not toggle yet)">
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/CellOld.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Images.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeFile.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/MazeMaker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/maze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assignment/start.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/TheGUI$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/TheGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/CreateNewMaze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/EditMaze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ExportImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MainPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/ViewMaze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,9 +94,9 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MazeMaker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MazeMaker/src" />
   </component>
-  <component name="RunManager" selected="Application.MainPage">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration name="CreateNewMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Maze.CreateNewMaze" />
       <module name="Assignment" />
@@ -71,15 +123,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Maze.Main" />
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Assignment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Maze.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.MainPage" />
         <item itemvalue="Application.ViewMaze" />
         <item itemvalue="Application.EditMaze" />
         <item itemvalue="Application.CreateNewMaze" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653988015032</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Making back button on CreateNewMaze work">
+      <created>1653988485540</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1653988485540</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,6 +267,8 @@
     <MESSAGE value="no idea" />
     <MESSAGE value="Worked on navigation so you can go from main page to createmaze to viewmaze and then edit maze and also added toggle solution" />
     <MESSAGE value="Adding Cell Distribution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding Cell Distribution" />
+    <MESSAGE value="Making back button on CreateNewMaze work" />
+    <MESSAGE value="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution (toggle solution does not toggle yet)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution (toggle solution does not toggle yet)" />
   </component>
 </project>

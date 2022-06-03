@@ -38,6 +38,12 @@ public class MazeGenerator {
         //drawMaze(grid2);
     }
 
+    public CellOld[][] getGrid(){
+        return cells;
+    }
+    public ArrayList<CellOld> getSolution(){
+        return solution;
+    }
     /**
      * Draws the maze
      */
@@ -186,12 +192,12 @@ public class MazeGenerator {
             //If the list is empty, meaning there are no unvisited neighbours left then go backwards
             if(unvisited.isEmpty()){
                 //If end cell hasnt been chosen yet then make this cell the end cell
-                if(!hasSetEnd){
-                    hasSetEnd=true;
-                    end = current;
-                    grid[current.getPosx()][current.getPosy()].setEnd();
-                    System.out.println("Found end");
-                }
+//                if(!hasSetEnd){
+//                    hasSetEnd=true;
+//                    end = current;
+//                    grid[current.getPosx()][current.getPosy()].setEnd();
+//                    System.out.println("Found end");
+//                }
 
                 //get the parent cell and go backwards
                 CellOld newCurrent = backward(current);
@@ -213,8 +219,15 @@ public class MazeGenerator {
             //If there are univisted neighbours then go forward
             else{
                 //Go forward
+
                 CellOld newCurrent = forward(current,unvisited);
                 current = newCurrent;
+                if(!hasSetEnd&&current.getPosx()==gridX-1&&current.getPosy()==gridY-1){
+                    hasSetEnd=true;
+                    end = current;
+                    grid[current.getPosx()][current.getPosy()].setEnd();
+                    System.out.println("Found end");
+                }
                 if(!hasSetEnd){
                     solution.add(current);
                 }
