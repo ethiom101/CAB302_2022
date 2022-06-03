@@ -2,6 +2,9 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+
+import static Maze.MazeFile.openMaze;
 
 public class HomePage extends JFrame {
     JButton newMaze = new JButton("New Maze");
@@ -28,6 +31,14 @@ public class HomePage extends JFrame {
         browseMaze.setPreferredSize(new Dimension(200, 200));
         this.add(importMaze);
         importMaze.setPreferredSize(new Dimension(200, 200));
+        importMaze.addActionListener(e -> {
+            try {
+                openMaze();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            this.dispose();
+        });
 
         this.setVisible(true);
     }

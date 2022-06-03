@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static Maze.Images.*;
+import static Maze.MazeFile.saveMaze;
 
 public class EditMaze extends JFrame {
     public JPanel mazePanel = new JPanel();
@@ -443,6 +444,13 @@ public class EditMaze extends JFrame {
 
         // others
         sideBar.add(save);
+        save.addActionListener(e -> {
+            try {
+                saveMaze();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         sideBar.add(export);
         export.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
