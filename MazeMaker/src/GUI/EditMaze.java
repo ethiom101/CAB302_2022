@@ -403,6 +403,7 @@ public class EditMaze extends JFrame {
         generateMaze.setPreferredSize(new Dimension(150, 40));
         generateMaze.addActionListener(e -> {
             // generate maze implementation
+
             //mazePanel.removeAll();
             //System.out.println("Generate New Maze");
             //this.mazeGenerator = new MazeGenerator(mazeWidth, mazeHeight);
@@ -410,23 +411,23 @@ public class EditMaze extends JFrame {
             //mazePanel.add(this.maze);
             //percentageTravel.setText("% of Cells To Win: " + this.mazeGenerator.cellDistribution());
             //this.maze.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            Grid = new Grid(mazeWidth, mazeHeight, cellSize);
-            this.revalidate();
-            this.repaint();
+            //this.revalidate();
+            //this.repaint();
         });
         // toggle solution
         sideBar.add(toggleSolution);
         toggleSolution.setPreferredSize(new Dimension(150, 40));
         toggleSolution.addActionListener(e -> {
             // toggle solution implementation
-            System.out.println("Toggle Solution");
-            mazePanel.removeAll();
-            this.mazeGenerator.toggleSolution();
-            this.maze = this.mazeGenerator.drawMaze();
-            mazePanel.add(this.maze);
-            this.maze.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            this.revalidate();
-            this.repaint();
+
+            // System.out.println("Toggle Solution");
+            // mazePanel.removeAll();
+            // this.mazeGenerator.toggleSolution();
+            // this.maze = this.mazeGenerator.drawMaze();
+            // mazePanel.add(this.maze);
+            // this.maze.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+            // this.revalidate();
+            // this.repaint();
         });
 
         // statistics
