@@ -1,14 +1,17 @@
 package GUI;
 
-import Maze.ExportImage;
+import Maze.Cell;
 import Maze.MazeGenerator;
 import Maze.Grid;
 
 
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+
+import static Maze.Images.*;
 
 public class EditMaze extends JFrame {
     public JPanel mazePanel = new JPanel();
@@ -17,33 +20,36 @@ public class EditMaze extends JFrame {
     // Maze Components
     JPanel maze;
     MazeGenerator mazeGenerator;
-    Grid grid;
-    int cellSize = 50;
-    public int mazeWidth = 5;
-    public int mazeHeight = 5;
+    public static Grid Grid;
+    public int cellSize = 50;
+    public int mazeWidth = 10;
+    public int mazeHeight = 10;
 
 
     // Side Bar Components
     //  new grid
     public JPanel newGrid = new JPanel();
-    public JSpinner mazeRows = new JSpinner(new SpinnerNumberModel(5, 5, 100, 1));
-    public JSpinner mazeColumns = new JSpinner(new SpinnerNumberModel(5, 5, 100, 1));
-    public JButton updateGrid = new JButton("Update Grid");
+    public JSpinner mazeRows = new JSpinner(new SpinnerNumberModel(mazeWidth, 5, 100, 1));
+    public JSpinner mazeColumns = new JSpinner(new SpinnerNumberModel(mazeHeight, 5, 100, 1));
+    public JButton resetGrid = new JButton("New Grid");
     // cell slider
     public JSlider cellSlider = new JSlider(0, 100, 50);
     // item picker
+    public ImageIcon IMG = new ImageIcon("arrow.png");
     public JPanel itemPicker = new JPanel();
     public static String[] items = {"Start", "End", "Wall", "Logo",};
     public static JComboBox<String> itemSelector = new JComboBox<>(items);
-    public JButton changeImage = new JButton("Change Image");
+    public JButton changeImage = new JButton("Change");
     public JButton resetImage = new JButton("Reset");
+    public JButton rotateImage = new JButton("Rotate");
     public static JRadioButton topWall = new JRadioButton("Top");
     public static JRadioButton downWall = new JRadioButton("Down");
     public static JRadioButton leftWall = new JRadioButton("Left");
     public static JRadioButton rightWall = new JRadioButton("Right");
     public ButtonGroup wallSelections = new ButtonGroup();
-    public JButton removeLogo = new JButton("Remove");
     public JPanel selectedImage = new JPanel();
+    ImageIcon startIMG = new ImageIcon("arrow.png");
+    ImageIcon endIMG = new ImageIcon("arrow.png");
     public JLabel startImage = new JLabel();
     public JLabel endImage = new JLabel();
     public JLabel logoImage = new JLabel();
@@ -68,7 +74,7 @@ public class EditMaze extends JFrame {
         // Frame
         this.setTitle("Edit Maze");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension(265, 750));
+        this.setMinimumSize(new Dimension(250, 725));
         this.setResizable(false);
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
@@ -80,14 +86,11 @@ public class EditMaze extends JFrame {
         // Creating Components
 
         // Maze
-        mazePanel.setBackground(Color.WHITE);
-        // grid = new Grid(mazeWidth, mazeHeight, cellSize);
-        //mazePanel.add(grid);
-        grid = new Grid(mazeWidth, mazeHeight, cellSize);
-        mazePanel.add(grid);
-        grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-
-
+        mazePanel.setBackground(new Color(234, 234, 234));
+        Grid = new Grid(mazeHeight, mazeWidth, cellSize);
+        mazePanel.add(Grid);
+        Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+        Grid.setBorder(BorderFactory.createLineBorder(Color.gray));
 
 
         // Sidebar
@@ -102,6 +105,7 @@ public class EditMaze extends JFrame {
         newGrid.add(mazeRows);
         mazeRows.addChangeListener(e -> {
             // Rows change listener implementation
+            //resetGrid.setEnabled(((this.mazeWidth != (int) mazeRows.getValue()) || (this.mazeHeight != (int) mazeColumns.getValue())));
             System.out.println(mazeRows.getValue());
 
         });
@@ -110,22 +114,30 @@ public class EditMaze extends JFrame {
         newGrid.add(mazeColumns);
         mazeColumns.addChangeListener(e -> {
             // Columns change listener implementation
+            //resetGrid.setEnabled(((this.mazeWidth != (int) mazeRows.getValue()) || (this.mazeHeight != (int) mazeColumns.getValue())));
             System.out.println(mazeColumns.getValue());
 
         });
         mazeColumns.setPreferredSize(new Dimension(50, 25));
-        newGrid.add(updateGrid);
-        updateGrid.setPreferredSize(new Dimension(200, 25));
-        updateGrid.addActionListener(e -> {
+        newGrid.add(resetGrid);
+        resetGrid.setPreferredSize(new Dimension(200, 25));
+        resetGrid.addActionListener(e -> {
                     // update grid implementation
-                    System.out.println("Update Grid");
+                    System.out.println("New Grid");
                     this.mazeWidth = (int) mazeRows.getValue();
                     this.mazeHeight = (int) mazeColumns.getValue();
                     this.cellSize = cellSlider.getValue();
-                    this.grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+                    Grid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
+                    mazePanel.removeAll();
+                    mazePanel.add(Grid);
+                    Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+                    Grid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+                    Grid.revalidate();
+                    Grid.repaint();
+                    Grid.setCellSize(cellSize);
+                    mazePanel.revalidate();
+                    mazePanel.repaint();
                     this.pack();
-                    grid.revalidate();
-                    grid.repaint();
                 }
         );
 
@@ -141,15 +153,35 @@ public class EditMaze extends JFrame {
         cellSlider.setMajorTickSpacing(10);
         cellSlider.setPreferredSize(new Dimension(225, 45));
         cellSlider.addChangeListener(e -> {
+            if (cellSlider.getValue() == 0) {
+                cellSlider.setValue(1);
+            }
             System.out.println(cellSlider.getValue());
             cellSizeLabel.setText(String.valueOf(cellSlider.getValue()));
+            this.cellSize = cellSlider.getValue();
+            Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+            if (Grid.getStart() != null) {
+                Grid.getStart().setImage(Cell.start, cellSize);
+            }
+            if (Grid.getEnd() != null) {
+                Grid.getEnd().setImage(Cell.end, cellSize);
+            }
+            if (Grid.getLogo() != null) {
+                Grid.getLogo().setImage(Cell.logo, cellSize);
+            }
+
+
+            Grid.setCellSize(cellSize);
+            Grid.repaint();
+            Grid.revalidate();
+            pack();
         });
 
 
         // Item Picker
         sideBar.add(itemPicker);
         itemPicker.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
-        itemPicker.setPreferredSize(new Dimension(230, 80));
+        itemPicker.setPreferredSize(new Dimension(230, 100));
         itemPicker.add(new JLabel("Item Picker:"));
         itemPicker.add(itemSelector);
         itemSelector.setPreferredSize(new Dimension(100, 25))
@@ -157,6 +189,11 @@ public class EditMaze extends JFrame {
         ;
         itemPicker.add(changeImage);
         selectedImage.add(startImage);
+
+        startImage.setIcon(resizeImage(startIMG, 100, 100));
+        selectedImage.add(endImage);
+
+        endImage.setIcon(resizeImage(endIMG, 100, 100));
         changeImage.addActionListener(e -> {
             // change image implementation
             JFileChooser fileChooser = new JFileChooser();
@@ -165,35 +202,112 @@ public class EditMaze extends JFrame {
                 // resizing image
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 ImageIcon imageLogo = new ImageIcon(String.valueOf(file));
-                Image image = imageLogo.getImage();
-                Image resizedLogo = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imageLogo = new ImageIcon(resizedLogo);
+                imageLogo = resizeImage(imageLogo, 100, 100);
                 if (itemSelector.getSelectedItem() == "Start") {
                     startImage.setIcon(imageLogo);
+                    Cell.start = imageLogo;
+                    if (Grid.getStart() != null) {
+                        Grid.getStart().setIcon(imageLogo);
+                        Grid.getStart().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
+                    }
                 }
                 if (itemSelector.getSelectedItem() == "End") {
                     endImage.setIcon(imageLogo);
+                    Cell.end = imageLogo;
+                    if (Grid.getEnd() != null) {
+                        Grid.getEnd().setIcon(imageLogo);
+                        Grid.getEnd().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
+                    }
                 }
                 if (itemSelector.getSelectedItem() == "Logo") {
+                    Cell.logo = imageLogo;
                     logoImage.setIcon(imageLogo);
+                    if (Grid.getLogo() != null) {
+                        Grid.getLogo().setIcon(imageLogo);
+                        Grid.getLogo().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
+                    }
                 }
+                resetImage.setEnabled(true);
             }
         });
-        changeImage.setPreferredSize(new Dimension(120, 25));
         // reset image button
         itemPicker.add(resetImage);
-        selectedImage.add(endImage);
+        resetImage.setEnabled(false);
         resetImage.addActionListener(e -> {
             // remove logo implementation
             if (itemSelector.getSelectedItem() == "Start") {
-                startImage.setIcon(null);
+                startImage.setIcon(resizeImage(IMG, 100, 100));
+                if (Grid.getStart() != null) {
+                    Grid.getStart().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
+                    Cell.start = IMG;
+                }
             }
             if (itemSelector.getSelectedItem() == "End") {
-                endImage.setIcon(null);
+                endImage.setIcon(resizeImage(IMG, 100, 100));
+                if (Grid.getEnd() != null) {
+                    Grid.getEnd().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
+                    Cell.end = IMG;
+                }
             }
+            if (itemSelector.getSelectedItem() == "Logo") {
+                logoImage.setIcon(null);
+                Cell.logo = null;
+                if (Grid.getLogo() != null) {
+                    Grid.getLogo().isWall[0] = false;
+                    Grid.getLogo().isWall[1] = false;
+                    Grid.getLogo().isWall[2] = false;
+                    Grid.getLogo().isWall[3] = false;
+                    Grid.getLogo().setBorder(new MatteBorder(0, 0, 0, 0, Color.black));
+                    Grid.getLogo().setIcon(null);
+                }
+            }
+            resetImage.setEnabled(false);
 
         });
-        resetImage.setPreferredSize(new Dimension(80, 25));
+        // rotate image button
+        itemPicker.add(rotateImage);
+        rotateImage.addActionListener((e -> {
+
+            if (itemSelector.getSelectedItem() == "Start") {
+                try {
+                    Cell.start = rotateImage(Cell.start);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                if (Grid.getStart() != null){
+                    Grid.getStart().setImage(Cell.start, this.cellSize);
+                }
+                startImage.setIcon(resizeImage(Cell.start, 100, 100));
+            }
+
+            if (itemSelector.getSelectedItem() == "End") {
+                try {
+                    Cell.end = rotateImage(Cell.end);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                if (Grid.getEnd() != null){
+                    Grid.getEnd().setImage(Cell.end, this.cellSize);
+                }
+                endImage.setIcon(resizeImage(Cell.end, 100, 100));
+
+            }
+            if (itemSelector.getSelectedItem() == "Logo") {
+                if (Cell.logo != null) {
+                    try {
+                        Cell.logo = rotateImage(Cell.logo);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    if (Grid.getLogo() != null) {
+                        Grid.getLogo().setImage(Cell.logo, this.cellSize);
+                    }
+                    logoImage.setIcon(resizeImage(Cell.logo, 100, 100));
+                }
+            }
+        }));
+
+
         // wall selector
         itemPicker.add(topWall);
         topWall.addActionListener(e -> {
@@ -224,15 +338,9 @@ public class EditMaze extends JFrame {
         wallSelections.add(leftWall);
         wallSelections.add(rightWall);
         // logo
-        itemPicker.add(removeLogo);
-        removeLogo.addActionListener(e -> {
-            // remove logo implementation
-            logoImage.setIcon(null);
-        });
-        removeLogo.setVisible(false);
         sideBar.add(selectedImage);
         selectedImage.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
-        selectedImage.setPreferredSize(new Dimension(110, 115));
+        selectedImage.setPreferredSize(new Dimension(110, 110));
         selectedImage.add(logoImage);
 
 
@@ -246,19 +354,19 @@ public class EditMaze extends JFrame {
                 rightWall.setVisible(true);
                 changeImage.setVisible(false);
                 resetImage.setVisible(false);
-                removeLogo.setVisible(false);
+                rotateImage.setVisible(false);
                 selectedImage.setVisible(false);
                 logoImage.setVisible(false);
                 endImage.setVisible(false);
                 startImage.setVisible(false);
             } else if (itemSelector.getSelectedItem() == "Logo") {
                 changeImage.setVisible(true);
-                removeLogo.setVisible(true);
                 topWall.setVisible(false);
                 downWall.setVisible(false);
                 leftWall.setVisible(false);
                 rightWall.setVisible(false);
-                resetImage.setVisible(false);
+                resetImage.setVisible(true);
+                rotateImage.setVisible(true);
                 selectedImage.setVisible(true);
                 logoImage.setVisible(true);
                 endImage.setVisible(false);
@@ -266,23 +374,23 @@ public class EditMaze extends JFrame {
             } else if (itemSelector.getSelectedItem() == "End") {
                 changeImage.setVisible(true);
                 resetImage.setVisible(true);
+                rotateImage.setVisible(true);
                 topWall.setVisible(false);
                 downWall.setVisible(false);
                 leftWall.setVisible(false);
                 rightWall.setVisible(false);
-                removeLogo.setVisible(false);
                 selectedImage.setVisible(true);
                 logoImage.setVisible(false);
                 endImage.setVisible(true);
                 startImage.setVisible(false);
-            } else {
+            } else if (itemSelector.getSelectedItem() == "Start") {
                 changeImage.setVisible(true);
                 resetImage.setVisible(true);
+                rotateImage.setVisible(true);
                 topWall.setVisible(false);
                 downWall.setVisible(false);
                 leftWall.setVisible(false);
                 rightWall.setVisible(false);
-                removeLogo.setVisible(false);
                 selectedImage.setVisible(true);
                 logoImage.setVisible(false);
                 endImage.setVisible(false);
@@ -302,7 +410,7 @@ public class EditMaze extends JFrame {
             //mazePanel.add(this.maze);
             //percentageTravel.setText("% of Cells To Win: " + this.mazeGenerator.cellDistribution());
             //this.maze.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            grid = new Grid(mazeWidth, mazeHeight, cellSize);
+            Grid = new Grid(mazeWidth, mazeHeight, cellSize);
             this.revalidate();
             this.repaint();
         });
@@ -341,7 +449,7 @@ public class EditMaze extends JFrame {
             if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 try {
-                    ExportImage.exportImage(this.maze, file + ".png");
+                    exportImage(Grid, file + ".png");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
