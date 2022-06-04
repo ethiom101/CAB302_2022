@@ -21,7 +21,17 @@ public class MazeGenerator {
     public ArrayList<CellOld> solution = new ArrayList<CellOld>();
     public static boolean toggle = false;
 
+    private int startX=0;
+    private int startY=0;
+    private int endX=gridX-1;
+    private int endY=gridY-1;
 
+    public void setEndX(int positionX){
+        endX=positionX;
+    }
+    public void setEndY(int positionY){
+        endY=positionY;
+    }
 //    /**
 //     * Just to test
 //     * @param args
@@ -33,9 +43,81 @@ public class MazeGenerator {
 //    }
     public MazeGenerator(int gridX,int gridY){
         this.gridX = gridX;
-        this.gridY=gridY;
+        this.gridY = gridY;
         this.cells = createmaze(0,0, cells);
         //drawMaze(grid2);
+    }
+
+    public Stack<CellOld> solveMaze(){
+        CellOld current = cells[startX][startY];
+
+        Stack<CellOld> solution = new Stack<CellOld>();
+        Stack<CellOld> visited = new Stack<CellOld>();
+        solution.push(current);
+        visited.push(current);
+        while(true){
+            current = solution.peek();
+            ArrayList<Integer> direction = getUnvisitedRoute(current,visited);
+
+            if(direction.isEmpty()){
+                solution.pop();
+                if(solution.peek()==cells[startX][startY]){
+                    break; //Cannot find end
+                }
+            }
+            else {
+                //Go forward
+                CellOld newCurrent = forwardSolution(current, direction);
+                solution.push(newCurrent);
+                visited.push(newCurrent);
+                current = newCurrent;
+                if(current==cells[endX][endY]){
+                    break; //found end
+                }
+            }
+        }
+        return solution;
+    }
+    public CellOld forwardSolution(CellOld current, ArrayList<Integer> direction){
+        if(direction.get(0)==1){
+            return cells[current.getPosx()][current.getPosy()-1];
+        }else if(direction.get(0)==2){
+            return cells[current.getPosx()][current.getPosy()+1];
+        }else if(direction.get(0)==3){
+            return cells[current.getPosx()-1][current.getPosy()];
+        }else if(direction.get(0)==4){
+            return cells[current.getPosx()+1][current.getPosy()];
+        }
+        return current;
+    }
+    public ArrayList getUnvisitedRoute(CellOld cell,Stack<CellOld> visited){
+        ArrayList<Integer> direction = new ArrayList<Integer>();
+        for(int i = 1;i<5;i++){
+            if(!cell.getWall(i)){
+                direction.add(i);
+                int[] value = solutionDirectionValue(i);
+                if(visited.contains(cells[cell.getPosx()+value[0]][cell.getPosy()+value[1]])){
+                    direction.remove(direction.size()-1);
+                }
+            }
+        }
+        Collections.shuffle(direction);
+        return direction;
+    }
+    public int[] solutionDirectionValue(int direction){
+        int[] returnPair = {0,0};
+        if(direction==1){
+            returnPair[1]=-1;
+        }else if(direction==2){
+            returnPair[1]=1;
+        }
+        else if(direction==3){
+            returnPair[0]=-1;
+        }
+        else if(direction==4){
+            returnPair[0]=1;
+        }
+        return returnPair;
     }
 
     public CellOld[][] getGrid(){
@@ -144,8 +226,27 @@ public class MazeGenerator {
 
     public String cellDistribution(){
         String cellDist = "";
-        cellDist = (solution.size() + 1.0) / (gridX * gridY) * 100 +"%";
+        cellDist = Math.round((((solution.size() + 1.0) / (gridX * gridY)) * 100)*100.0)/100.0 +"%";
         return cellDist;
+    }
+    public String deadEnds(){
+        int numDeadEnds = 0;
+        for(int i = 0; i< gridY; i++) {
+            for (int j = 0; j < gridX; j++) {
+                int numWalls = 0;
+                for(int k=1;k<5;k++){
+                    if(cells[i][j].getWall(k)){
+                        numWalls++;
+                    }
+                }
+                if(numWalls>2){
+                    numDeadEnds++;
+
+                }
+            }
+        }
+
+        return (Math.round(((numDeadEnds-1.0) / (gridX * gridY) * 100.0) * 100.0) / 100.0 +"%");
     }
 
     /**
@@ -207,12 +308,12 @@ public class MazeGenerator {
                 //Using this method to create the cell only once all the cells have been visited will we go back up to the start cell
                 if(newCurrent==start && getListUnvisited(newCurrent).isEmpty()){
                     finish=true;
-                    System.out.println("LOL1");
+
                     break;
                 }
                 else if (newCurrent.getPosx()==0 && newCurrent.getPosy()==0){
                     finish=true;
-                    System.out.println("LOL2");
+
                     break;
                 }
             }
@@ -277,7 +378,6 @@ public class MazeGenerator {
 
         //return child
         return cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
-
     }
 
     /**

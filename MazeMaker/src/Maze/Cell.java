@@ -280,16 +280,24 @@ public class Cell extends JLabel {
     }
 
     public void drawRightWall() {
-        if (rightWall.isSelected()) {
-            if (!isWall[3]) {
-                drawWall[3] = strokeSize;
-                isWall[3] = true;
-            } else {
-                drawWall[3] = 0;
-                isWall[3] = false;
-            }
-            this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+//        if (rightWall.isSelected()) {
+//            if (!isWall[3]) {
+//                drawWall[3] = strokeSize;
+//                isWall[3] = true;
+//            } else {
+//                drawWall[3] = 0;
+//                isWall[3] = false;
+//            }
+//            this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+//        }
+        if (!isWall[3]) {
+            drawWall[3] = strokeSize;
+            isWall[3] = true;
+        } else {
+            drawWall[3] = 0;
+            isWall[3] = false;
         }
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
 
     public void resetCell() {

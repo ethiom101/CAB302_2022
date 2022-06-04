@@ -405,6 +405,9 @@ public class EditMaze extends JFrame {
         generateMaze.addActionListener(e -> {
             Grid.drawMaze();
             Grid.toggleGeno();
+            percentageTravel.setText("% of Cells To Win: "+Grid.getCellDist());
+            percentageDeadEnd.setText("% of Dead Ends: "+Grid.getDeadEnds());
+
             // generate maze implementation
 
             //mazePanel.removeAll();
@@ -421,6 +424,7 @@ public class EditMaze extends JFrame {
         sideBar.add(toggleSolution);
         toggleSolution.setPreferredSize(new Dimension(150, 40));
         toggleSolution.addActionListener(e -> {
+
             Grid.drawSolution();
             Grid.toggle();
             // toggle solution implementation

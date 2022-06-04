@@ -3,6 +3,7 @@ package Maze;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Grid extends JPanel {
     private int rows;
@@ -47,42 +48,59 @@ public class Grid extends JPanel {
         }
     }
 
+    public String getCellDist(){
+        return(maze.cellDistribution());
+    }
+    public String getDeadEnds(){
+        return maze.deadEnds();
+    }
+
     public void drawMaze(){
         if(!toggleGenerator){
             maze = new MazeGenerator(rows,columns);
         }
         CellOld[][] maze2 = maze.getGrid();
-        int i = 0;
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.columns; col++) {
-//                grid[col][row].setText(i+"");
-//                i++;
+                grid[col][row].setText(col+" "+row);
+                System.out.println(row+" "+col);
                 if(maze2[col][row].getWall(1)){
                     grid[row][col].drawTopWall();
+//                    System.out.println("Up");
                 }
                 if(maze2[col][row].getWall(2)){
                     grid[row][col].drawDownWall();
+//                    System.out.println("Down");
                 }
                 if(maze2[col][row].getWall(3)){
                     grid[row][col].drawLeftWall();
+//                    System.out.println("Left");
                 }
                 if(maze2[col][row].getWall(4)){
                     grid[row][col].drawRightWall();
+//                    System.out.println("Right");
                 }
                 if(maze2[col][row].getStart()){
-
                     grid[row][col].drawStart(startImage);
                 }
                 if(maze2[col][row].getEnd()){
-
                     grid[row][col].drawEnd(startImage);
                 }
             }
         }
     }
     public void drawSolution(){
+
+        for (int row = 0; row < this.rows; row++) {
+            for (int col = 0; col < this.columns; col++) {
+                if(grid[row][col].isEnd()){
+                    maze.setEndX(col);
+                    maze.setEndY(row);
+                }
+            }
+        }
         CellOld[][] maze2 = maze.getGrid();
-        ArrayList<CellOld> solution = maze.getSolution();
+        Stack<CellOld> solution = maze.solveMaze();
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.columns; col++) {
                 if(solution.contains(maze2[col][row])){
@@ -96,6 +114,20 @@ public class Grid extends JPanel {
                 }
             }
         }
+//        ArrayList<CellOld> solution = maze.getSolution();
+//        for (int row = 0; row < this.rows; row++) {
+//            for (int col = 0; col < this.columns; col++) {
+//                if(solution.contains(maze2[col][row])){
+//                    if(toggle){
+//                        grid[row][col].setOpaque(true);
+//                        grid[row][col].setBackground(Color.white);
+//                    }else {
+//                        grid[row][col].setOpaque(true);
+//                        grid[row][col].setBackground(Color.pink);
+//                    }
+//                }
+//            }
+//        }
     }
 
     public int getColumns() {
