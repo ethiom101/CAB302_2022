@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="getting solve maze to solve different end points">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654253134839</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="getting solve maze to solve different end points">
+      <created>1654343778784</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1654343778784</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,6 +238,7 @@
     <MESSAGE value="Making back button on CreateNewMaze work" />
     <MESSAGE value="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution (toggle solution does not toggle yet)" />
     <MESSAGE value="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Getting draw maze to work in the new system. Generate maze button will draw the maze and toggle solution will draw the solution" />
+    <MESSAGE value="getting solve maze to solve different end points" />
+    <option name="LAST_COMMIT_MESSAGE" value="getting solve maze to solve different end points" />
   </component>
 </project>

@@ -18,14 +18,27 @@ public class MazeFile {
             BufferedWriter outputWriter = new BufferedWriter(new FileWriter(file.getAbsolutePath() + path));
             for (int i = 0; i < grid.length; i++) {
                 for (int j = 0; j < grid[i].length; j++) {
-                    if (grid[i][j].isTopWall()) {
+                    if (grid[i][j].isStart()) {
                         outputWriter.write("1");
-                    } else if (grid[i][j].isStart()) {
-                        outputWriter.write("2");
                     } else if (grid[i][j].isEnd()) {
+                        outputWriter.write("2");
+                    } else if (grid[i][j].isLogo()) {
                         outputWriter.write("3");
                     } else {
                         outputWriter.write("0");
+                    }
+
+                    if (grid[i][j].isTopWall()) {
+                        outputWriter.write("4");
+                    }
+                    if (grid[i][j].isLeftWall()) {
+                        outputWriter.write("5");
+                    }
+                    if (grid[i][j].isDownWall()) {
+                        outputWriter.write("6");
+                    }
+                    if (grid[i][j].isRightWall()) {
+                        outputWriter.write("7");
                     }
                 }
                 outputWriter.newLine();
@@ -55,14 +68,26 @@ public class MazeFile {
                             grid[i][j].resetCell();
                             break;
                         case 1:
-                            grid[i][j].drawTopWall();
+                            grid[i][j].drawStart(Cell.start);
                             break;
 
                         case 2:
-                            grid[i][j].drawStart(Cell.start);
+                            grid[i][j].drawEnd(Cell.end);
                             break;
                         case 3:
-                            grid[i][j].drawEnd(Cell.end);
+                            grid[i][j].drawLogo(Cell.logo);
+                            break;
+                        case 4:
+                            grid[i][j].drawTopWall();
+                            break;
+                        case 5:
+                            grid[i][j].drawLeftWall();
+                            break;
+                        case 6:
+                            grid[i][j].drawDownWall();
+                            break;
+                        case 7:
+                            grid[i][j].drawRightWall();
                             break;
                     }
                 }

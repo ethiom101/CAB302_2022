@@ -49,8 +49,8 @@ public class EditMaze extends JFrame {
     public static JRadioButton rightWall = new JRadioButton("Right");
     public ButtonGroup wallSelections = new ButtonGroup();
     public JPanel selectedImage = new JPanel();
-    ImageIcon startIMG = new ImageIcon("arrow.png");
-    ImageIcon endIMG = new ImageIcon("arrow.png");
+    ImageIcon startIMG = Cell.start;
+    ImageIcon endIMG = Cell.end;
     public JLabel startImage = new JLabel();
     public JLabel endImage = new JLabel();
     public JLabel logoImage = new JLabel();
@@ -403,10 +403,26 @@ public class EditMaze extends JFrame {
         sideBar.add(generateMaze);
         generateMaze.setPreferredSize(new Dimension(150, 40));
         generateMaze.addActionListener(e -> {
+            this.mazeWidth = (int) mazeRows.getValue();
+            this.mazeHeight = (int) mazeColumns.getValue();
+            this.cellSize = cellSlider.getValue();
+            Grid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
+            mazePanel.removeAll();
             Grid.drawMaze();
             Grid.toggleGeno();
             percentageTravel.setText("% of Cells To Win: "+Grid.getCellDist());
             percentageDeadEnd.setText("% of Dead Ends: "+Grid.getDeadEnds());
+
+            mazePanel.add(Grid);
+            Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+            Grid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+            Grid.revalidate();
+            Grid.repaint();
+            Grid.setCellSize(cellSize);
+            mazePanel.revalidate();
+            mazePanel.repaint();
+
+            this.pack();
 
             // generate maze implementation
 
@@ -424,7 +440,6 @@ public class EditMaze extends JFrame {
         sideBar.add(toggleSolution);
         toggleSolution.setPreferredSize(new Dimension(150, 40));
         toggleSolution.addActionListener(e -> {
-
             Grid.drawSolution();
             Grid.toggle();
             // toggle solution implementation
