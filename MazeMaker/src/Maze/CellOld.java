@@ -19,6 +19,11 @@ public class CellOld {
     private boolean start = false;
     private boolean end = false;
 
+    /**
+     * Initialising
+     * @param posx this cells x position
+     * @param posy this cells y position
+     */
     public CellOld(int posx, int posy){
         this.posx=posx;
         this.posy=posy;

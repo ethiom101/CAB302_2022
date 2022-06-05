@@ -14,20 +14,23 @@ import static GUI.EditMaze.topWall;
 
 public class MazeGenerator {
 
-    //Grid size, cause its one value it must be square, can split it to x and y later
+    //Grid size
     private static int gridX;
     private static int gridY;
     //Grid
     public static CellOld[][] cells = new CellOld[100][100];
-//    public ArrayList<CellOld> solution = new ArrayList<CellOld>();
+
     Stack<CellOld> solution = new Stack<CellOld>();
+
     public static boolean toggle = false;
 
+    //Start and End values
     private int startX=0;
     private int startY=0;
     private int endX=gridX-1;
     private int endY=gridY-1;
 
+    //Getters and Setters
     public void setEndX(int positionX){
         endX=positionX;
     }
@@ -40,26 +43,27 @@ public class MazeGenerator {
     public void setStartY(int positionY){
         startY=positionY;
     }
-//    /**
-//     * Just to test
-//     * @param args
-//     */
-//    public static void main(String[] args)
-//    {
-//        cell[][] grid2 = createmaze(0,0,grid);
-//        drawMaze(grid2);
-//    }
+    public void toggleSolution(){
+        toggle = !toggle;
+    }
+
+    /**
+     * Initialisation of the MazeGenerator Class
+     * @param gridX
+     * @param gridY
+     */
     public MazeGenerator(int gridX,int gridY){
         this.gridX = gridX;
         this.gridY = gridY;
         this.cells = createmaze(0,0, cells);
-        //drawMaze(grid2);
     }
 
+    /**
+     * Solves the maze by travelling through the maze and saving the path as a stack
+     * @return The solution of the maze in the form of a stack
+     */
     public Stack<CellOld> solveMaze(){
         CellOld current = cells[startX][startY];
-
-
         Stack<CellOld> visited = new Stack<CellOld>();
         solution.push(current);
         visited.push(current);
@@ -86,6 +90,13 @@ public class MazeGenerator {
         }
         return solution;
     }
+
+    /**
+     * returns the cell of the next visited cell choosing randomly from the list of directions
+     * @param current
+     * @param direction
+     * @return
+     */
     public CellOld forwardSolution(CellOld current, ArrayList<Integer> direction){
         if(direction.get(0)==1){
             return cells[current.getPosx()][current.getPosy()-1];
@@ -98,6 +109,13 @@ public class MazeGenerator {
         }
         return current;
     }
+
+    /**
+     * Function for when solving the maze, finding the next cell to go to
+     * @param cell current cell that we are looking for the next cell to go
+     * @param visited list (stack) of visited cells
+     * @return returns a list of directions that the next step in solving the maze could take
+     */
     public ArrayList getUnvisitedRoute(CellOld cell,Stack<CellOld> visited){
         ArrayList<Integer> direction = new ArrayList<Integer>();
         for(int i = 1;i<5;i++){
@@ -112,6 +130,12 @@ public class MazeGenerator {
         Collections.shuffle(direction);
         return direction;
     }
+
+    /**
+     * Returns the corresponding value of the direction given
+     * @param direction direction we want to go
+     * @return the direction value so that cell[direction][direction] will result in the next cell to go to
+     */
     public int[] solutionDirectionValue(int direction){
         int[] returnPair = {0,0};
         if(direction==1){
@@ -128,115 +152,28 @@ public class MazeGenerator {
         return returnPair;
     }
 
+    /**
+     *
+     * @return returns the grid of cells of the maze
+     */
     public CellOld[][] getGrid(){
         return cells;
     }
-//    public ArrayList<CellOld> getSolution(){
-//        return solution;
-//    }
+
     /**
-     * Draws the maze
+     * calculates the percentage of cells needed to solve the maze
+     * @return percentage value
      */
-    public JPanel drawMaze(){
-
-        CellOld[][] grid = cells;
-        //Set up frame and panel
-        //JFrame frame = new JFrame("Maze");
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(gridY, gridX));
-        panel.setBackground(Color.WHITE);
-
-        //Draw maze
-        for(int i = 0; i< gridY; i++){
-            for(int j = 0; j< gridX; j++){
-                int row = i;
-                int col = j;
-
-                //Each wall is represented by an int
-                int north = 0;
-                int south = 0;
-                int east = 0;
-                int west = 0;
-                //get the wall value from the grid and add the corresponding wall
-                if(grid[j][i].getWall(1)){
-                    north=2;
-                }
-                if(grid[j][i].getWall(2)){
-                    south=2;
-                }
-                if(grid[j][i].getWall(3)){
-                    west=2;
-                }
-                if(grid[j][i].getWall(4)){
-                    east=2;
-                }
-
-                //Each cell is a label with borders
-                JLabel label = new JLabel();
-                int finalWest = west;
-                int finalSouth = south;
-                int finalEast = east;
-                int finalNorth = north;
-                label.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        System.out.println(grid[row][col]);
-                        if (itemSelector.getSelectedItem() == "Start") {
-                            label.setOpaque(true);
-                            label.setBackground(Color.GREEN);
-                            grid[col][row].setStart();
-
-                        }
-                        if (itemSelector.getSelectedItem() == "End") {
-                            label.setOpaque(true);
-                            label.setBackground(Color.RED);
-                        }
-                        if (itemSelector.getSelectedItem() == "Wall") {
-                            if (topWall.isSelected()) {
-
-                                if (finalNorth == 2) {
-                                    label.setBorder(new MatteBorder(0, finalWest, finalSouth, finalEast, Color.black));
-                                } else {
-                                    label.setBorder(new MatteBorder(2, finalWest, finalSouth, finalEast, Color.black));
-                                }
-                            }
-
-
-                        }
-                    }
-                });
-
-
-
-                //Colour start and end cells
-                if(grid[j][i].getStart()){
-                    label.setOpaque(true);
-                    label.setBackground(Color.green);
-                }
-                if(grid[j][i].getEnd()){
-                    label.setOpaque(true);
-                    label.setBackground(Color.red);
-                }
-                if(toggle==true&&solution.contains(grid[j][i])&&!grid[j][i].getEnd()){
-                    label.setOpaque(true);
-                    label.setBackground(Color.pink);
-                }
-                //set border of label
-                label.setBorder( new MatteBorder(north, west, south, east, Color.black));
-                panel.add(label);
-            }
-        }
-        return panel;
-    }
-    public void toggleSolution(){
-        toggle = !toggle;
-    }
-
     public String cellDistribution(){
         String cellDist = "";
         cellDist = Math.round((((solution.size() + 1.0) / (gridX * gridY)) * 100)*100.0)/100.0 +"%";
         return cellDist;
     }
+
+    /**
+     * Calculates the percentage of cells that are dead ends
+     * @return percentage value
+     */
     public String deadEnds(){
         int numDeadEnds = 0;
         for(int i = 0; i< gridY; i++) {
@@ -253,12 +190,11 @@ public class MazeGenerator {
                 }
             }
         }
-
         return (Math.round(((numDeadEnds-1.0) / (gridX * gridY) * 100.0) * 100.0) / 100.0 +"%");
     }
 
     /**
-     *
+     * Function to create the maze
      * @param x start x
      * @param y start y
      * @param grid grid
@@ -308,14 +244,6 @@ public class MazeGenerator {
 
             //If the list is empty, meaning there are no unvisited neighbours left then go backwards
             if(unvisited.isEmpty()){
-                //If end cell hasnt been chosen yet then make this cell the end cell
-//                if(!hasSetEnd){
-//                    hasSetEnd=true;
-//                    end = current;
-//                    grid[current.getPosx()][current.getPosy()].setEnd();
-//                    System.out.println("Found end");
-//                }
-
                 //get the parent cell and go backwards
                 CellOld newCurrent = backward(current);
                 current = newCurrent;
@@ -324,13 +252,6 @@ public class MazeGenerator {
                 //Using this method to create the cell only once all the cells have been visited will we go back up to the start cell
                 if(newCurrent==start && getListUnvisited(newCurrent).isEmpty()){
                     finish=true;
-
-                    break;
-                }
-                else if (newCurrent.getPosx()==0 && newCurrent.getPosy()==0){
-                    finish=true;
-
-                    break;
                 }
             }
             //If there are univisted neighbours then go forward
@@ -355,10 +276,11 @@ public class MazeGenerator {
     }
 
     /**
-     * Forward part of the maze creator
+     * Forward part of the maze creator. Receive the current cell and and a list of available directions
+     * Choose one at random and travel to that cell
      * @param current current cell that we are on
      * @param listDirection List of the directions where there are unvisited neighbours
-     * @return
+     * @return the new current cell
      */
     public static CellOld forward(CellOld current, ArrayList<String> listDirection){
         //Shuffle the list of directions so maze generator is more random
@@ -397,7 +319,7 @@ public class MazeGenerator {
     }
 
     /**
-     *
+     * returns the parent cell of the current cell
      * @param current current cell
      * @return the parent cell
      */
@@ -405,9 +327,12 @@ public class MazeGenerator {
         return current.getParent();
     }
 
-    //Get a list of directions of unvisited neighbours
+    /**
+     * Get a list of unvisited neighbours of the current cell
+     * @param current the current cell we are looking for neighbours
+     * @return a list directions where there are unvisited neighbour
+     */
     public static ArrayList<String> getListUnvisited(CellOld current){
-
         //Create two lists of directions (NSWE). Had to make two because it was acting up
         ArrayList<String> direction = new ArrayList<String>();
         ArrayList<String> returnDirection = new ArrayList<String>();
@@ -458,7 +383,7 @@ public class MazeGenerator {
     /**
      * Return a pair of x y values which gives the direction of the next cell to go to given direction
      * @param direction direction which we wanna go
-     * @return
+     * @return pair of integers
      */
     public static int[] directionValue(String direction){
         //pair to return
@@ -486,4 +411,102 @@ public class MazeGenerator {
         return cells;
     }
 }
+
+//    public ArrayList<CellOld> getSolution(){
+//        return solution;
+//    }
+/**
+ * Draws the maze
+ */
+//    public JPanel drawMaze(){
+//
+//        CellOld[][] grid = cells;
+//        //Set up frame and panel
+//        //JFrame frame = new JFrame("Maze");
+//        JPanel panel = new JPanel();
+//        panel.setLayout(new GridLayout(gridY, gridX));
+//        panel.setBackground(Color.WHITE);
+//
+//        //Draw maze
+//        for(int i = 0; i< gridY; i++){
+//            for(int j = 0; j< gridX; j++){
+//                int row = i;
+//                int col = j;
+//
+//                //Each wall is represented by an int
+//                int north = 0;
+//                int south = 0;
+//                int east = 0;
+//                int west = 0;
+//                //get the wall value from the grid and add the corresponding wall
+//                if(grid[j][i].getWall(1)){
+//                    north=2;
+//                }
+//                if(grid[j][i].getWall(2)){
+//                    south=2;
+//                }
+//                if(grid[j][i].getWall(3)){
+//                    west=2;
+//                }
+//                if(grid[j][i].getWall(4)){
+//                    east=2;
+//                }
+//
+//                //Each cell is a label with borders
+//                JLabel label = new JLabel();
+//                int finalWest = west;
+//                int finalSouth = south;
+//                int finalEast = east;
+//                int finalNorth = north;
+//                label.addMouseListener(new MouseAdapter() {
+//                    @Override
+//                    public void mousePressed(MouseEvent e) {
+//                        System.out.println(grid[row][col]);
+//                        if (itemSelector.getSelectedItem() == "Start") {
+//                            label.setOpaque(true);
+//                            label.setBackground(Color.GREEN);
+//                            grid[col][row].setStart();
+//
+//                        }
+//                        if (itemSelector.getSelectedItem() == "End") {
+//                            label.setOpaque(true);
+//                            label.setBackground(Color.RED);
+//                        }
+//                        if (itemSelector.getSelectedItem() == "Wall") {
+//                            if (topWall.isSelected()) {
+//
+//                                if (finalNorth == 2) {
+//                                    label.setBorder(new MatteBorder(0, finalWest, finalSouth, finalEast, Color.black));
+//                                } else {
+//                                    label.setBorder(new MatteBorder(2, finalWest, finalSouth, finalEast, Color.black));
+//                                }
+//                            }
+//
+//
+//                        }
+//                    }
+//                });
+//
+//
+//
+//                //Colour start and end cells
+//                if(grid[j][i].getStart()){
+//                    label.setOpaque(true);
+//                    label.setBackground(Color.green);
+//                }
+//                if(grid[j][i].getEnd()){
+//                    label.setOpaque(true);
+//                    label.setBackground(Color.red);
+//                }
+//                if(toggle==true&&solution.contains(grid[j][i])&&!grid[j][i].getEnd()){
+//                    label.setOpaque(true);
+//                    label.setBackground(Color.pink);
+//                }
+//                //set border of label
+//                label.setBorder( new MatteBorder(north, west, south, east, Color.black));
+//                panel.add(label);
+//            }
+//        }
+//        return panel;
+//    }
 

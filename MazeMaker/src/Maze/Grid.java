@@ -27,6 +27,12 @@ public class Grid extends JPanel {
         toggle = !toggle;
     }
 
+    /**
+     *
+     * @param columns
+     * @param rows
+     * @param cellSize
+     */
     public Grid(int columns, int rows, int cellSize) {
         this.setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
@@ -38,6 +44,9 @@ public class Grid extends JPanel {
         init();
     }
 
+    /**
+     *
+     */
     private void init() {
         grid = new Cell[this.rows][this.columns];
         for (int col = 0; col < this.rows; col++) {
@@ -48,13 +57,9 @@ public class Grid extends JPanel {
         }
     }
 
-    public String getCellDist(){
-        return(maze.cellDistribution());
-    }
-    public String getDeadEnds(){
-        return maze.deadEnds();
-    }
-
+    /**
+     * Draws the Maze on the grid
+     */
     public void drawMaze(){
         if(!toggleGenerator){
             maze = new MazeGenerator(rows,columns);
@@ -92,6 +97,10 @@ public class Grid extends JPanel {
             }
         }
     }
+
+    /**
+     *  Draws the solution on the grid
+     */
     public void drawSolution(){
 
         for (int row = 0; row < this.rows; row++) {
@@ -120,20 +129,14 @@ public class Grid extends JPanel {
                 }
             }
         }
-//        ArrayList<CellOld> solution = maze.getSolution();
-//        for (int row = 0; row < this.rows; row++) {
-//            for (int col = 0; col < this.columns; col++) {
-//                if(solution.contains(maze2[col][row])){
-//                    if(toggle){
-//                        grid[row][col].setOpaque(true);
-//                        grid[row][col].setBackground(Color.white);
-//                    }else {
-//                        grid[row][col].setOpaque(true);
-//                        grid[row][col].setBackground(Color.pink);
-//                    }
-//                }
-//            }
-//        }
+    }
+
+    //Getters and Setters
+    public String getCellDist(){
+        return(maze.cellDistribution());
+    }
+    public String getDeadEnds(){
+        return maze.deadEnds();
     }
 
     public int getColumns() {
