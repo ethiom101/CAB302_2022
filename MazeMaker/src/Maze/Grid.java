@@ -68,32 +68,87 @@ public class Grid extends JPanel {
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.columns; col++) {
                 grid[col][row].setText(col+" "+row);
-
-                if(maze2[col][row].getWall(1)){
-                    grid[row][col].drawTopWall();
+                if(col==0&&row==0){
+                    if(maze2[col][row].getWall(1)){
+                        //grid[row][col].drawTopWall();
 //                    System.out.println("Up");
-                }
-                if(maze2[col][row].getWall(2)){
-                    grid[row][col].drawDownWall();
+                    }
+                    if(maze2[col][row].getWall(2)){
+                        grid[row][col].drawDownWall();
 //                    System.out.println("Down");
-                }
-                if(maze2[col][row].getWall(3)){
-                    grid[row][col].drawLeftWall();
+                    }
+                    if(maze2[col][row].getWall(3)){
+                        grid[row][col].drawLeftWall();
 //                    System.out.println("Left");
-                }
-                if(maze2[col][row].getWall(4)){
-                    grid[row][col].drawRightWall();
+                    }
+                    if(maze2[col][row].getWall(4)){
+                        grid[row][col].drawRightWall();
 //                    System.out.println("Right");
+                    }
+                    if(maze2[col][row].getStart()){
+                        grid[row][col].drawStart(startImage);
+                    }
+                    if(maze2[col][row].getEnd()){
+                        grid[row][col].drawEnd(startImage);
+                    }
+                    if(maze2[col][row].getIsLogo()){
+                        grid[row][col].drawLogo(startImage);
+                    }
+                }else if(col==this.columns-1&&row==this.rows-1){
+                    if(maze2[col][row].getWall(1)){
+                        grid[row][col].drawTopWall();
+//                    System.out.println("Up");
+                    }
+                    if(maze2[col][row].getWall(2)){
+                        //grid[row][col].drawDownWall();
+//                    System.out.println("Down");
+                    }
+                    if(maze2[col][row].getWall(3)){
+                        grid[row][col].drawLeftWall();
+//                    System.out.println("Left");
+                    }
+                    if(maze2[col][row].getWall(4)){
+                        grid[row][col].drawRightWall();
+//                    System.out.println("Right");
+                    }
+                    if(maze2[col][row].getStart()){
+                        grid[row][col].drawStart(startImage);
+                    }
+                    if(maze2[col][row].getEnd()){
+                        grid[row][col].drawEnd(startImage);
+                    }
+                    if(maze2[col][row].getIsLogo()){
+                        grid[row][col].drawLogo(startImage);
+                    }
                 }
-                if(maze2[col][row].getStart()){
-                    grid[row][col].drawStart(startImage);
+                else{
+                    if(maze2[col][row].getWall(1)){
+                        grid[row][col].drawTopWall();
+//                    System.out.println("Up");
+                    }
+                    if(maze2[col][row].getWall(2)){
+                        grid[row][col].drawDownWall();
+//                    System.out.println("Down");
+                    }
+                    if(maze2[col][row].getWall(3)){
+                        grid[row][col].drawLeftWall();
+//                    System.out.println("Left");
+                    }
+                    if(maze2[col][row].getWall(4)){
+                        grid[row][col].drawRightWall();
+//                    System.out.println("Right");
+                    }
+                    if(maze2[col][row].getStart()){
+                        grid[row][col].drawStart(startImage);
+                    }
+                    if(maze2[col][row].getEnd()){
+                        grid[row][col].drawEnd(startImage);
+                    }
+                    if(maze2[col][row].getIsLogo()){
+                        grid[row][col].drawLogo(startImage);
+                    }
                 }
-                if(maze2[col][row].getEnd()){
-                    grid[row][col].drawEnd(startImage);
-                }
-                if(maze2[col][row].getIsLogo()){
-                    grid[row][col].drawLogo(startImage);
-                }
+
             }
         }
     }
