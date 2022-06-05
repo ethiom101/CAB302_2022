@@ -55,10 +55,6 @@ public class Cell extends JLabel {
                         if ((rightWall.isSelected())) {
                             drawRightWall();
                         }
-
-
-
-
                     }
                     if (itemSelector.getSelectedItem() == "Logo") {
                         drawLogo(logo);

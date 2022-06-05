@@ -6,6 +6,7 @@ public class CellOld {
     private int posx;
     private int posy;
     private Boolean visited = false;
+    private Boolean isLogo = false;
     private int value=0;
 
     private CellOld parent;
@@ -24,6 +25,8 @@ public class CellOld {
     }
 
     //Getters and Setters
+    public boolean getIsLogo(){return isLogo;}
+    public void setLogo(){isLogo=true;}
     public boolean getStart(){
         return start;
     }

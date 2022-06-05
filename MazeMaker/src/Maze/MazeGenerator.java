@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -18,7 +19,8 @@ public class MazeGenerator {
     private static int gridY;
     //Grid
     public static CellOld[][] cells = new CellOld[100][100];
-    public ArrayList<CellOld> solution = new ArrayList<CellOld>();
+//    public ArrayList<CellOld> solution = new ArrayList<CellOld>();
+    Stack<CellOld> solution = new Stack<CellOld>();
     public static boolean toggle = false;
 
     private int startX=0;
@@ -31,6 +33,12 @@ public class MazeGenerator {
     }
     public void setEndY(int positionY){
         endY=positionY;
+    }
+    public void setStartX(int positionX){
+        startX=positionX;
+    }
+    public void setStartY(int positionY){
+        startY=positionY;
     }
 //    /**
 //     * Just to test
@@ -51,7 +59,7 @@ public class MazeGenerator {
     public Stack<CellOld> solveMaze(){
         CellOld current = cells[startX][startY];
 
-        Stack<CellOld> solution = new Stack<CellOld>();
+
         Stack<CellOld> visited = new Stack<CellOld>();
         solution.push(current);
         visited.push(current);
@@ -60,10 +68,10 @@ public class MazeGenerator {
             ArrayList<Integer> direction = getUnvisitedRoute(current,visited);
 
             if(direction.isEmpty()){
-                solution.pop();
                 if(solution.peek()==cells[startX][startY]){
                     break; //Cannot find end
                 }
+                solution.pop();
             }
             else {
                 //Go forward
@@ -123,9 +131,9 @@ public class MazeGenerator {
     public CellOld[][] getGrid(){
         return cells;
     }
-    public ArrayList<CellOld> getSolution(){
-        return solution;
-    }
+//    public ArrayList<CellOld> getSolution(){
+//        return solution;
+//    }
     /**
      * Draws the maze
      */
@@ -257,6 +265,9 @@ public class MazeGenerator {
      * @return the updated grid
      */
     public CellOld[][] createmaze(int x, int y, CellOld[][] grid){
+        int cellPosX = ThreadLocalRandom.current().nextInt(1,gridX-1 );
+        int cellPosY = ThreadLocalRandom.current().nextInt(1,gridY-1 );
+
         //Initialise the cells of the grid
         for(int i = 0; i< gridX; i++){
             for(int j = 0; j<gridY; j++){
@@ -265,6 +276,11 @@ public class MazeGenerator {
             }
         }
         //Start point
+        System.out.println("Logo");
+        System.out.println(cellPosX);
+        System.out.println(cellPosY);
+        grid[cellPosX][cellPosY].setVisit();
+        grid[cellPosX][cellPosY].setLogo();
         grid[x][y].setVisit();
         grid[x][y].setStart();
         CellOld start = grid[x][y];
@@ -327,7 +343,7 @@ public class MazeGenerator {
                     hasSetEnd=true;
                     end = current;
                     grid[current.getPosx()][current.getPosy()].setEnd();
-                    System.out.println("Found end");
+
                 }
                 if(!hasSetEnd){
                     solution.add(current);

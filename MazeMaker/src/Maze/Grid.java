@@ -63,7 +63,7 @@ public class Grid extends JPanel {
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.columns; col++) {
                 grid[col][row].setText(col+" "+row);
-                System.out.println(row+" "+col);
+
                 if(maze2[col][row].getWall(1)){
                     grid[row][col].drawTopWall();
 //                    System.out.println("Up");
@@ -86,6 +86,9 @@ public class Grid extends JPanel {
                 if(maze2[col][row].getEnd()){
                     grid[row][col].drawEnd(startImage);
                 }
+                if(maze2[col][row].getIsLogo()){
+                    grid[row][col].drawLogo(startImage);
+                }
             }
         }
     }
@@ -96,6 +99,9 @@ public class Grid extends JPanel {
                 if(grid[row][col].isEnd()){
                     maze.setEndX(col);
                     maze.setEndY(row);
+                }else if(grid[row][col].isStart()){
+                    maze.setStartX(col);
+                    maze.setStartY(row);
                 }
             }
         }
