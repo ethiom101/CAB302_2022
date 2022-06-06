@@ -25,65 +25,70 @@ public class MazeGenerator {
     public static boolean toggle = false;
 
     //Start and End values
-    private int startX=0;
-    private int startY=0;
-    private int endX=gridX-1;
-    private int endY=gridY-1;
+    private int startX = 0;
+    private int startY = 0;
+    private int endX = gridX - 1;
+    private int endY = gridY - 1;
 
     //Getters and Setters
-    public void setEndX(int positionX){
-        endX=positionX;
+    public void setEndX(int positionX) {
+        endX = positionX;
     }
-    public void setEndY(int positionY){
-        endY=positionY;
+
+    public void setEndY(int positionY) {
+        endY = positionY;
     }
-    public void setStartX(int positionX){
-        startX=positionX;
+
+    public void setStartX(int positionX) {
+        startX = positionX;
     }
-    public void setStartY(int positionY){
-        startY=positionY;
+
+    public void setStartY(int positionY) {
+        startY = positionY;
     }
-    public void toggleSolution(){
+
+    public void toggleSolution() {
         toggle = !toggle;
     }
 
     /**
      * Initialisation of the MazeGenerator Class
+     *
      * @param gridX
      * @param gridY
      */
-    public MazeGenerator(int gridX,int gridY){
+    public MazeGenerator(int gridX, int gridY) {
         this.gridX = gridX;
         this.gridY = gridY;
-        this.cells = createmaze(0,0, cells);
+        this.cells = createmaze(0, 0, cells);
     }
 
     /**
      * Solves the maze by travelling through the maze and saving the path as a stack
+     *
      * @return The solution of the maze in the form of a stack
      */
-    public Stack<CellOld> solveMaze(){
+    public Stack<CellOld> solveMaze() {
         CellOld current = cells[startX][startY];
         Stack<CellOld> visited = new Stack<CellOld>();
         solution.push(current);
         visited.push(current);
-        while(true){
+        while (true) {
             current = solution.peek();
-            ArrayList<Integer> direction = getUnvisitedRoute(current,visited);
+            ArrayList<Integer> direction = getUnvisitedRoute(current, visited);
 
-            if(direction.isEmpty()){
-                if(solution.peek()==cells[startX][startY]){
+            if (direction.isEmpty()) {
+                if (solution.peek() == cells[startX][startY]) {
                     break; //Cannot find end
                 }
                 solution.pop();
-            }
-            else {
+            } else {
                 //Go forward
                 CellOld newCurrent = forwardSolution(current, direction);
                 solution.push(newCurrent);
                 visited.push(newCurrent);
                 current = newCurrent;
-                if(current==cells[endX][endY]){
+                if (current == cells[endX][endY]) {
                     break; //found end
                 }
             }
@@ -93,37 +98,39 @@ public class MazeGenerator {
 
     /**
      * returns the cell of the next visited cell choosing randomly from the list of directions
+     *
      * @param current
      * @param direction
      * @return
      */
-    public CellOld forwardSolution(CellOld current, ArrayList<Integer> direction){
-        if(direction.get(0)==1){
-            return cells[current.getPosx()][current.getPosy()-1];
-        }else if(direction.get(0)==2){
-            return cells[current.getPosx()][current.getPosy()+1];
-        }else if(direction.get(0)==3){
-            return cells[current.getPosx()-1][current.getPosy()];
-        }else if(direction.get(0)==4){
-            return cells[current.getPosx()+1][current.getPosy()];
+    public CellOld forwardSolution(CellOld current, ArrayList<Integer> direction) {
+        if (direction.get(0) == 1) {
+            return cells[current.getPosx()][current.getPosy() - 1];
+        } else if (direction.get(0) == 2) {
+            return cells[current.getPosx()][current.getPosy() + 1];
+        } else if (direction.get(0) == 3) {
+            return cells[current.getPosx() - 1][current.getPosy()];
+        } else if (direction.get(0) == 4) {
+            return cells[current.getPosx() + 1][current.getPosy()];
         }
         return current;
     }
 
     /**
      * Function for when solving the maze, finding the next cell to go to
-     * @param cell current cell that we are looking for the next cell to go
+     *
+     * @param cell    current cell that we are looking for the next cell to go
      * @param visited list (stack) of visited cells
      * @return returns a list of directions that the next step in solving the maze could take
      */
-    public ArrayList getUnvisitedRoute(CellOld cell,Stack<CellOld> visited){
+    public ArrayList getUnvisitedRoute(CellOld cell, Stack<CellOld> visited) {
         ArrayList<Integer> direction = new ArrayList<Integer>();
-        for(int i = 1;i<5;i++){
-            if(!cell.getWall(i)){
+        for (int i = 1; i < 5; i++) {
+            if (!cell.getWall(i)) {
                 direction.add(i);
                 int[] value = solutionDirectionValue(i);
-                if(visited.contains(cells[cell.getPosx()+value[0]][cell.getPosy()+value[1]])){
-                    direction.remove(direction.size()-1);
+                if (visited.contains(cells[cell.getPosx() + value[0]][cell.getPosy() + value[1]])) {
+                    direction.remove(direction.size() - 1);
                 }
             }
         }
@@ -133,90 +140,94 @@ public class MazeGenerator {
 
     /**
      * Returns the corresponding value of the direction given
+     *
      * @param direction direction we want to go
      * @return the direction value so that cell[direction][direction] will result in the next cell to go to
      */
-    public int[] solutionDirectionValue(int direction){
-        int[] returnPair = {0,0};
-        if(direction==1){
-            returnPair[1]=-1;
-        }else if(direction==2){
-            returnPair[1]=1;
-        }
-        else if(direction==3){
-            returnPair[0]=-1;
-        }
-        else if(direction==4){
-            returnPair[0]=1;
+    public int[] solutionDirectionValue(int direction) {
+        int[] returnPair = {0, 0};
+        if (direction == 1) {
+            returnPair[1] = -1;
+        } else if (direction == 2) {
+            returnPair[1] = 1;
+        } else if (direction == 3) {
+            returnPair[0] = -1;
+        } else if (direction == 4) {
+            returnPair[0] = 1;
         }
         return returnPair;
     }
 
     /**
-     *
      * @return returns the grid of cells of the maze
      */
-    public CellOld[][] getGrid(){
+    public CellOld[][] getGrid() {
         return cells;
     }
 
     /**
      * calculates the percentage of cells needed to solve the maze
+     *
      * @return percentage value
      */
-    public String cellDistribution(){
+    public String cellDistribution() {
         String cellDist = "";
-        cellDist = Math.round((((solution.size() + 1.0) / (gridX * gridY)) * 100)*100.0)/100.0 +"%";
+        cellDist = Math.round((((solution.size() + 1.0) / (gridX * gridY)) * 100) * 100.0) / 100.0 + "%";
         return cellDist;
     }
 
     /**
      * Calculates the percentage of cells that are dead ends
+     *
      * @return percentage value
      */
-    public String deadEnds(){
+    public String deadEnds() {
         int numDeadEnds = 0;
-        for(int i = 0; i< gridY; i++) {
+        for (int i = 0; i < gridY; i++) {
             for (int j = 0; j < gridX; j++) {
                 int numWalls = 0;
-                for(int k=1;k<5;k++){
-                    if(cells[i][j].getWall(k)){
+                for (int k = 1; k < 5; k++) {
+                    if (cells[i][j].getWall(k)) {
                         numWalls++;
                     }
                 }
-                if(numWalls>2){
+                if (numWalls > 2) {
                     numDeadEnds++;
 
                 }
             }
         }
-        return (Math.round(((numDeadEnds-1.0) / (gridX * gridY) * 100.0) * 100.0) / 100.0 +"%");
+        return (Math.round(((numDeadEnds - 1.0) / (gridX * gridY) * 100.0) * 100.0) / 100.0 + "%");
     }
 
     /**
      * Function to create the maze
-     * @param x start x
-     * @param y start y
+     *
+     * @param x    start x
+     * @param y    start y
      * @param grid grid
      * @return the updated grid
      */
-    public CellOld[][] createmaze(int x, int y, CellOld[][] grid){
-        int cellPosX = ThreadLocalRandom.current().nextInt(1,gridX-1 );
-        int cellPosY = ThreadLocalRandom.current().nextInt(1,gridY-1 );
+    public CellOld[][] createmaze(int x, int y, CellOld[][] grid) {
+        int cellPosX = ThreadLocalRandom.current().nextInt(1, gridX - 1);
+        int cellPosY = ThreadLocalRandom.current().nextInt(1, gridY - 1);
 
         //Initialise the cells of the grid
-        for(int i = 0; i< gridX; i++){
-            for(int j = 0; j<gridY; j++){
+        for (int i = 0; i < gridX; i++) {
+            for (int j = 0; j < gridY; j++) {
                 //System.out.println(i+" "+j);
-                grid[i][j] = new CellOld(i,j);
+                grid[i][j] = new CellOld(i, j);
             }
         }
+       // Draw logo in maze if and only if a logo image has been selected
+        if (Cell.logo != null) {
+            System.out.println("Logo");
+            System.out.println(cellPosX);
+            System.out.println(cellPosY);
+            grid[cellPosX][cellPosY].setVisit();
+            grid[cellPosX][cellPosY].setLogo();
+        }
         //Start point
-        System.out.println("Logo");
-        System.out.println(cellPosX);
-        System.out.println(cellPosY);
-        grid[cellPosX][cellPosY].setVisit();
-        grid[cellPosX][cellPosY].setLogo();
         grid[x][y].setVisit();
         grid[x][y].setStart();
         CellOld start = grid[x][y];
@@ -236,37 +247,37 @@ public class MazeGenerator {
         //Visit cells and then visit that cells unvisited neighbours
         //Once there are no more unvisitied neighbours then go backwards until you find an unvisited neighbour then start again
         //Finish once we go back to the start cell
-        while(!finish){
+        while (!finish) {
             //System.out.println("Current cell is "+Integer.toString(current.getPosx())+" "+Integer.toString(current.getPosy())+" and is visited? "+current.getVisit());
 
             //Check a cell for unvisited neighbours and get the list of directions (N S E W) they are in relation to the current cell
             ArrayList<String> unvisited = getListUnvisited(current);
 
             //If the list is empty, meaning there are no unvisited neighbours left then go backwards
-            if(unvisited.isEmpty()){
+            if (unvisited.isEmpty()) {
                 //get the parent cell and go backwards
                 CellOld newCurrent = backward(current);
                 current = newCurrent;
 
                 //If the parent cell is the start cell then end cause the maze is done
                 //Using this method to create the cell only once all the cells have been visited will we go back up to the start cell
-                if(newCurrent==start && getListUnvisited(newCurrent).isEmpty()){
-                    finish=true;
+                if (newCurrent == start && getListUnvisited(newCurrent).isEmpty()) {
+                    finish = true;
                 }
             }
             //If there are univisted neighbours then go forward
-            else{
+            else {
                 //Go forward
 
-                CellOld newCurrent = forward(current,unvisited);
+                CellOld newCurrent = forward(current, unvisited);
                 current = newCurrent;
-                if(!hasSetEnd&&current.getPosx()==gridX-1&&current.getPosy()==gridY-1){
-                    hasSetEnd=true;
+                if (!hasSetEnd && current.getPosx() == gridX - 1 && current.getPosy() == gridY - 1) {
+                    hasSetEnd = true;
                     end = current;
                     grid[current.getPosx()][current.getPosy()].setEnd();
 
                 }
-                if(!hasSetEnd){
+                if (!hasSetEnd) {
                     solution.add(current);
                 }
             }
@@ -278,11 +289,12 @@ public class MazeGenerator {
     /**
      * Forward part of the maze creator. Receive the current cell and and a list of available directions
      * Choose one at random and travel to that cell
-     * @param current current cell that we are on
+     *
+     * @param current       current cell that we are on
      * @param listDirection List of the directions where there are unvisited neighbours
      * @return the new current cell
      */
-    public static CellOld forward(CellOld current, ArrayList<String> listDirection){
+    public static CellOld forward(CellOld current, ArrayList<String> listDirection) {
         //Shuffle the list of directions so maze generator is more random
         Collections.shuffle(listDirection);
         //Choose the first direction from randomised list
@@ -290,49 +302,49 @@ public class MazeGenerator {
         int[] directionValue = directionValue(listDirection.get(0));
 
         //set visited and the parent cell of the new cell to be the current cell
-        cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setParent(current);
-        cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setVisit();
+        cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].setParent(current);
+        cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].setVisit();
 
         //Check direction and delete walls on the current and parent cell
-        if(listDirection.get(0)=="N"){
+        if (listDirection.get(0) == "N") {
             cells[current.getPosx()][current.getPosy()].setWall(1);
-            cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(2);
-        }else if(listDirection.get(0)=="S"){
+            cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].setWall(2);
+        } else if (listDirection.get(0) == "S") {
             cells[current.getPosx()][current.getPosy()].setWall(2);
-            cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(1);
-        }
-        else if(listDirection.get(0)=="W"){
+            cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].setWall(1);
+        } else if (listDirection.get(0) == "W") {
             cells[current.getPosx()][current.getPosy()].setWall(3);
-            cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(4);
-        }
-        else if(listDirection.get(0)=="E"){
+            cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].setWall(4);
+        } else if (listDirection.get(0) == "E") {
             cells[current.getPosx()][current.getPosy()].setWall(4);
-            cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]].setWall(3);
+            cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].setWall(3);
         }
 
         //set child of current cell
-        CellOld newCurrent = cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
+        CellOld newCurrent = cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]];
         cells[current.getPosx()][current.getPosy()].setChildren(newCurrent);
 
         //return child
-        return cells[current.getPosx()+directionValue[0]][current.getPosy()+directionValue[1]];
+        return cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]];
     }
 
     /**
      * returns the parent cell of the current cell
+     *
      * @param current current cell
      * @return the parent cell
      */
-    public static CellOld backward(CellOld current){
+    public static CellOld backward(CellOld current) {
         return current.getParent();
     }
 
     /**
      * Get a list of unvisited neighbours of the current cell
+     *
      * @param current the current cell we are looking for neighbours
      * @return a list directions where there are unvisited neighbour
      */
-    public static ArrayList<String> getListUnvisited(CellOld current){
+    public static ArrayList<String> getListUnvisited(CellOld current) {
         //Create two lists of directions (NSWE). Had to make two because it was acting up
         ArrayList<String> direction = new ArrayList<String>();
         ArrayList<String> returnDirection = new ArrayList<String>();
@@ -349,19 +361,17 @@ public class MazeGenerator {
         Collections.shuffle(direction);
 
         //If cell is on the edge of the grid then remove the directions where it would go off the grid
-        if(current.getPosx()==0){
+        if (current.getPosx() == 0) {
             direction.remove("W");
             returnDirection.remove("W");
-        }
-        else if (current.getPosx()== gridX -1){
+        } else if (current.getPosx() == gridX - 1) {
             direction.remove("E");
             returnDirection.remove("E");
         }
-        if (current.getPosy()==0){
+        if (current.getPosy() == 0) {
             direction.remove("N");
             returnDirection.remove("N");
-        }
-        else if(current.getPosy()== gridY -1){
+        } else if (current.getPosy() == gridY - 1) {
             direction.remove("S");
             returnDirection.remove("S");
         }
@@ -369,9 +379,9 @@ public class MazeGenerator {
         //number of directions to check
         int size = direction.size();
         //Go through the list of directions and remove them if they have been visited already
-        for(int i = 0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             int[] directionValue = directionValue(direction.get(i));
-            if (cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].getVisit()){
+            if (cells[current.getPosx() + directionValue[0]][current.getPosy() + directionValue[1]].getVisit()) {
                 String toRemove = direction.get(i);
                 returnDirection.remove(toRemove);
             }
@@ -382,32 +392,30 @@ public class MazeGenerator {
 
     /**
      * Return a pair of x y values which gives the direction of the next cell to go to given direction
+     *
      * @param direction direction which we wanna go
      * @return pair of integers
      */
-    public static int[] directionValue(String direction){
+    public static int[] directionValue(String direction) {
         //pair to return
-        int[] bruh = {0,0};
+        int[] bruh = {0, 0};
 
         //Check direction and set the corresponding x/y value
-        if(Objects.equals(direction, "N")){
-            bruh[1]=-1;
-        }
-        else if(Objects.equals(direction, "S")){
-            bruh[1]=1;
-        }
-        else if(Objects.equals(direction, "E")){
-            bruh[0]=1;
-        }
-        else if(Objects.equals(direction, "W")){
-            bruh[0]=-1;
-        }
-        else{
+        if (Objects.equals(direction, "N")) {
+            bruh[1] = -1;
+        } else if (Objects.equals(direction, "S")) {
+            bruh[1] = 1;
+        } else if (Objects.equals(direction, "E")) {
+            bruh[0] = 1;
+        } else if (Objects.equals(direction, "W")) {
+            bruh[0] = -1;
+        } else {
             System.out.print("ERROR not a valid direction");
         }
         return bruh;
     }
-    public static CellOld[][] returnGird(){
+
+    public static CellOld[][] returnGird() {
         return cells;
     }
 }

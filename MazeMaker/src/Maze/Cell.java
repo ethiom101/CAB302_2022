@@ -20,7 +20,7 @@ public class Cell extends JLabel {
     private boolean isLogo;
     public static ImageIcon start = new ImageIcon("arrow.png");
     public static ImageIcon end = new ImageIcon("arrow.png");;
-    public static ImageIcon logo;
+    public static ImageIcon logo = null;
     int strokeSize = 3;
 
 
