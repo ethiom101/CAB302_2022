@@ -5,35 +5,49 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static GUI.EditMaze.*;
+import static Maze.Grid.grid;
 import static Maze.Images.resizeImage;
 
 public class Cell extends JLabel {
+    private Cell parents;
     private int row;
     private int column;
     private int cellSize;
     public boolean[] isWall = {false, false, false, false}; // top, left, down, right
-    private int[] drawWall = {0, 0, 0, 0}; // top, left, down, right
+    int[] drawWall = {0, 0, 0, 0}; // top, left, down, right
     private boolean isStart;
     private boolean isEnd;
     private boolean isLogo;
+    private boolean visited = false;
+    private ArrayList<Cell> children = new ArrayList<>();
     public static ImageIcon start = new ImageIcon("arrow.png");
-    public static ImageIcon end = new ImageIcon("arrow.png");;
+    public static ImageIcon end = new ImageIcon("arrow.png");
+    ;
     public static ImageIcon logo = null;
-    int strokeSize = 3;
+    int strokeSize = 1;
+
+    private boolean northWall = true;
+    private boolean southWall = true;
+    private boolean eastWall = true;
+    private boolean westWall = true;
 
 
-    public Cell(int row, int column, int cellSize) {
+    public Cell(int row, int column) {
         this.row = row;
         this.column = column;
-        this.cellSize = cellSize;
 
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) { // left click
                     System.out.println(row + " " + column);
+                    System.out.println("Start: " + isStart);
+                    System.out.println("End: " + isEnd);
+                    System.out.println(Arrays.toString(isWall));
                     if (itemSelector.getSelectedItem() == "Start") {
                         drawStart(start);
                     }
@@ -79,7 +93,7 @@ public class Cell extends JLabel {
             this.setIcon(start);
             this.isStart = true;
             Grid.setStart(this);
-        } else if (Grid.getStart() == null){
+        } else if (Grid.getStart() == null) {
             this.setIcon(start);
             this.isStart = true;
             Grid.setStart(this);
@@ -121,7 +135,7 @@ public class Cell extends JLabel {
             this.setIcon(end);
             this.isEnd = true;
             Grid.setEnd(this);
-        } else if (Grid.getEnd() == null){
+        } else if (Grid.getEnd() == null) {
             this.setIcon(end);
             this.isEnd = true;
             Grid.setEnd(this);
@@ -156,52 +170,20 @@ public class Cell extends JLabel {
             logo = (resizeImage(logo, Grid.getCellSize(), Grid.getCellSize()));
             if (this.isLogo) {
                 this.setIcon(null);
-                this.isWall[0] = false;
-                this.isWall[1] = false;
-                this.isWall[2] = false;
-                this.isWall[3] = false;
-                this.drawWall[0] = 0;
-                this.drawWall[1] = 0;
-                this.drawWall[2] = 0;
-                this.drawWall[3] = 0;
-                this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+                eraseAllWalls();
                 this.isLogo = false;
                 Grid.setLogo(null);
             } else if (Grid.getLogo() != null) {
                 Grid.getLogo().isLogo = false;
-                Grid.getLogo().isWall[0] = false;
-                Grid.getLogo().isWall[1] = false;
-                Grid.getLogo().isWall[2] = false;
-                Grid.getLogo().isWall[3] = false;
-                Grid.getLogo().drawWall[0] = 0;
-                Grid.getLogo().drawWall[1] = 0;
-                Grid.getLogo().drawWall[2] = 0;
-                Grid.getLogo().drawWall[3] = 0;
-                Grid.getLogo().setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+                Grid.getLogo().eraseAllWalls();
                 Grid.getLogo().setIcon(null);
                 this.setIcon(logo);
-                this.isWall[0] = true;
-                this.isWall[1] = true;
-                this.isWall[2] = true;
-                this.isWall[3] = true;
-                this.drawWall[0] = strokeSize;
-                this.drawWall[1] = strokeSize;
-                this.drawWall[2] = strokeSize;
-                this.drawWall[3] = strokeSize;
-                this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+                drawAllWalls();
                 this.isLogo = true;
                 Grid.setLogo(this);
-            } else if (Grid.getLogo() == null){
+            } else if (Grid.getLogo() == null) {
                 this.setIcon(logo);
-                this.isWall[0] = true;
-                this.isWall[1] = true;
-                this.isWall[2] = true;
-                this.isWall[3] = true;
-                this.drawWall[0] = strokeSize;
-                this.drawWall[1] = strokeSize;
-                this.drawWall[2] = strokeSize;
-                this.drawWall[3] = strokeSize;
-                this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+                drawAllWalls();
                 this.isLogo = true;
                 Grid.setLogo(this);
             }
@@ -211,15 +193,7 @@ public class Cell extends JLabel {
                 this.isStart = false;
                 this.isLogo = true;
                 this.setIcon(logo);
-                this.isWall[0] = true;
-                this.isWall[1] = true;
-                this.isWall[2] = true;
-                this.isWall[3] = true;
-                this.drawWall[0] = strokeSize;
-                this.drawWall[1] = strokeSize;
-                this.drawWall[2] = strokeSize;
-                this.drawWall[3] = strokeSize;
-                this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+                drawAllWalls();
 
             }
             if (this.isEnd) {
@@ -227,76 +201,49 @@ public class Cell extends JLabel {
                 this.isEnd = false;
                 this.isStart = true;
                 this.setIcon(logo);
-                this.isWall[0] = true;
-                this.isWall[1] = true;
-                this.isWall[2] = true;
-                this.isWall[3] = true;
-                this.drawWall[0] = strokeSize;
-                this.drawWall[1] = strokeSize;
-                this.drawWall[2] = strokeSize;
-                this.drawWall[3] = strokeSize;
-                this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
                 Grid.setEnd(null);
+                drawAllWalls();
 
             }
         }
     }
 
-    public void drawTopWall() {
-        if (!isWall[0]) {
-            drawWall[0] = strokeSize;
-            isWall[0] = true;
-        } else {
-            drawWall[0] = 0;
-            isWall[0] = false;
-        }
+    public void drawAllWalls() {
+        this.isWall[0] = true;
+        this.isWall[1] = true;
+        this.isWall[2] = true;
+        this.isWall[3] = true;
+        this.drawWall[0] = strokeSize;
+        this.drawWall[1] = strokeSize;
+        this.drawWall[2] = strokeSize;
+        this.drawWall[3] = strokeSize;
+        try {
+            grid[this.row + 1][this.column].isWall[0] = true;
+            grid[this.row][this.column + 1].isWall[1] = true;
+            grid[this.row - 1][this.column].isWall[2] = true;
+            grid[this.row][this.column - 1].isWall[3] = true;
+
+            grid[this.row + 1][this.column].drawWall[0] = strokeSize;
+            grid[this.row][this.column + 1].drawWall[1] = strokeSize;
+            grid[this.row - 1][this.column].drawWall[2] = strokeSize;
+            grid[this.row][this.column - 1].drawWall[3] = strokeSize;
+
+            grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
+            grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
+            grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
+            grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
+            }
+        catch (Exception ignored) {
+            drawWall[0] = strokeSize + 1;
+            drawWall[1] = strokeSize + 1;
+            drawWall[2] = strokeSize + 1;
+            drawWall[3] = strokeSize + 1;
+        };
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+
     }
 
-    public void drawLeftWall() {
-            if (!isWall[1]) {
-                drawWall[1] = strokeSize;
-                isWall[1] = true;
-            } else {
-                drawWall[1] = 0;
-                isWall[1] = false;
-            }
-            this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-    }
-
-    public void drawDownWall() {
-            if (!isWall[2]) {
-                drawWall[2] = strokeSize;
-                isWall[2] = true;
-            } else {
-                drawWall[2] = 0;
-                isWall[2] = false;
-            }
-            this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-    }
-
-    public void drawRightWall() {
-//        if (rightWall.isSelected()) {
-//            if (!isWall[3]) {
-//                drawWall[3] = strokeSize;
-//                isWall[3] = true;
-//            } else {
-//                drawWall[3] = 0;
-//                isWall[3] = false;
-//            }
-//            this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-//        }
-        if (!isWall[3]) {
-            drawWall[3] = strokeSize;
-            isWall[3] = true;
-        } else {
-            drawWall[3] = 0;
-            isWall[3] = false;
-        }
-        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-    }
-
-    public void resetCell() {
+    public void eraseAllWalls() {
         this.isWall[0] = false;
         this.isWall[1] = false;
         this.isWall[2] = false;
@@ -305,7 +252,124 @@ public class Cell extends JLabel {
         this.drawWall[1] = 0;
         this.drawWall[2] = 0;
         this.drawWall[3] = 0;
-        this.setBorder(null);
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+        try {
+            grid[this.row + 1][this.column].isWall[0] = false;
+            grid[this.row + 1][this.column].drawWall[0] = 0;
+            grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
+        } catch (Exception ignored) {};
+        try {
+            grid[this.row][this.column + 1].isWall[1] = false;
+            grid[this.row][this.column + 1].drawWall[1] = 0;
+            grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
+        } catch (Exception ignored) {};
+        try {
+            grid[this.row - 1][this.column].isWall[2] = false;
+            grid[this.row - 1][this.column].drawWall[2] = 0;
+            grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
+        } catch (Exception ignored) {};
+        try {
+            grid[this.row][this.column - 1].isWall[3] = false;
+            grid[this.row][this.column - 1].drawWall[3] = 0;
+            grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
+        } catch (Exception ignored) {};
+    }
+
+    public void drawTopWall() {
+        if (!isWall[0]) {
+            drawWall[0] = strokeSize;
+            isWall[0] = true;
+            try {
+                grid[this.row - 1][this.column].drawWall[2] = strokeSize;
+                grid[this.row - 1][this.column].isWall[2] = true;
+                grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
+            } catch (Exception ignored) {
+                drawWall[0] = strokeSize + 1;
+            };
+        } else {
+            drawWall[0] = 0;
+            isWall[0] = false;
+            try {
+                grid[this.row - 1][this.column].drawWall[2] = 0;
+                grid[this.row - 1][this.column].isWall[2] = false;
+                grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
+            } catch (Exception ignored) {};
+        }
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+    }
+
+    public void drawLeftWall() {
+        if (!isWall[1]) {
+            drawWall[1] = strokeSize;
+            isWall[1] = true;
+            try {
+                grid[this.row][this.column - 1].drawWall[3] = strokeSize;
+                grid[this.row][this.column - 1].isWall[3] = true;
+                grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
+            } catch (Exception ignored) {
+                drawWall[1] = strokeSize + 1;
+            };
+        } else {
+            drawWall[1] = 0;
+            isWall[1] = false;
+            try {
+                grid[this.row][this.column - 1].drawWall[3] = 0;
+                grid[this.row][this.column - 1].isWall[3] = false;
+                grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
+            } catch (Exception ignored) {};
+        }
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+    }
+
+    public void drawDownWall() {
+        if (!isWall[2]) {
+            drawWall[2] = strokeSize;
+            isWall[2] = true;
+            try {
+                grid[this.row + 1][this.column].drawWall[0] = strokeSize;
+                grid[this.row + 1][this.column].isWall[0] = true;
+                grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
+            } catch (Exception ignored) {
+                drawWall[2] = strokeSize + 1;};
+        } else {
+            drawWall[2] = 0;
+            isWall[2] = false;
+            try {
+                grid[this.row + 1][this.column].drawWall[0] = 0;
+                grid[this.row + 1][this.column].isWall[0] = false;
+                grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
+            } catch (Exception ignored) {
+            }
+            ;
+        }
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+    }
+
+    public void drawRightWall() {
+        if (!isWall[3]) {
+            drawWall[3] = strokeSize;
+            isWall[3] = true;
+            try {
+                grid[this.row][this.column + 1].drawWall[1] = strokeSize;
+                grid[this.row][this.column + 1].isWall[1] = true;
+                grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
+            } catch (Exception ignored) {
+                drawWall[3] = strokeSize + 1;
+            };
+        } else {
+            drawWall[3] = 0;
+            isWall[3] = false;
+            try {
+                grid[this.row][this.column + 1].drawWall[1] = 0;
+                grid[this.row][this.column + 1].isWall[1] = false;
+                grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
+            } catch (Exception ignored) {};
+        }
+        this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+    }
+
+    public void resetCell() {
+        eraseAllWalls();
 
         if (this.isStart) {
             this.isStart = false;
@@ -358,11 +422,80 @@ public class Cell extends JLabel {
         return isWall[3];
     }
 
+    public void setWall(int wall) {
+        if (wall == 1) {
+            northWall = false;
+        } else if (wall == 2) {
+            southWall = false;
+        } else if (wall == 3) {
+            westWall = false;
+        } else if (wall == 4) {
+            eastWall = false;
+        }
+    }
+
+    public boolean getWall(int wall) {
+        if (wall == 1) {
+            return northWall;
+        } else if (wall == 2) {
+            return southWall;
+        } else if (wall == 3) {
+            return westWall;
+        } else if (wall == 4) {
+            return eastWall;
+        }
+        return false;
+    }
+
     public int getRow() {
         return this.row;
     }
 
     public int getColumn() {
         return this.column;
+    }
+
+    public void setVisited() {
+        this.visited = true;
+    }
+
+    public boolean getVisited() {
+        return visited;
+    }
+
+    public void setChildren(Cell child) {
+        this.children.add(child);
+    }
+
+    public void setParents(Cell parent) {
+        this.parents = parent;
+    }
+
+    public Cell getParents() {
+        return parents;
+    }
+
+    public void setLogo() {
+        this.isLogo = true;
+    }
+
+    public boolean getLogo() {
+        return this.isLogo;
+    }
+
+    public void setStart() {
+        this.isStart = true;
+    }
+
+    public boolean getStart() {
+        return this.isStart;
+    }
+
+    public void setEnd() {
+        this.isEnd = true;
+    }
+
+    public boolean getEnd() {
+        return this.isEnd;
     }
 }

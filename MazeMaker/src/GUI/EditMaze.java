@@ -1,16 +1,12 @@
 package GUI;
 
 import Maze.Cell;
-import Maze.MazeGenerator;
 import Maze.Grid;
-
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-
 import static Maze.Images.*;
 import static Maze.MazeFile.saveMaze;
 
@@ -19,8 +15,6 @@ public class EditMaze extends JFrame {
     public JPanel sideBar = new JPanel();
 
     // Maze Components
-    JPanel maze;
-    MazeGenerator mazeGenerator;
     public static Grid Grid;
     public int cellSize = 50;
     public int mazeWidth = 10;
@@ -88,7 +82,7 @@ public class EditMaze extends JFrame {
 
         // Maze
         mazePanel.setBackground(new Color(234, 234, 234));
-        Grid = new Grid(mazeHeight, mazeWidth, cellSize);
+        Grid = new Grid(mazeWidth, mazeHeight, cellSize);
         mazePanel.add(Grid);
         Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
         Grid.setBorder(BorderFactory.createLineBorder(Color.gray));
@@ -408,10 +402,9 @@ public class EditMaze extends JFrame {
             this.cellSize = cellSlider.getValue();
             Grid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
             mazePanel.removeAll();
-            Grid.drawMaze(this.mazeWidth, this.mazeHeight);
-            percentageTravel.setText("% of Cells To Win: "+Grid.getCellDist());
-            percentageDeadEnd.setText("% of Dead Ends: "+Grid.getDeadEnds());
-
+            Grid.drawMaze(this.mazeHeight, this.mazeWidth);
+            //percentageTravel.setText("% of Cells To Win: "+Grid.getCellDist());
+            //percentageDeadEnd.setText("% of Dead Ends: "+Grid.getDeadEnds());
             mazePanel.add(Grid);
             Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
             Grid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
