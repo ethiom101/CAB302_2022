@@ -131,11 +131,11 @@ public class Grid extends JPanel {
 
     //Getters and Setters
     public String getCellDist() {
-        return (maze.cellDistribution());
+        return (maze.cellDistribution(rows, columns));
     }
 
     public String getDeadEnds() {
-        return maze.deadEnds();
+        return maze.deadEnds(rows, columns);
     }
 
     public static int getColumns() {

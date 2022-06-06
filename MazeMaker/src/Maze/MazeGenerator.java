@@ -166,9 +166,9 @@ public class MazeGenerator {
      *
      * @return percentage value
      */
-    public String cellDistribution() {
+    public String cellDistribution(int rows, int columns) {
         String cellDist = "";
-        cellDist = Math.round((((solution.size() + 1.0) / (gridX * gridY)) * 100) * 100.0) / 100.0 + "%";
+        cellDist = Math.round((((solution.size() + 1.0) / (rows * columns)) * 100) * 100.0) / 100.0 + "%";
         return cellDist;
     }
 
@@ -177,10 +177,10 @@ public class MazeGenerator {
      *
      * @return percentage value
      */
-    public String deadEnds() {
+    public String deadEnds(int rows, int columns) {
         int numDeadEnds = 0;
-        for (int i = 0; i < gridY; i++) {
-            for (int j = 0; j < gridX; j++) {
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
                 int numWalls = 0;
                 for (int k = 1; k < 5; k++) {
                     if (cells[i][j].getWall(k)) {
@@ -193,7 +193,7 @@ public class MazeGenerator {
                 }
             }
         }
-        return (Math.round(((numDeadEnds - 1.0) / (gridX * gridY) * 100.0) * 100.0) / 100.0 + "%");
+        return (Math.round(((numDeadEnds - 1.0) / (rows * columns) * 100.0) * 100.0) / 100.0 + "%");
     }
 
     /**
