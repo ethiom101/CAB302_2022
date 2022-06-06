@@ -64,19 +64,26 @@ public class MazeGenerator {
     public Stack<Cell> solveMaze() {
         Cell current = cells[startX][startY];
         Stack<Cell> visited = new Stack<>();
+        solution = new Stack<>();
         solution.push(current);
         visited.push(current);
+
+        System.out.println(solution.size());
+        System.out.println(visited.size());
         while (true) {
             current = solution.peek();
             ArrayList<Integer> direction = getUnvisitedRoute(current, visited);
+
 
             if (direction.isEmpty()) {
                 if (solution.peek() == cells[startX][startY]) {
                     break; //Cannot find end
                 }
                 solution.pop();
+                System.out.println("Pop");
             } else {
                 //Go forward
+
                 Cell newCurrent = forwardSolution(current, direction);
                 solution.push(newCurrent);
                 visited.push(newCurrent);
@@ -86,9 +93,12 @@ public class MazeGenerator {
                 }
             }
         }
-        for (Cell cell : solution) {
-            System.out.println(cell);
-        }
+//        for (Cell cell : solution) {
+//            System.out.println(cell);
+//        }
+        System.out.println(solution.size());
+        System.out.println(visited.size());
+        this.solution = solution;
         return solution;
     }
 
@@ -101,12 +111,17 @@ public class MazeGenerator {
      */
     public Cell forwardSolution(Cell current, ArrayList<Integer> direction) {
         if (direction.get(0) == 1) {
+            System.out.println("Up");
             return cells[current.getRow()][current.getColumn() - 1];
         } else if (direction.get(0) == 2) {
+            System.out.println("Down");
             return cells[current.getRow()][current.getColumn() + 1];
         } else if (direction.get(0) == 3) {
+            System.out.println("Left");
             return cells[current.getRow() - 1][current.getColumn()];
+
         } else if (direction.get(0) == 4) {
+            System.out.println("Right");
             return cells[current.getRow() + 1][current.getColumn()];
         }
         return current;
@@ -249,11 +264,13 @@ public class MazeGenerator {
                 //get the parent cell and go backwards
                 Cell newCurrent = backward(current);
                 current = newCurrent;
-
                 //If the parent cell is the start cell then end cause the maze is done
                 //Using this method to create the cell only once all the cells have been visited will we go back up to the start cell
                 if (newCurrent == start && getListUnvisited(newCurrent).isEmpty()) {
                     finish = true;
+                }
+                if (!hasSetEnd) {
+                    solution.pop();
                 }
             }
             //If there are univisted neighbours then go forward
