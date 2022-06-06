@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Images.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Images.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" afterDir="false" />
-    </list>
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Fixing solution and cell distribution" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -242,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654422836690</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixing solution and cell distribution">
+      <created>1654558004721</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1654558004721</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,6 +274,7 @@
     <MESSAGE value="merging" />
     <MESSAGE value="Generate new maze now creates puts a logo randomly on the maze" />
     <MESSAGE value="Adding comments for Javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Fixing solution and cell distribution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing solution and cell distribution" />
   </component>
 </project>
