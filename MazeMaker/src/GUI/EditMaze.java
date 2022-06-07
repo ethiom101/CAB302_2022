@@ -15,7 +15,7 @@ public class EditMaze extends JFrame {
     public JPanel sideBar = new JPanel();
 
     // Maze Components
-    public static Grid Grid;
+    public static Grid mazeGrid;
     public int cellSize = 50;
     public int mazeWidth = 10;
     public int mazeHeight = 10;
@@ -82,10 +82,10 @@ public class EditMaze extends JFrame {
 
         // Maze
         mazePanel.setBackground(new Color(234, 234, 234));
-        Grid = new Grid(mazeWidth, mazeHeight, cellSize);
-        mazePanel.add(Grid);
-        Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-        Grid.setBorder(BorderFactory.createLineBorder(Color.gray));
+        mazeGrid = new Grid(mazeWidth, mazeHeight, cellSize);
+        mazePanel.add(mazeGrid);
+        mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+        mazeGrid.setBorder(BorderFactory.createLineBorder(Color.gray));
 
 
         // Sidebar
@@ -122,14 +122,14 @@ public class EditMaze extends JFrame {
                     this.mazeWidth = (int) mazeRows.getValue();
                     this.mazeHeight = (int) mazeColumns.getValue();
                     this.cellSize = cellSlider.getValue();
-                    Grid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
+                    mazeGrid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
                     mazePanel.removeAll();
-                    mazePanel.add(Grid);
-                    Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-                    Grid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-                    Grid.revalidate();
-                    Grid.repaint();
-                    Grid.setCellSize(cellSize);
+                    mazePanel.add(mazeGrid);
+                    mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+                    mazeGrid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+                    mazeGrid.revalidate();
+                    mazeGrid.repaint();
+                    mazeGrid.setCellSize(cellSize);
                     mazePanel.revalidate();
                     mazePanel.repaint();
                     this.pack();
@@ -154,21 +154,21 @@ public class EditMaze extends JFrame {
             System.out.println(cellSlider.getValue());
             cellSizeLabel.setText(String.valueOf(cellSlider.getValue()));
             this.cellSize = cellSlider.getValue();
-            Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            if (Grid.getStart() != null) {
-                Grid.getStart().setImage(Cell.start, cellSize);
+            mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+            if (mazeGrid.getStart() != null) {
+                mazeGrid.getStart().setImage(Cell.start, cellSize);
             }
-            if (Grid.getEnd() != null) {
-                Grid.getEnd().setImage(Cell.end, cellSize);
+            if (mazeGrid.getEnd() != null) {
+                mazeGrid.getEnd().setImage(Cell.end, cellSize);
             }
-            if (Grid.getLogo() != null) {
-                Grid.getLogo().setImage(Cell.logo, cellSize);
+            if (mazeGrid.getLogo() != null) {
+                mazeGrid.getLogo().setImage(Cell.logo, cellSize);
             }
 
 
-            Grid.setCellSize(cellSize);
-            Grid.repaint();
-            Grid.revalidate();
+            mazeGrid.setCellSize(cellSize);
+            mazeGrid.repaint();
+            mazeGrid.revalidate();
             pack();
         });
 
@@ -201,25 +201,25 @@ public class EditMaze extends JFrame {
                 if (itemSelector.getSelectedItem() == "Start") {
                     startImage.setIcon(imageLogo);
                     Cell.start = imageLogo;
-                    if (Grid.getStart() != null) {
-                        Grid.getStart().setIcon(imageLogo);
-                        Grid.getStart().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
+                    if (mazeGrid.getStart() != null) {
+                        mazeGrid.getStart().setIcon(imageLogo);
+                        mazeGrid.getStart().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
                     }
                 }
                 if (itemSelector.getSelectedItem() == "End") {
                     endImage.setIcon(imageLogo);
                     Cell.end = imageLogo;
-                    if (Grid.getEnd() != null) {
-                        Grid.getEnd().setIcon(imageLogo);
-                        Grid.getEnd().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
+                    if (mazeGrid.getEnd() != null) {
+                        mazeGrid.getEnd().setIcon(imageLogo);
+                        mazeGrid.getEnd().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
                     }
                 }
                 if (itemSelector.getSelectedItem() == "Logo") {
                     Cell.logo = imageLogo;
                     logoImage.setIcon(imageLogo);
-                    if (Grid.getLogo() != null) {
-                        Grid.getLogo().setIcon(imageLogo);
-                        Grid.getLogo().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
+                    if (mazeGrid.getLogo() != null) {
+                        mazeGrid.getLogo().setIcon(imageLogo);
+                        mazeGrid.getLogo().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
                     }
                 }
                 resetImage.setEnabled(true);
@@ -232,28 +232,28 @@ public class EditMaze extends JFrame {
             // remove logo implementation
             if (itemSelector.getSelectedItem() == "Start") {
                 startImage.setIcon(resizeImage(IMG, 100, 100));
-                if (Grid.getStart() != null) {
-                    Grid.getStart().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
+                if (mazeGrid.getStart() != null) {
+                    mazeGrid.getStart().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
                     Cell.start = IMG;
                 }
             }
             if (itemSelector.getSelectedItem() == "End") {
                 endImage.setIcon(resizeImage(IMG, 100, 100));
-                if (Grid.getEnd() != null) {
-                    Grid.getEnd().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
+                if (mazeGrid.getEnd() != null) {
+                    mazeGrid.getEnd().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
                     Cell.end = IMG;
                 }
             }
             if (itemSelector.getSelectedItem() == "Logo") {
                 logoImage.setIcon(null);
                 Cell.logo = null;
-                if (Grid.getLogo() != null) {
-                    Grid.getLogo().isWall[0] = false;
-                    Grid.getLogo().isWall[1] = false;
-                    Grid.getLogo().isWall[2] = false;
-                    Grid.getLogo().isWall[3] = false;
-                    Grid.getLogo().setBorder(new MatteBorder(0, 0, 0, 0, Color.black));
-                    Grid.getLogo().setIcon(null);
+                if (mazeGrid.getLogo() != null) {
+                    mazeGrid.getLogo().isWall[0] = false;
+                    mazeGrid.getLogo().isWall[1] = false;
+                    mazeGrid.getLogo().isWall[2] = false;
+                    mazeGrid.getLogo().isWall[3] = false;
+                    mazeGrid.getLogo().setBorder(new MatteBorder(0, 0, 0, 0, Color.black));
+                    mazeGrid.getLogo().setIcon(null);
                 }
             }
             resetImage.setEnabled(false);
@@ -269,8 +269,8 @@ public class EditMaze extends JFrame {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                if (Grid.getStart() != null){
-                    Grid.getStart().setImage(Cell.start, this.cellSize);
+                if (mazeGrid.getStart() != null){
+                    mazeGrid.getStart().setImage(Cell.start, this.cellSize);
                 }
                 startImage.setIcon(resizeImage(Cell.start, 100, 100));
             }
@@ -281,8 +281,8 @@ public class EditMaze extends JFrame {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                if (Grid.getEnd() != null){
-                    Grid.getEnd().setImage(Cell.end, this.cellSize);
+                if (mazeGrid.getEnd() != null){
+                    mazeGrid.getEnd().setImage(Cell.end, this.cellSize);
                 }
                 endImage.setIcon(resizeImage(Cell.end, 100, 100));
 
@@ -294,8 +294,8 @@ public class EditMaze extends JFrame {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    if (Grid.getLogo() != null) {
-                        Grid.getLogo().setImage(Cell.logo, this.cellSize);
+                    if (mazeGrid.getLogo() != null) {
+                        mazeGrid.getLogo().setImage(Cell.logo, this.cellSize);
                     }
                     logoImage.setIcon(resizeImage(Cell.logo, 100, 100));
                 }
@@ -400,17 +400,17 @@ public class EditMaze extends JFrame {
             this.mazeWidth = (int) mazeRows.getValue();
             this.mazeHeight = (int) mazeColumns.getValue();
             this.cellSize = cellSlider.getValue();
-            Grid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
+            mazeGrid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
             mazePanel.removeAll();
-            Grid.drawMaze(this.mazeHeight, this.mazeWidth);
-            mazePanel.add(Grid);
-            percentageTravel.setText("% of Cells To Win: "+Grid.getCellDist());
-            percentageDeadEnd.setText("% of Dead Ends: "+Grid.getDeadEnds());
-            Grid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            Grid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-            Grid.revalidate();
-            Grid.repaint();
-            Grid.setCellSize(cellSize);
+            mazeGrid.drawMaze(this.mazeHeight, this.mazeWidth);
+            mazePanel.add(mazeGrid);
+            percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
+            percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
+            mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
+            mazeGrid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+            mazeGrid.revalidate();
+            mazeGrid.repaint();
+            mazeGrid.setCellSize(cellSize);
             mazePanel.revalidate();
             mazePanel.repaint();
 
@@ -432,8 +432,10 @@ public class EditMaze extends JFrame {
         sideBar.add(toggleSolution);
         toggleSolution.setPreferredSize(new Dimension(150, 40));
         toggleSolution.addActionListener(e -> {
-            Grid.drawSolution();
-            Grid.toggle();
+            mazeGrid.drawSolution();
+            mazeGrid.toggle();
+            percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
+            percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
             // toggle solution implementation
 
             // System.out.println("Toggle Solution");
@@ -473,7 +475,7 @@ public class EditMaze extends JFrame {
             if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 try {
-                    exportImage(Grid, file + ".png");
+                    exportImage(mazeGrid, file + ".png");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

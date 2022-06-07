@@ -3,6 +3,8 @@ package Maze;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static Maze.Grid.grid;
+
 public class MazeGenerator {
 
     //Grid size
@@ -17,10 +19,10 @@ public class MazeGenerator {
     public static boolean toggle = false;
 
     //Start and End values
-    private int startX = 0;
-    private int startY = 0;
-    private int endX = gridX - 1;
-    private int endY = gridY - 1;
+    int startX = 0;
+    int startY = 0;
+    int endX = gridX - 1;
+    int endY = gridY - 1;
 
     //Getters and Setters
     public void setEndX(int positionX) {
@@ -68,8 +70,6 @@ public class MazeGenerator {
         solution.push(current);
         visited.push(current);
 
-        System.out.println(solution.size());
-        System.out.println(visited.size());
         while (true) {
             current = solution.peek();
             ArrayList<Integer> direction = getUnvisitedRoute(current, visited);

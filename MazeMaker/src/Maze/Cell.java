@@ -82,41 +82,41 @@ public class Cell extends JLabel {
     }
 
     public void drawStart(ImageIcon start) {
-        start = (resizeImage(start, Grid.getCellSize(), Grid.getCellSize()));
+        start = (resizeImage(start, mazeGrid.getCellSize(), mazeGrid.getCellSize()));
         if (this.isStart) {
             this.setIcon(null);
             this.isStart = false;
-            Grid.setStart(null);
-        } else if (Grid.getStart() != null) {
-            Grid.getStart().isStart = false;
-            Grid.getStart().setIcon(null);
+            mazeGrid.setStart(null);
+        } else if (mazeGrid.getStart() != null) {
+            mazeGrid.getStart().isStart = false;
+            mazeGrid.getStart().setIcon(null);
             this.setIcon(start);
             this.isStart = true;
-            Grid.setStart(this);
-        } else if (Grid.getStart() == null) {
+            mazeGrid.setStart(this);
+        } else if (mazeGrid.getStart() == null) {
             this.setIcon(start);
             this.isStart = true;
-            Grid.setStart(this);
+            mazeGrid.setStart(this);
         }
         if (this.isEnd) {
-            Grid.getEnd().setIcon(null);
-            Grid.setEnd(null);
+            mazeGrid.getEnd().setIcon(null);
+            mazeGrid.setEnd(null);
             this.isEnd = false;
             this.isStart = true;
             this.setIcon(start);
         }
         if (this.isLogo) {
-            Grid.getLogo().setIcon(null);
-            Grid.getLogo().isWall[0] = false;
-            Grid.getLogo().isWall[1] = false;
-            Grid.getLogo().isWall[2] = false;
-            Grid.getLogo().isWall[3] = false;
-            Grid.getLogo().drawWall[0] = 0;
-            Grid.getLogo().drawWall[1] = 0;
-            Grid.getLogo().drawWall[2] = 0;
-            Grid.getLogo().drawWall[3] = 0;
-            Grid.getLogo().setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-            Grid.setLogo(null);
+            mazeGrid.getLogo().setIcon(null);
+            mazeGrid.getLogo().isWall[0] = false;
+            mazeGrid.getLogo().isWall[1] = false;
+            mazeGrid.getLogo().isWall[2] = false;
+            mazeGrid.getLogo().isWall[3] = false;
+            mazeGrid.getLogo().drawWall[0] = 0;
+            mazeGrid.getLogo().drawWall[1] = 0;
+            mazeGrid.getLogo().drawWall[2] = 0;
+            mazeGrid.getLogo().drawWall[3] = 0;
+            mazeGrid.getLogo().setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+            mazeGrid.setLogo(null);
             this.isStart = false;
             this.isEnd = true;
             this.setIcon(start);
@@ -124,41 +124,41 @@ public class Cell extends JLabel {
     }
 
     public void drawEnd(ImageIcon end) {
-        end = (resizeImage(end, Grid.getCellSize(), Grid.getCellSize()));
+        end = (resizeImage(end, mazeGrid.getCellSize(), mazeGrid.getCellSize()));
         if (this.isEnd) {
             this.setIcon(null);
             this.isEnd = false;
-            Grid.setEnd(null);
-        } else if (Grid.getEnd() != null) {
-            Grid.getEnd().isEnd = false;
-            Grid.getEnd().setIcon(null);
+            mazeGrid.setEnd(null);
+        } else if (mazeGrid.getEnd() != null) {
+            mazeGrid.getEnd().isEnd = false;
+            mazeGrid.getEnd().setIcon(null);
             this.setIcon(end);
             this.isEnd = true;
-            Grid.setEnd(this);
-        } else if (Grid.getEnd() == null) {
+            mazeGrid.setEnd(this);
+        } else if (mazeGrid.getEnd() == null) {
             this.setIcon(end);
             this.isEnd = true;
-            Grid.setEnd(this);
+            mazeGrid.setEnd(this);
         }
         if (this.isStart) {
-            Grid.getStart().setIcon(null);
-            Grid.setStart(null);
+            mazeGrid.getStart().setIcon(null);
+            mazeGrid.setStart(null);
             this.isStart = false;
             this.isEnd = true;
             this.setIcon(end);
         }
         if (this.isLogo) {
-            Grid.getLogo().setIcon(null);
-            Grid.getLogo().isWall[0] = false;
-            Grid.getLogo().isWall[1] = false;
-            Grid.getLogo().isWall[2] = false;
-            Grid.getLogo().isWall[3] = false;
-            Grid.getLogo().drawWall[0] = 0;
-            Grid.getLogo().drawWall[1] = 0;
-            Grid.getLogo().drawWall[2] = 0;
-            Grid.getLogo().drawWall[3] = 0;
-            Grid.getLogo().setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
-            Grid.setLogo(null);
+            mazeGrid.getLogo().setIcon(null);
+            mazeGrid.getLogo().isWall[0] = false;
+            mazeGrid.getLogo().isWall[1] = false;
+            mazeGrid.getLogo().isWall[2] = false;
+            mazeGrid.getLogo().isWall[3] = false;
+            mazeGrid.getLogo().drawWall[0] = 0;
+            mazeGrid.getLogo().drawWall[1] = 0;
+            mazeGrid.getLogo().drawWall[2] = 0;
+            mazeGrid.getLogo().drawWall[3] = 0;
+            mazeGrid.getLogo().setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
+            mazeGrid.setLogo(null);
             this.isStart = false;
             this.isEnd = true;
             this.setIcon(end);
@@ -167,29 +167,29 @@ public class Cell extends JLabel {
 
     public void drawLogo(ImageIcon logo) {
         if (logo != null) {
-            logo = (resizeImage(logo, Grid.getCellSize(), Grid.getCellSize()));
+            logo = (resizeImage(logo, mazeGrid.getCellSize(), mazeGrid.getCellSize()));
             if (this.isLogo) {
                 this.setIcon(null);
                 eraseAllWalls();
                 this.isLogo = false;
-                Grid.setLogo(null);
-            } else if (Grid.getLogo() != null) {
-                Grid.getLogo().isLogo = false;
-                Grid.getLogo().eraseAllWalls();
-                Grid.getLogo().setIcon(null);
+                mazeGrid.setLogo(null);
+            } else if (mazeGrid.getLogo() != null) {
+                mazeGrid.getLogo().isLogo = false;
+                mazeGrid.getLogo().eraseAllWalls();
+                mazeGrid.getLogo().setIcon(null);
                 this.setIcon(logo);
                 drawAllWalls();
                 this.isLogo = true;
-                Grid.setLogo(this);
-            } else if (Grid.getLogo() == null) {
+                mazeGrid.setLogo(this);
+            } else if (mazeGrid.getLogo() == null) {
                 this.setIcon(logo);
                 drawAllWalls();
                 this.isLogo = true;
-                Grid.setLogo(this);
+                mazeGrid.setLogo(this);
             }
             if (this.isStart) {
-                Grid.getStart().setIcon(null);
-                Grid.setStart(null);
+                mazeGrid.getStart().setIcon(null);
+                mazeGrid.setStart(null);
                 this.isStart = false;
                 this.isLogo = true;
                 this.setIcon(logo);
@@ -197,11 +197,11 @@ public class Cell extends JLabel {
 
             }
             if (this.isEnd) {
-                Grid.getEnd().setIcon(null);
+                mazeGrid.getEnd().setIcon(null);
                 this.isEnd = false;
                 this.isStart = true;
                 this.setIcon(logo);
-                Grid.setEnd(null);
+                mazeGrid.setEnd(null);
                 drawAllWalls();
 
             }
@@ -338,9 +338,7 @@ public class Cell extends JLabel {
                 grid[this.row + 1][this.column].drawWall[0] = 0;
                 grid[this.row + 1][this.column].isWall[0] = false;
                 grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
-            } catch (Exception ignored) {
-            }
-            ;
+            } catch (Exception ignored) {};
         }
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
@@ -373,17 +371,17 @@ public class Cell extends JLabel {
 
         if (this.isStart) {
             this.isStart = false;
-            Grid.setStart(null);
+            mazeGrid.setStart(null);
         }
 
         if (this.isEnd) {
             this.isEnd = false;
-            Grid.setEnd(null);
+            mazeGrid.setEnd(null);
         }
 
         if (this.isLogo) {
             this.isLogo = false;
-            Grid.setLogo(null);
+            mazeGrid.setLogo(null);
         }
         this.setBackground(Color.white);
         this.setIcon(null);

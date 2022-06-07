@@ -129,6 +129,7 @@ public class Grid extends JPanel {
         }
     }
 
+
     //Getters and Setters
     public String getCellDist() {
         return (maze.cellDistribution(rows, columns));
