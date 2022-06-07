@@ -101,19 +101,14 @@ public class Grid extends JPanel {
      */
     public void drawSolution() {
 
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
-                if (grid[row][col].isEnd()) {
-                    maze.setEndX(col);
-                    maze.setEndY(row);
-                } else if (grid[row][col].isStart()) {
-                    maze.setStartX(col);
-                    maze.setStartY(row);
-                }
-            }
-        }
+
+        maze.setStartX(getStart().getColumn());
+        maze.setStartY(getStart().getRow());
+        maze.setEndX(getEnd().getColumn());
+        maze.setEndY(getEnd().getRow());
+
         Cell[][] path = maze.getGrid();
-        Stack<Cell> solution = maze.solveMaze();
+        Stack<Cell> solution = maze.solveMaze(getStart(), path);
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 if (toggle) {

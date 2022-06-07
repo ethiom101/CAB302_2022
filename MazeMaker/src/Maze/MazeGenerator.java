@@ -48,16 +48,16 @@ public class MazeGenerator {
      *
      * @return The solution of the maze in the form of a stack
      */
-    public Stack<Cell> solveMaze() {
-        Cell current = cells[startX][startY];
+    public Stack<Cell> solveMaze(Cell start, Cell[][] cells) {
+        start = cells[startX][startY];
         Stack<Cell> visited = new Stack<>();
         solution = new Stack<>();
-        solution.push(current);
-        visited.push(current);
+        solution.push(start);
+        visited.push(start);
 
         while (true) {
-            current = solution.peek();
-            ArrayList<Integer> direction = getUnvisitedRoute(current, visited);
+            start = solution.peek();
+            ArrayList<Integer> direction = getUnvisitedRoute(start, visited);
 
 
             if (direction.isEmpty()) {
@@ -69,16 +69,15 @@ public class MazeGenerator {
             } else {
                 //Go forward
 
-                Cell newCurrent = forwardSolution(current, direction);
+                Cell newCurrent = forwardSolution(start, direction);
                 solution.push(newCurrent);
                 visited.push(newCurrent);
-                current = newCurrent;
-                if (current == cells[endX][endY]) {
+                start = newCurrent;
+                if (start == cells[endX][endY]) {
                     break; //found end
                 }
             }
         }
-        this.solution = solution;
         return solution;
     }
 

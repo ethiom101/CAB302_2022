@@ -44,12 +44,12 @@ public class MazeTest {
         });
     }
 
-    @Test
-    public void testSolution() throws Exception {
-        MazeGenerator maze = new MazeGenerator(10,10);
-        Stack<Cell> solution = maze.solveMaze();
-        assertEquals(true,solution.getClass().equals(maze.solveMaze().getClass()));
-    }
+   // @Test
+   // public void testSolution() throws Exception {
+   //     MazeGenerator maze = new MazeGenerator(10,10);
+   //     Stack<Cell> solution = maze.solveMaze();
+   //     assertEquals(true,solution.getClass().equals(maze.solveMaze().getClass()));
+   // }
 
     @Test
     public void testSolutionDirectionValue() throws Exception {
