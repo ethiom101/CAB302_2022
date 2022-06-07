@@ -1,13 +1,11 @@
 package Maze;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageInputStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 
 
 public class Images {
@@ -15,7 +13,7 @@ public class Images {
      * Method to export image of the maze generated
      * @param panel contains image of maze to export
      * @param fileName name of image file
-     * @throws IOException
+     * @throws IOException some sort of I/O exception
      */
     public static void exportImage(Component panel, String fileName) throws IOException {
         BufferedImage image = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -46,7 +44,7 @@ public class Images {
 
         Graphics2D graphics2D = newImageFromBuffer.createGraphics();
 
-        graphics2D.rotate(Math.toRadians(90), widthOfImage / 2, heightOfImage / 2);
+        graphics2D.rotate(Math.toRadians(90), widthOfImage >> 1, heightOfImage >> 1);
         graphics2D.drawImage(imageToRotate, null, 0, 0);
 
         return new ImageIcon(newImageFromBuffer);

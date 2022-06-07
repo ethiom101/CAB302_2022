@@ -7,7 +7,6 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.io.*;
 import java.sql.*;
-
 import static Maze.Grid.grid;
 
 
@@ -68,7 +67,7 @@ public class MazeFile {
         if (option == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()));
-            String line = null;
+            String line;
             new EditMaze();
             for (int i = 0; i < 10; i++) {
                 System.out.println("here");
@@ -103,7 +102,7 @@ public class MazeFile {
                             grid[j - 1][i].setBorder(new MatteBorder(grid[j - 1][i].drawWall[0], grid[j - 1][i].drawWall[1], grid[j - 1][i].drawWall[2], grid[j - 1][i].drawWall[3], Color.black));
                         } catch (Exception ignored) {
                             grid[j][i].drawWall[0] = grid[j][i].strokeSize + 1;
-                        };
+                        }
                         grid[j][i].setBorder(new MatteBorder(grid[j][i].drawWall[0], grid[j][i].drawWall[1], grid[j][i].drawWall[2], grid[j][i].drawWall[3], Color.black));
                         line = reader.readLine();
                         cellType = Character.getNumericValue(line.charAt(0));
@@ -119,7 +118,7 @@ public class MazeFile {
                             grid[j][i - 1].setBorder(new MatteBorder(grid[j][i - 1].drawWall[0], grid[j][i - 1].drawWall[1], grid[j][i - 1].drawWall[2], grid[j][i - 1].drawWall[3], Color.black));
                         } catch (Exception ignored) {
                             grid[j][i].drawWall[1] = grid[j][i].strokeSize + 1;
-                        };
+                        }
                         grid[j][i].setBorder(new MatteBorder(grid[j][i].drawWall[0], grid[j][i].drawWall[1], grid[j][i].drawWall[2], grid[j][i].drawWall[3], Color.black));
                         line = reader.readLine();
                         cellType = Character.getNumericValue(line.charAt(0));
@@ -135,7 +134,7 @@ public class MazeFile {
                             grid[j + 1][i].setBorder(new MatteBorder(grid[j + 1][i].drawWall[0], grid[j + 1][i].drawWall[1], grid[j + 1][i].drawWall[2], grid[j + 1][i].drawWall[3], Color.black));
                         } catch (Exception ignored) {
                             grid[j][i].drawWall[2] = grid[j][i].strokeSize + 1;
-                        };
+                        }
                         grid[j][i].setBorder(new MatteBorder(grid[j][i].drawWall[0], grid[j][i].drawWall[1], grid[j][i].drawWall[2], grid[j][i].drawWall[3], Color.black));
                         line = reader.readLine();
                         cellType = Character.getNumericValue(line.charAt(0));
@@ -151,14 +150,11 @@ public class MazeFile {
                             grid[j][i + 1].setBorder(new MatteBorder(grid[j][i + 1].drawWall[0], grid[j][i + 1].drawWall[1], grid[j][i + 1].drawWall[2], grid[j][i + 1].drawWall[3], Color.black));
                         } catch (Exception ignored) {
                             grid[j][i].drawWall[3] = grid[j][i].strokeSize + 1;
-                        };
+                        }
                         grid[j][i].setBorder(new MatteBorder(grid[j][i].drawWall[0], grid[j][i].drawWall[1], grid[j][i].drawWall[2], grid[j][i].drawWall[3], Color.black));
                         line = reader.readLine();
                         cellType = Character.getNumericValue(line.charAt(0));
                         System.out.println("node is " + cellType);
-                    }
-
-                    if (cellType == 0) {
                     }
                 }
             }

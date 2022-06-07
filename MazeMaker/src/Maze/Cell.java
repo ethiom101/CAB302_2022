@@ -14,19 +14,17 @@ import static Maze.Images.resizeImage;
 
 public class Cell extends JLabel {
     private Cell parents;
-    private int row;
-    private int column;
-    private int cellSize;
+    private final int row;
+    private final int column;
     public boolean[] isWall = {false, false, false, false}; // top, left, down, right
     int[] drawWall = {0, 0, 0, 0}; // top, left, down, right
     private boolean isStart;
     private boolean isEnd;
     private boolean isLogo;
     private boolean visited = false;
-    private ArrayList<Cell> children = new ArrayList<>();
+    public ArrayList<Cell> next;
     public static ImageIcon start = new ImageIcon("arrow.png");
     public static ImageIcon end = new ImageIcon("arrow.png");
-    ;
     public static ImageIcon logo = null;
     int strokeSize = 1;
 
@@ -39,6 +37,7 @@ public class Cell extends JLabel {
     public Cell(int row, int column) {
         this.row = row;
         this.column = column;
+        next = new ArrayList<>();
 
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -238,7 +237,7 @@ public class Cell extends JLabel {
             drawWall[1] = strokeSize + 1;
             drawWall[2] = strokeSize + 1;
             drawWall[3] = strokeSize + 1;
-        };
+        }
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
 
     }
@@ -257,22 +256,22 @@ public class Cell extends JLabel {
             grid[this.row + 1][this.column].isWall[0] = false;
             grid[this.row + 1][this.column].drawWall[0] = 0;
             grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
-        } catch (Exception ignored) {};
+        } catch (Exception ignored) {}
         try {
             grid[this.row][this.column + 1].isWall[1] = false;
             grid[this.row][this.column + 1].drawWall[1] = 0;
             grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
-        } catch (Exception ignored) {};
+        } catch (Exception ignored) {}
         try {
             grid[this.row - 1][this.column].isWall[2] = false;
             grid[this.row - 1][this.column].drawWall[2] = 0;
             grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
-        } catch (Exception ignored) {};
+        } catch (Exception ignored) {}
         try {
             grid[this.row][this.column - 1].isWall[3] = false;
             grid[this.row][this.column - 1].drawWall[3] = 0;
             grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
-        } catch (Exception ignored) {};
+        } catch (Exception ignored) {}
     }
 
     public void drawTopWall() {
@@ -285,7 +284,7 @@ public class Cell extends JLabel {
                 grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
             } catch (Exception ignored) {
                 drawWall[0] = strokeSize + 1;
-            };
+            }
         } else {
             drawWall[0] = 0;
             isWall[0] = false;
@@ -293,7 +292,7 @@ public class Cell extends JLabel {
                 grid[this.row - 1][this.column].drawWall[2] = 0;
                 grid[this.row - 1][this.column].isWall[2] = false;
                 grid[this.row - 1][this.column].setBorder(new MatteBorder(grid[this.row - 1][this.column].drawWall[0], grid[this.row - 1][this.column].drawWall[1], grid[this.row - 1][this.column].drawWall[2], grid[this.row - 1][this.column].drawWall[3], Color.black));
-            } catch (Exception ignored) {};
+            } catch (Exception ignored) {}
         }
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
@@ -308,7 +307,7 @@ public class Cell extends JLabel {
                 grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
             } catch (Exception ignored) {
                 drawWall[1] = strokeSize + 1;
-            };
+            }
         } else {
             drawWall[1] = 0;
             isWall[1] = false;
@@ -316,7 +315,7 @@ public class Cell extends JLabel {
                 grid[this.row][this.column - 1].drawWall[3] = 0;
                 grid[this.row][this.column - 1].isWall[3] = false;
                 grid[this.row][this.column - 1].setBorder(new MatteBorder(grid[this.row][this.column - 1].drawWall[0], grid[this.row][this.column - 1].drawWall[1], grid[this.row][this.column - 1].drawWall[2], grid[this.row][this.column - 1].drawWall[3], Color.black));
-            } catch (Exception ignored) {};
+            } catch (Exception ignored) {}
         }
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
@@ -330,7 +329,7 @@ public class Cell extends JLabel {
                 grid[this.row + 1][this.column].isWall[0] = true;
                 grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
             } catch (Exception ignored) {
-                drawWall[2] = strokeSize + 1;};
+                drawWall[2] = strokeSize + 1;}
         } else {
             drawWall[2] = 0;
             isWall[2] = false;
@@ -338,7 +337,7 @@ public class Cell extends JLabel {
                 grid[this.row + 1][this.column].drawWall[0] = 0;
                 grid[this.row + 1][this.column].isWall[0] = false;
                 grid[this.row + 1][this.column].setBorder(new MatteBorder(grid[this.row + 1][this.column].drawWall[0], grid[this.row + 1][this.column].drawWall[1], grid[this.row + 1][this.column].drawWall[2], grid[this.row + 1][this.column].drawWall[3], Color.black));
-            } catch (Exception ignored) {};
+            } catch (Exception ignored) {}
         }
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
@@ -353,7 +352,7 @@ public class Cell extends JLabel {
                 grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
             } catch (Exception ignored) {
                 drawWall[3] = strokeSize + 1;
-            };
+            }
         } else {
             drawWall[3] = 0;
             isWall[3] = false;
@@ -361,7 +360,7 @@ public class Cell extends JLabel {
                 grid[this.row][this.column + 1].drawWall[1] = 0;
                 grid[this.row][this.column + 1].isWall[1] = false;
                 grid[this.row][this.column + 1].setBorder(new MatteBorder(grid[this.row][this.column + 1].drawWall[0], grid[this.row][this.column + 1].drawWall[1], grid[this.row][this.column + 1].drawWall[2], grid[this.row][this.column + 1].drawWall[3], Color.black));
-            } catch (Exception ignored) {};
+            } catch (Exception ignored) {}
         }
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
@@ -453,16 +452,12 @@ public class Cell extends JLabel {
         return this.column;
     }
 
-    public void setVisited() {
-        this.visited = true;
+    public void setVisited(boolean bool) {
+        this.visited = bool;
     }
 
     public boolean getVisited() {
         return visited;
-    }
-
-    public void setChildren(Cell child) {
-        this.children.add(child);
     }
 
     public void setParents(Cell parent) {

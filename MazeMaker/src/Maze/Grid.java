@@ -3,7 +3,8 @@ package Maze;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
-import java.util.Stack;
+
+import static GUI.EditMaze.*;
 
 public class Grid extends JPanel {
     private static int rows;
@@ -12,22 +13,17 @@ public class Grid extends JPanel {
     public static Cell[][] grid;
     private Cell start;
     private Cell end;
-    private Cell current;
     private Cell logo;
     private MazeGenerator maze;
-    Stack<Cell> solution = new Stack<Cell>();
-    private boolean toggle = false;
+    private MazeSolver solver;
+    public boolean toggle = true;
 
-    public void toggle() {
-        toggle = !toggle;
-    }
-
-    public Grid(int height, int width, int cellSize) {
+    public Grid(int width, int height, int cellSize) {
         this.setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-        this.setLayout(new GridLayout(width, height));
-        rows = width;
-        columns = height;
+        this.setLayout(new GridLayout(height, width));
+        rows = height;
+        columns = width;
         this.cellSize = cellSize;
         init();
     }
@@ -96,28 +92,20 @@ public class Grid extends JPanel {
         }
     }
 
-    /**
-     * Draws the solution on the grid
-     */
-    public void drawSolution() {
 
+    public void Solve() {
+        solver = new MazeSolver(getStart(), getEnd());
+        if (!toggle) {
+            solver.clearSolution();
+            toggle = true;
 
-        maze.setStartX(getStart().getColumn());
-        maze.setStartY(getStart().getRow());
-        maze.setEndX(getEnd().getColumn());
-        maze.setEndY(getEnd().getRow());
-
-        Cell[][] path = maze.getGrid();
-        Stack<Cell> solution = maze.solveMaze(getStart(), path);
+        } else {
+            solver.drawSolution();
+            toggle = false;
+        }
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                if (toggle) {
-                    grid[row][col].setOpaque(true);
-                    grid[row][col].setBackground(Color.white);
-                } else if (solution.contains(path[col][row])) {
-                    grid[row][col].setOpaque(true);
-                    grid[row][col].setBackground(Color.pink);
-                }
+                grid[row][col].setVisited(false);
             }
         }
     }
@@ -125,7 +113,7 @@ public class Grid extends JPanel {
 
     //Getters and Setters
     public String getCellDist() {
-        return (maze.cellDistribution(rows, columns));
+        return (solver.cellDistribution(rows, columns));
     }
 
     public String getDeadEnds() {
@@ -154,6 +142,12 @@ public class Grid extends JPanel {
 
     public void setStart(Cell start) {
         this.start = start;
+        toggleSolution.setEnabled((start != null) && (this.end != null));
+        if (this.solver != null) {
+            solver.clearSolution();
+            toggle = true;
+            solver = null;
+        }
     }
 
     public Cell getEnd() {
@@ -162,6 +156,12 @@ public class Grid extends JPanel {
 
     public void setEnd(Cell end) {
         this.end = end;
+        toggleSolution.setEnabled((end != null) && (this.start != null));
+        if (this.solver != null) {
+            solver.clearSolution();
+            toggle = true;
+            solver = null;
+        }
     }
 
     public Cell getLogo() {

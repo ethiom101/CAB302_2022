@@ -2,11 +2,12 @@ package GUI;
 
 import Maze.Cell;
 import Maze.Grid;
+
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+
 import static Maze.Images.*;
 import static Maze.MazeFile.saveMaze;
 
@@ -51,7 +52,7 @@ public class EditMaze extends JFrame {
     // generate maze
     public JButton generateMaze = new JButton("Generate New Maze");
     // toggle solution
-    public JButton toggleSolution = new JButton("Toggle Solution");
+    public static JButton toggleSolution = new JButton("Toggle Solution");
     // statistics
     public JPanel statistics = new JPanel();
     public JLabel percentageTravel = new JLabel("% of Cells To Win:");
@@ -100,7 +101,6 @@ public class EditMaze extends JFrame {
         newGrid.add(mazeRows);
         mazeRows.addChangeListener(e -> {
             // Rows change listener implementation
-            //resetGrid.setEnabled(((this.mazeWidth != (int) mazeRows.getValue()) || (this.mazeHeight != (int) mazeColumns.getValue())));
             System.out.println(mazeRows.getValue());
 
         });
@@ -109,7 +109,6 @@ public class EditMaze extends JFrame {
         newGrid.add(mazeColumns);
         mazeColumns.addChangeListener(e -> {
             // Columns change listener implementation
-            //resetGrid.setEnabled(((this.mazeWidth != (int) mazeRows.getValue()) || (this.mazeHeight != (int) mazeColumns.getValue())));
             System.out.println(mazeColumns.getValue());
 
         });
@@ -132,6 +131,18 @@ public class EditMaze extends JFrame {
                     mazeGrid.setCellSize(cellSize);
                     mazePanel.revalidate();
                     mazePanel.repaint();
+                    itemSelector.setEnabled(true);
+                    topWall.setEnabled(true);
+                    leftWall.setEnabled(true);
+                    downWall.setEnabled(true);
+                    rightWall.setEnabled(true);
+                    leftWall.setSelected(true);
+                    leftWall.setSelected(true);
+                    downWall.setSelected(true);
+                    topWall.setSelected(true);
+                    changeImage.setEnabled(true);
+                    rotateImage.setEnabled(true);
+                    toggleSolution.setEnabled(false);
                     this.pack();
                 }
         );
@@ -248,11 +259,7 @@ public class EditMaze extends JFrame {
                 logoImage.setIcon(null);
                 Cell.logo = null;
                 if (mazeGrid.getLogo() != null) {
-                    mazeGrid.getLogo().isWall[0] = false;
-                    mazeGrid.getLogo().isWall[1] = false;
-                    mazeGrid.getLogo().isWall[2] = false;
-                    mazeGrid.getLogo().isWall[3] = false;
-                    mazeGrid.getLogo().setBorder(new MatteBorder(0, 0, 0, 0, Color.black));
+                    mazeGrid.getLogo().resetCell();
                     mazeGrid.getLogo().setIcon(null);
                 }
             }
@@ -269,7 +276,7 @@ public class EditMaze extends JFrame {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                if (mazeGrid.getStart() != null){
+                if (mazeGrid.getStart() != null) {
                     mazeGrid.getStart().setImage(Cell.start, this.cellSize);
                 }
                 startImage.setIcon(resizeImage(Cell.start, 100, 100));
@@ -281,7 +288,7 @@ public class EditMaze extends JFrame {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                if (mazeGrid.getEnd() != null){
+                if (mazeGrid.getEnd() != null) {
                     mazeGrid.getEnd().setImage(Cell.end, this.cellSize);
                 }
                 endImage.setIcon(resizeImage(Cell.end, 100, 100));
@@ -408,8 +415,9 @@ public class EditMaze extends JFrame {
                 ex.printStackTrace();
             }
             mazePanel.add(mazeGrid);
-            percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
-            percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
+
+            percentageDeadEnd.setText("% of Dead Ends: " + mazeGrid.getDeadEnds());
+            percentageTravel.setText("% of Cells To Win: ");
             mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
             mazeGrid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
             mazeGrid.revalidate();
@@ -417,7 +425,17 @@ public class EditMaze extends JFrame {
             mazeGrid.setCellSize(cellSize);
             mazePanel.revalidate();
             mazePanel.repaint();
-
+            itemSelector.setEnabled(true);
+            topWall.setEnabled(true);
+            leftWall.setEnabled(true);
+            downWall.setEnabled(true);
+            rightWall.setEnabled(true);
+            leftWall.setSelected(true);
+            leftWall.setSelected(true);
+            downWall.setSelected(true);
+            topWall.setSelected(true);
+            changeImage.setEnabled(true);
+            rotateImage.setEnabled(true);
             this.pack();
 
             // generate maze implementation
@@ -434,12 +452,40 @@ public class EditMaze extends JFrame {
         });
         // toggle solution
         sideBar.add(toggleSolution);
+        toggleSolution.setEnabled(false);
         toggleSolution.setPreferredSize(new Dimension(150, 40));
         toggleSolution.addActionListener(e -> {
-            mazeGrid.drawSolution();
-            mazeGrid.toggle();
-            percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
-            percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
+            mazeGrid.Solve();
+            percentageTravel.setText("% of Cells To Win: " + mazeGrid.getCellDist());
+            if (!mazeGrid.toggle) {
+                itemSelector.setEnabled(false);
+                itemSelector.setSelectedItem(null);
+                topWall.setEnabled(false);
+                leftWall.setEnabled(false);
+                downWall.setEnabled(false);
+                rightWall.setEnabled(false);
+                leftWall.setSelected(false);
+                leftWall.setSelected(false);
+                downWall.setSelected(false);
+                topWall.setSelected(false);
+                changeImage.setEnabled(false);
+                rotateImage.setEnabled(false);
+            } else {
+                itemSelector.setEnabled(true);
+                topWall.setEnabled(true);
+                leftWall.setEnabled(true);
+                downWall.setEnabled(true);
+                rightWall.setEnabled(true);
+                leftWall.setSelected(true);
+                leftWall.setSelected(true);
+                downWall.setSelected(true);
+                topWall.setSelected(true);
+                changeImage.setEnabled(true);
+                rotateImage.setEnabled(true);
+            }
+            //mazeGrid.drawSolution();
+            //percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
+            //percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
             // toggle solution implementation
 
             // System.out.println("Toggle Solution");
@@ -509,6 +555,18 @@ public class EditMaze extends JFrame {
                 new HomePage();
             }
         });
+        itemSelector.setEnabled(true);
+        itemSelector.setSelectedItem("Start");
+        topWall.setEnabled(true);
+        leftWall.setEnabled(true);
+        downWall.setEnabled(true);
+        rightWall.setEnabled(true);
+        leftWall.setSelected(true);
+        leftWall.setSelected(true);
+        downWall.setSelected(true);
+        topWall.setSelected(true);
+        changeImage.setEnabled(true);
+        rotateImage.setEnabled(true);
         this.pack();
         this.setVisible(true);
     }
