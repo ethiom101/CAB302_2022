@@ -116,14 +116,12 @@ public class Grid extends JPanel {
         Stack<Cell> solution = maze.solveMaze();
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
-                if (solution.contains(path[col][row])) {
-                    if (toggle) {
-                        grid[row][col].setOpaque(true);
-                        grid[row][col].setBackground(Color.white);
-                    } else {
-                        grid[row][col].setOpaque(true);
-                        grid[row][col].setBackground(Color.pink);
-                    }
+                if (toggle) {
+                    grid[row][col].setOpaque(true);
+                    grid[row][col].setBackground(Color.white);
+                } else if (solution.contains(path[col][row])) {
+                    grid[row][col].setOpaque(true);
+                    grid[row][col].setBackground(Color.pink);
                 }
             }
         }
