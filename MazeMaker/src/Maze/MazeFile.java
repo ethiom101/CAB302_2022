@@ -65,7 +65,6 @@ public class MazeFile {
             for (int i = 0; i < 10; i++) {
                 line = reader.readLine();
                 for (int j = 0; j < 10; j++) {
-
                     //nodeList[i][j].setColor(Color.BLACK);
                     int nodeType = Character.getNumericValue(line.charAt(j));
                     System.out.println("node is " + nodeType);

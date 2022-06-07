@@ -152,7 +152,7 @@ public class MazeGenerator {
     /**
      * calculates the percentage of cells needed to solve the maze
      *
-     * @return percentage value
+     * @return percentage value as String
      */
     public String cellDistribution(int rows, int columns) {
         String cellDist = "";
@@ -163,7 +163,7 @@ public class MazeGenerator {
     /**
      * Calculates the percentage of cells that are dead ends
      *
-     * @return percentage value
+     * @return percentage value as String
      */
     public String deadEnds(int rows, int columns) {
         int numDeadEnds = 0;
@@ -187,7 +187,7 @@ public class MazeGenerator {
     /**
      * Function to create the maze
      *
-     * @param grid grid
+     * @param grid 2D array of cells to be updated with the maze values
      * @return the updated grid
      */
     public Cell[][] createMaze(Cell[][] grid) {
@@ -404,39 +404,39 @@ public class MazeGenerator {
     }
 
     /**
-     *
-     * @param positionX
+     * Sets the End X position of the maze
+     * @param positionX integer position you want to set it to
      */
     public void setEndX(int positionX) {
         endX = positionX;
     }
 
     /**
-     *
-     * @param positionY
+     * Sets the End Y position of the maze
+     * @param positionY integer position you want to set it to
      */
     public void setEndY(int positionY) {
         endY = positionY;
     }
 
     /**
-     *
-     * @param positionX
+     * Sets the Start X position of the maze
+     * @param positionX integer position you want to set it to
      */
     public void setStartX(int positionX) {
         startX = positionX;
     }
 
     /**
-     *
-     * @param positionY
+     * Sets the Start Y position of the maze
+     * @param positionY integer position you want to set it to
      */
     public void setStartY(int positionY) {
         startY = positionY;
     }
 
     /**
-     *
+     * Toggles the boolean value toggle
      */
     public void toggleSolution() {
         toggle = !toggle;

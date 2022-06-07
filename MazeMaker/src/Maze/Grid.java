@@ -139,7 +139,7 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return percentage of cell distribution needed to solve maze
      */
     public String getCellDist() {
         return (maze.cellDistribution(rows, columns));
@@ -147,7 +147,7 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return percentage of dead ends in maze
      */
     public String getDeadEnds() {
         return maze.deadEnds(rows, columns);
@@ -155,7 +155,7 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return number of columns of maze
      */
     public static int getColumns() {
         return columns;
@@ -163,7 +163,7 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return number of rows of maze
      */
     public static int getRows() {
         return rows;
@@ -171,14 +171,14 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return the cell size of this grid
      */
     public int getCellSize() {
         return this.cellSize;
     }
 
     /**
-     *
+     * Sets the cellsize of the grid
      * @param cellSize
      */
     public void setCellSize(int cellSize) {
@@ -187,14 +187,14 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return Returns the start Cell
      */
     public Cell getStart() {
         return this.start;
     }
 
     /**
-     *
+     * Sets the start cell of the maze
      * @param start
      */
     public void setStart(Cell start) {
@@ -203,14 +203,14 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return Returns the end cell of the maze
      */
     public Cell getEnd() {
         return this.end;
     }
 
     /**
-     *
+     *  Sets the end cell of the maze
      * @param end
      */
     public void setEnd(Cell end) {
@@ -219,14 +219,14 @@ public class Grid extends JPanel {
 
     /**
      *
-     * @return
+     * @return the logo cell of the maze
      */
     public Cell getLogo() {
         return this.logo;
     }
 
     /**
-     *
+     *  Sets the logo cell of the maze
      * @param logo
      */
     public void setLogo(Cell logo) {
@@ -234,7 +234,7 @@ public class Grid extends JPanel {
     }
 
     /**
-     *
+     * Toggles the boolean value toggle
      */
     public void toggle() {
         toggle = !toggle;
