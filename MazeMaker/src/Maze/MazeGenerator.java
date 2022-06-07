@@ -22,38 +22,23 @@ public class MazeGenerator {
     private int endX = gridX - 1;
     private int endY = gridY - 1;
 
-    //Getters and Setters
-    public void setEndX(int positionX) {
-        endX = positionX;
-    }
-
-    public void setEndY(int positionY) {
-        endY = positionY;
-    }
-
-    public void setStartX(int positionX) {
-        startX = positionX;
-    }
-
-    public void setStartY(int positionY) {
-        startY = positionY;
-    }
-
-    public void toggleSolution() {
-        toggle = !toggle;
-    }
-
     /**
      * Initialisation of the MazeGenerator Class
      *
      * @param gridX
      * @param gridY
      */
-    public MazeGenerator(int gridX, int gridY) {
-        this.gridX = gridX;
-        this.gridY = gridY;
-        this.cells = new Cell[gridX][gridY];
-        this.cells = createMaze(cells);
+    public MazeGenerator(int gridX, int gridY) throws Exception{
+        if(gridX>100||gridY>100||gridX<1||gridY<1){
+            throw new Exception("Too Large");
+        }else {
+            this.gridX = gridX;
+            this.gridY = gridY;
+            this.endX=gridX-1;
+            this.endY=gridY-1;
+            this.cells = new Cell[gridX][gridY];
+            this.cells = createMaze(cells);
+        }
     }
 
     /**
@@ -93,11 +78,6 @@ public class MazeGenerator {
                 }
             }
         }
-//        for (Cell cell : solution) {
-//            System.out.println(cell);
-//        }
-        System.out.println(solution.size());
-        System.out.println(visited.size());
         this.solution = solution;
         return solution;
     }
@@ -167,13 +147,6 @@ public class MazeGenerator {
             returnPair[0] = 1;
         }
         return returnPair;
-    }
-
-    /**
-     * @return returns the grid of cells of the maze
-     */
-    public Cell[][] getGrid() {
-        return cells;
     }
 
     /**
@@ -423,106 +396,55 @@ public class MazeGenerator {
         return bruh;
     }
 
+    /**
+     * @return returns the grid of cells of the maze
+     */
+    public Cell[][] getGrid() {
+        return cells;
+    }
+
+    /**
+     *
+     * @param positionX
+     */
+    public void setEndX(int positionX) {
+        endX = positionX;
+    }
+
+    /**
+     *
+     * @param positionY
+     */
+    public void setEndY(int positionY) {
+        endY = positionY;
+    }
+
+    /**
+     *
+     * @param positionX
+     */
+    public void setStartX(int positionX) {
+        startX = positionX;
+    }
+
+    /**
+     *
+     * @param positionY
+     */
+    public void setStartY(int positionY) {
+        startY = positionY;
+    }
+
+    /**
+     *
+     */
+    public void toggleSolution() {
+        toggle = !toggle;
+    }
+
+    //DO we need this?
     public Cell[][] returnGird() {
         return cells;
     }
 }
-
-//    public ArrayList<CellOld> getSolution(){
-//        return solution;
-//    }
-/**
- * Draws the maze
- */
-//    public JPanel drawMaze(){
-//
-//        CellOld[][] grid = cells;
-//        //Set up frame and panel
-//        //JFrame frame = new JFrame("Maze");
-//        JPanel panel = new JPanel();
-//        panel.setLayout(new GridLayout(gridY, gridX));
-//        panel.setBackground(Color.WHITE);
-//
-//        //Draw maze
-//        for(int i = 0; i< gridY; i++){
-//            for(int j = 0; j< gridX; j++){
-//                int row = i;
-//                int col = j;
-//
-//                //Each wall is represented by an int
-//                int north = 0;
-//                int south = 0;
-//                int east = 0;
-//                int west = 0;
-//                //get the wall value from the grid and add the corresponding wall
-//                if(grid[j][i].getWall(1)){
-//                    north=2;
-//                }
-//                if(grid[j][i].getWall(2)){
-//                    south=2;
-//                }
-//                if(grid[j][i].getWall(3)){
-//                    west=2;
-//                }
-//                if(grid[j][i].getWall(4)){
-//                    east=2;
-//                }
-//
-//                //Each cell is a label with borders
-//                JLabel label = new JLabel();
-//                int finalWest = west;
-//                int finalSouth = south;
-//                int finalEast = east;
-//                int finalNorth = north;
-//                label.addMouseListener(new MouseAdapter() {
-//                    @Override
-//                    public void mousePressed(MouseEvent e) {
-//                        System.out.println(grid[row][col]);
-//                        if (itemSelector.getSelectedItem() == "Start") {
-//                            label.setOpaque(true);
-//                            label.setBackground(Color.GREEN);
-//                            grid[col][row].setStart();
-//
-//                        }
-//                        if (itemSelector.getSelectedItem() == "End") {
-//                            label.setOpaque(true);
-//                            label.setBackground(Color.RED);
-//                        }
-//                        if (itemSelector.getSelectedItem() == "Wall") {
-//                            if (topWall.isSelected()) {
-//
-//                                if (finalNorth == 2) {
-//                                    label.setBorder(new MatteBorder(0, finalWest, finalSouth, finalEast, Color.black));
-//                                } else {
-//                                    label.setBorder(new MatteBorder(2, finalWest, finalSouth, finalEast, Color.black));
-//                                }
-//                            }
-//
-//
-//                        }
-//                    }
-//                });
-//
-//
-//
-//                //Colour start and end cells
-//                if(grid[j][i].getStart()){
-//                    label.setOpaque(true);
-//                    label.setBackground(Color.green);
-//                }
-//                if(grid[j][i].getEnd()){
-//                    label.setOpaque(true);
-//                    label.setBackground(Color.red);
-//                }
-//                if(toggle==true&&solution.contains(grid[j][i])&&!grid[j][i].getEnd()){
-//                    label.setOpaque(true);
-//                    label.setBackground(Color.pink);
-//                }
-//                //set border of label
-//                label.setBorder( new MatteBorder(north, west, south, east, Color.black));
-//                panel.add(label);
-//            }
-//        }
-//        return panel;
-//    }
 

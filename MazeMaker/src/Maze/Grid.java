@@ -18,10 +18,12 @@ public class Grid extends JPanel {
     Stack<Cell> solution = new Stack<Cell>();
     private boolean toggle = false;
 
-    public void toggle() {
-        toggle = !toggle;
-    }
-
+    /**
+     *
+     * @param height
+     * @param width
+     * @param cellSize
+     */
     public Grid(int height, int width, int cellSize) {
         this.setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
@@ -46,7 +48,13 @@ public class Grid extends JPanel {
     }
 
 
-    public void drawMaze(int rows, int columns) {
+    /**
+     *
+     * @param rows
+     * @param columns
+     * @throws Exception
+     */
+    public void drawMaze(int rows, int columns) throws Exception {
         maze = new MazeGenerator(columns, rows);
         Cell[][] cells = maze.getGrid();
         System.out.println(Grid.rows);
@@ -129,53 +137,107 @@ public class Grid extends JPanel {
         }
     }
 
-    //Getters and Setters
+    /**
+     *
+     * @return
+     */
     public String getCellDist() {
         return (maze.cellDistribution(rows, columns));
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDeadEnds() {
         return maze.deadEnds(rows, columns);
     }
 
+    /**
+     *
+     * @return
+     */
     public static int getColumns() {
         return columns;
     }
 
+    /**
+     *
+     * @return
+     */
     public static int getRows() {
         return rows;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCellSize() {
         return this.cellSize;
     }
 
+    /**
+     *
+     * @param cellSize
+     */
     public void setCellSize(int cellSize) {
         this.cellSize = cellSize;
     }
 
+    /**
+     *
+     * @return
+     */
     public Cell getStart() {
         return this.start;
     }
 
+    /**
+     *
+     * @param start
+     */
     public void setStart(Cell start) {
         this.start = start;
     }
 
+    /**
+     *
+     * @return
+     */
     public Cell getEnd() {
         return this.end;
     }
 
+    /**
+     *
+     * @param end
+     */
     public void setEnd(Cell end) {
         this.end = end;
     }
 
+    /**
+     *
+     * @return
+     */
     public Cell getLogo() {
         return this.logo;
     }
 
+    /**
+     *
+     * @param logo
+     */
     public void setLogo(Cell logo) {
         this.logo = logo;
+    }
+
+    /**
+     *
+     */
+    public void toggle() {
+        toggle = !toggle;
     }
 }
 
