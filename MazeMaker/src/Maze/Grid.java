@@ -46,7 +46,7 @@ public class Grid extends JPanel {
     }
 
 
-    public void drawMaze(int rows, int columns) {
+    public void drawMaze(int rows, int columns) throws Exception {
         maze = new MazeGenerator(columns, rows);
         Cell[][] cells = maze.getGrid();
         System.out.println(Grid.rows);

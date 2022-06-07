@@ -402,7 +402,11 @@ public class EditMaze extends JFrame {
             this.cellSize = cellSlider.getValue();
             mazeGrid = new Grid(this.mazeWidth, this.mazeHeight, this.cellSize);
             mazePanel.removeAll();
-            mazeGrid.drawMaze(this.mazeHeight, this.mazeWidth);
+            try {
+                mazeGrid.drawMaze(this.mazeHeight, this.mazeWidth);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             mazePanel.add(mazeGrid);
             percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
             percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
