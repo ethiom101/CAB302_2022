@@ -29,6 +29,9 @@ public class HomePage extends JFrame {
         });
         this.add(browseMaze);
         browseMaze.setPreferredSize(new Dimension(200, 200));
+        browseMaze.addActionListener(e->{
+            new BrowseMaze();
+        });
         this.add(importMaze);
         importMaze.setPreferredSize(new Dimension(200, 200));
         importMaze.addActionListener(e -> {

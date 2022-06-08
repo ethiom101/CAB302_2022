@@ -15,7 +15,11 @@ public class MazeSolver extends Thread {
     private final ArrayList<Cell> path;
     private boolean finished = false;
 
-
+    /**
+     * Maze solver class instance
+     * @param start the start cell of the maze
+     * @param end the end cell of the maze
+     */
     public MazeSolver(Cell start, Cell end) {
         this.start = start;
         this.end = end;
@@ -29,6 +33,9 @@ public class MazeSolver extends Thread {
         }
     }
 
+    /**
+     * clears the solution by erasing all the cells of the solution
+     */
     public void clearSolution() {
         if (this.start != null) {
             for (Cell cell : path) {
@@ -38,6 +45,9 @@ public class MazeSolver extends Thread {
         }
     }
 
+    /**
+     * Draws the solution of the maze on the cells
+     */
     public void drawSolution() {
         if (this.start != null) {
             for (Cell cell : path) {
@@ -47,6 +57,9 @@ public class MazeSolver extends Thread {
         }
     }
 
+    /**
+     * Solves the maze
+     */
     public void solveMaze() {
         while (!finished) {
             System.out.println(current.getRow() + " " + current.getColumn());
@@ -73,6 +86,9 @@ public class MazeSolver extends Thread {
         }
     }
 
+    /**
+     *
+     */
     private void Path() {
         path.add(end);
         Cell Parent = end.getParents();
@@ -82,6 +98,11 @@ public class MazeSolver extends Thread {
         }
     }
 
+    /**
+     * Sets the parent of the next cell with current cell
+     * @param current parent cell to be added
+     * @param next cell to have parent added
+     */
     private void setParents(Cell current, Cell next) {
         if (next != null) {
             next.setParents(current);
@@ -90,6 +111,11 @@ public class MazeSolver extends Thread {
             current.next.add(next);
     }
 
+    /**
+     *
+     * @param current
+     * @return
+     */
     private Cell getNextCell(Cell current) {
         ArrayList<Cell> neighbours = new ArrayList<>();
 

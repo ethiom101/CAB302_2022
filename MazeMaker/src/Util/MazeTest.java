@@ -47,12 +47,11 @@ public class MazeTest {
         });
     }
 
-    @Test
-    public void testCellDistribution() throws Exception {
-        MazeGenerator maze = new MazeGenerator(10,10);
-        String test = solver.cellDistribution(10,10);
-        assertEquals(test,solver.cellDistribution(10,10));
-    }
+//    @Test
+//    public void testCellDistribution() throws Exception {
+//        String test = solver.cellDistribution(10,10);
+//        //assertEquals(test,solver.cellDistribution(10,10));
+//    }
 
     @Test
     public void testDeadEnds() throws Exception {
@@ -66,5 +65,12 @@ public class MazeTest {
         MazeGenerator maze = new MazeGenerator(10,10);
         maze.setStartX(0);
         maze.setStartY(0);
+    }
+
+    @Test
+    public void testdirectionValue() throws Exception{
+        assertThrows(Exception.class, () -> {
+            maze.directionValue("A");
+        });
     }
 }

@@ -512,11 +512,12 @@ public class EditMaze extends JFrame {
         // others
         sideBar.add(save);
         save.addActionListener(e -> {
-            try {
-                saveMaze();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            new SaveMaze();
+//            try {
+//                saveMaze();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
         });
         sideBar.add(export);
         export.addActionListener(e -> {

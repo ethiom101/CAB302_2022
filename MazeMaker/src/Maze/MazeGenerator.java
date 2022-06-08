@@ -2,13 +2,17 @@ package Maze;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+/**
+ *  Class for generating mazes and the mazes functionalities
+ */
 public class MazeGenerator {
 
     //Grid size
     private final int gridX;
     private final int gridY;
 
-    //Grid
+    //Grid to contain the maze
     public Cell[][] cells;
 
     //Start and End values
@@ -69,7 +73,6 @@ public class MazeGenerator {
         //Initialise the cells of the grid
         for (int i = 0; i < gridX; i++) {
             for (int j = 0; j < gridY; j++) {
-                //System.out.println(i+" "+j);
                 grid[i][j] = new Cell(i, j);
             }
         }
@@ -100,8 +103,6 @@ public class MazeGenerator {
         Finish once we go back to the start cell
         */
         while (!finish) {
-            //System.out.println("Current cell is "+Integer.toString(current.getPosx())+" "+Integer.toString(current.getPosy())+" and is visited? "+current.getVisit());
-
             //Check a cell for unvisited neighbours and get the list of directions (N S E W) they are in relation to the current cell
             ArrayList<String> unvisited = getListUnvisited(current);
 
@@ -131,7 +132,6 @@ public class MazeGenerator {
                 }
             }
         }
-
         //Once everything is done and the maze is made then return the maze
         return grid;
     }
@@ -236,7 +236,6 @@ public class MazeGenerator {
                 returnDirection.remove(s);
             }
         }
-
         //Return list of directions of neighbours that haven't been visited yet
         return returnDirection;
     }
@@ -263,7 +262,7 @@ public class MazeGenerator {
         } else if (Objects.equals(direction, "W")) {
             value[0] = -1;
         } else {
-            System.out.print("ERROR not a valid direction");
+            throw new Error("ERROR not a valid direction");
         }
 
         return value;
