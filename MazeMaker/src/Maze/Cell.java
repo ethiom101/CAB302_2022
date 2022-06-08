@@ -10,14 +10,14 @@ import java.util.Arrays;
 
 import static GUI.EditMaze.*;
 import static Maze.Grid.grid;
-import static Maze.Images.resizeImage;
+import static Util.Images.resizeImage;
 
 public class Cell extends JLabel {
     private Cell parents;
     private final int row;
     private final int column;
     public boolean[] isWall = {false, false, false, false}; // top, left, down, right
-    int[] drawWall = {0, 0, 0, 0}; // top, left, down, right
+    public int[] drawWall = {0, 0, 0, 0}; // top, left, down, right
     private boolean isStart;
     private boolean isEnd;
     private boolean isLogo;
@@ -26,7 +26,7 @@ public class Cell extends JLabel {
     public static ImageIcon start = new ImageIcon("arrow.png");
     public static ImageIcon end = new ImageIcon("arrow.png");
     public static ImageIcon logo = null;
-    int strokeSize = 1;
+    public int strokeSize = 1;
 
     private boolean northWall = true;
     private boolean southWall = true;

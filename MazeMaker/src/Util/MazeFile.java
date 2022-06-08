@@ -1,6 +1,7 @@
-package Maze;
+package Util;
 
 import GUI.EditMaze;
+import Maze.Cell;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;

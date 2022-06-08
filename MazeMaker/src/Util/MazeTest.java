@@ -1,7 +1,9 @@
-package Maze;
+package Util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import Maze.MazeGenerator;
+import Maze.MazeSolver;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 

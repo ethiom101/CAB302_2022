@@ -1,4 +1,4 @@
-package Maze;
+package Util;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

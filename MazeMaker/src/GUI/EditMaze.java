@@ -8,8 +8,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import static Maze.Images.*;
-import static Maze.MazeFile.saveMaze;
+import static Util.Images.*;
+import static Util.MazeFile.saveMaze;
 
 public class EditMaze extends JFrame {
     public JPanel mazePanel = new JPanel();

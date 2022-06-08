@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-import static Maze.MazeFile.openMaze;
+import static Util.MazeFile.openMaze;
 
 public class HomePage extends JFrame {
     JButton newMaze = new JButton("New Maze");
