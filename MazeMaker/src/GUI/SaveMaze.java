@@ -1,7 +1,10 @@
 package GUI;
 
+import Util.MazeFile;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 /**
  * GUI for the save maze page
@@ -35,6 +38,11 @@ public class SaveMaze extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Save Maze");
         //frame.pack();
+
+        saveButton.addActionListener(e -> {
+            MazeFile.insertIntoDB(EditMaze.mazeGrid, authorInput.getText(), nameInput.getText());
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        });
 
         frame.setVisible(true);
     }

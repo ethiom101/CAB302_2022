@@ -1,8 +1,9 @@
 package Maze;
 
 import javax.swing.*;
-import javax.swing.border.MatteBorder;
+import javax.swing.border.*;
 import java.awt.*;
+import java.io.*;
 
 import static GUI.HomePage.mazeEditor;
 
@@ -12,6 +13,9 @@ import static GUI.HomePage.mazeEditor;
 public class Grid extends JPanel {
     private final int rows;
     private final int columns;
+
+    private long ID = -1;
+
     private int cellSize;
     public static Cell[][] grid;
     private Cell start;
@@ -173,6 +177,10 @@ public class Grid extends JPanel {
      * Set the cell size of this grid
      * @param cellSize Integer for the cell size we want to set
      */
+    public long getID(){
+        return this.ID;
+    }
+
     public void setCellSize(int cellSize) {
         this.cellSize = cellSize;
     }
@@ -235,6 +243,39 @@ public class Grid extends JPanel {
      */
     public void setLogo(Cell logo) {
         this.logo = logo;
+    }
+
+    public ByteArrayInputStream getBinaryGrid(){
+        ByteArrayOutputStream be = new ByteArrayOutputStream(0);
+        boolean first = true;
+        byte wallsByte = 0;
+        for (Cell[] arr1: grid) {
+            for (Cell cell: arr1){
+                boolean[] cellWalls = cell.isWall;
+                if (cellWalls[0])
+                    wallsByte += 8;
+                if (cellWalls[1])
+                    wallsByte += 4;
+                if (cellWalls[2])
+                    wallsByte += 2;
+                if (cellWalls[3])
+                    wallsByte += 1;
+                if (first){
+                    wallsByte = (byte)((wallsByte & 0x0F) << 4);
+                    first = false;
+                }
+                else {
+                    be.write(wallsByte);
+                    wallsByte = 0;
+                    first = true;
+                }
+            }
+        }
+        if (wallsByte != 0){
+            be.write(wallsByte);
+        }
+        ByteArrayInputStream in = new ByteArrayInputStream(be.toByteArray());
+        return in;
     }
 }
 
