@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+
+  <property name="base" value="artifacts" />
+  <property name="testBase" value="testFiles" />
+
+  <property name="junitJar" value="lib/junit-jupiter-api-5.4.2.jar" />
+  <property name="junitPlatformJar" value="lib/junit-platform-commons-1.4.2.jar" />
+  <property name="opentestJar" value="lib/opentest4j-1.1.1.jar" />
+  <property name="apiguardianJar" value="lib/apiguardian-api-1.0.0.jar" />
+
+  <property name="junitpath" value="${junitJar}:${junitPlatformJar}:${opentestJar}:${apiguardianJar}" />
+
+  <target name="prepare" description="Create target directories">
+    <mkdir dir="${testBase}" />
+    <mkdir dir="${base}" />
+    <mkdir dir="doc" />
+    <mkdir dir="utestclasses" />
+  </target>
+
+  <target name="testFile Maze" decription="Make a maze file and load it">
+
+  </target>
+
+  <target name="clear" discription="Removes Test directories">
+    <delete dir="${testBase}"/>
+    <delete dir="${base}"/>
+    <delete dir="doc"/>
+    <delete dir="utestclasses"/>
+  </target>
+
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

@@ -5,28 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Adding more Unit tests and Javadocs and new SaveMaze GUI">
-      <change afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/BrowseMaze.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/SaveMaze.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeSolver.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Util/Images.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Util/Mariadb.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Util/MazeFile.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Assignment/Util/MazeTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ant.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ant.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/MazeSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/MazeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/MazeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Images.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Mariadb.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
