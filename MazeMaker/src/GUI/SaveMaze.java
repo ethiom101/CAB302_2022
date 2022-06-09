@@ -3,6 +3,9 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * GUI for the save maze page
+ */
 public class SaveMaze extends JFrame {
 
     public static void main(String[] args){
@@ -15,9 +18,10 @@ public class SaveMaze extends JFrame {
 
     public void initUI(){
         JFrame frame = new JFrame();
+        frame.setSize(300,200);
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,10));
-        panel.setLayout(new GridLayout(1,1));
+        panel.setLayout(new GridLayout(0,2));
 
         JButton saveButton = new JButton("Save");
         JLabel name = new JLabel("Name");
@@ -34,7 +38,8 @@ public class SaveMaze extends JFrame {
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Save Maze");
-        frame.pack();
+        //frame.pack();
+
         frame.setVisible(true);
     }
 }

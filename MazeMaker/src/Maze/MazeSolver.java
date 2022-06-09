@@ -87,7 +87,7 @@ public class MazeSolver extends Thread {
     }
 
     /**
-     *
+     * Making path have the cells from end to start
      */
     private void Path() {
         path.add(end);
@@ -112,9 +112,9 @@ public class MazeSolver extends Thread {
     }
 
     /**
-     *
-     * @param current
-     * @return
+     * Returns the next cell we want to go to from the current cell based on what walls are around it and if they have been visited already
+     * @param current Current cell we want to go forward on
+     * @return The next forward cell from the current cell
      */
     private Cell getNextCell(Cell current) {
         ArrayList<Cell> neighbours = new ArrayList<>();
@@ -156,7 +156,6 @@ public class MazeSolver extends Thread {
 
     /**
      * calculates the percentage of cells needed to solve the maze
-     *
      * @return percentage value as String
      */
     public String cellDistribution(int rows, int columns) {

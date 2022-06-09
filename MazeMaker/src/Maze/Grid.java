@@ -6,6 +6,9 @@ import java.awt.*;
 
 import static GUI.EditMaze.*;
 
+/**
+ * Class for the grid of the maze
+ */
 public class Grid extends JPanel {
     private static int rows;
     private static int columns;
@@ -18,6 +21,12 @@ public class Grid extends JPanel {
     private MazeSolver solver;
     public boolean toggle = true;
 
+    /**
+     * Grid class instance
+     * @param width Width of the grid
+     * @param height Height of the grid
+     * @param cellSize Cell size of the grid
+     */
     public Grid(int width, int height, int cellSize) {
         this.setBackground(Color.white);
         this.setBorder(BorderFactory.createLineBorder(Color.lightGray));
@@ -29,7 +38,7 @@ public class Grid extends JPanel {
     }
 
     /**
-     *
+     * Initialise the grid of cells to display the maze
      */
     private void init() {
         grid = new Cell[rows][columns];
@@ -42,6 +51,12 @@ public class Grid extends JPanel {
     }
 
 
+    /**
+     * Draws the maze onto the grid
+     * @param rows Number of rows the maze has
+     * @param columns Number of columns the maze has
+     * @throws Exception Exception thrown when the rows and columns are greater than 100 or less than 1
+     */
     public void drawMaze(int rows, int columns) throws Exception {
         maze = new MazeGenerator(columns, rows);
         Cell[][] cells = maze.getGrid();
@@ -93,6 +108,9 @@ public class Grid extends JPanel {
     }
 
 
+    /**
+     * Solves the maze and draws the solution onto the maze
+     */
     public void Solve() {
         solver = new MazeSolver(getStart(), getEnd());
         if (!toggle) {
@@ -111,35 +129,66 @@ public class Grid extends JPanel {
     }
 
 
-    //Getters and Setters
+    /**
+     * Get the percentage of cells needed to solve the maze
+     * @return String of the percentage of cells needed to solve the maze
+     */
     public String getCellDist() {
         return (solver.cellDistribution(rows, columns));
     }
 
+    /**
+     * Get the percentage of dead ends in the maze
+     * @return String of the percentage of dead ends in the maze
+     */
     public String getDeadEnds() {
         return maze.deadEnds(rows, columns);
     }
 
+    /**
+     * Return the number of columns this grid has
+     * @return Integer value of the number of columns
+     */
     public static int getColumns() {
         return columns;
     }
 
+    /**
+     * Return the number of rows this grid has
+     * @return Integer value of the number of rows
+     */
     public static int getRows() {
         return rows;
     }
 
+    /**
+     * Return the cell size of the cells in this grid
+     * @return Integer value of the cell size
+     */
     public int getCellSize() {
         return this.cellSize;
     }
 
+    /**
+     * Set the cell size of this grid
+     * @param cellSize Integer for the cell size we want to set
+     */
     public void setCellSize(int cellSize) {
         this.cellSize = cellSize;
     }
 
+    /**
+     * Returns the start cell
+     * @return Cell that is the start cell of this grid
+     */
     public Cell getStart() {
         return this.start;
     }
 
+    /**
+     * Sets the start cell of this grid
+     * @param start Cell we want to set to start
+     */
     public void setStart(Cell start) {
         this.start = start;
         toggleSolution.setEnabled((start != null) && (this.end != null));
@@ -150,10 +199,18 @@ public class Grid extends JPanel {
         }
     }
 
+    /**
+     * Returns the end cell
+     * @return Cell that is the end cell of this grid
+     */
     public Cell getEnd() {
         return this.end;
     }
 
+    /**
+     * Sets the end cell of this grid
+     * @param end Cell we want to set to end
+     */
     public void setEnd(Cell end) {
         this.end = end;
         toggleSolution.setEnabled((end != null) && (this.start != null));
@@ -164,10 +221,18 @@ public class Grid extends JPanel {
         }
     }
 
+    /**
+     * Returns the logo cell
+     * @return Cell that is the logo cell of this grid
+     */
     public Cell getLogo() {
         return this.logo;
     }
 
+    /**
+     * Sets the logo cell of this grid
+     * @param logo Cell we want to set to a logo cell
+     */
     public void setLogo(Cell logo) {
         this.logo = logo;
     }

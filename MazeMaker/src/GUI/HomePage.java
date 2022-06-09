@@ -6,6 +6,9 @@ import java.io.IOException;
 
 import static Util.MazeFile.openMaze;
 
+/**
+ * GUI for the home maze page
+ */
 public class HomePage extends JFrame {
     JButton newMaze = new JButton("New Maze");
     JButton browseMaze = new JButton("Browse Mazes");

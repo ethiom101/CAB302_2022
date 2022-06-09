@@ -3,6 +3,9 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * GUI for the browse maze page
+ */
 public class BrowseMaze extends JFrame {
     public static void main(String[] args){
         new BrowseMaze();
@@ -16,7 +19,7 @@ public class BrowseMaze extends JFrame {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,10));
-        panel.setLayout(new GridLayout(1,1));
+        panel.setLayout(new GridLayout(1,2));
 
         JButton SearchButton = new JButton("Search");
         JButton OpenButton = new JButton("Open");

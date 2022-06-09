@@ -12,6 +12,9 @@ import static GUI.EditMaze.*;
 import static Maze.Grid.grid;
 import static Util.Images.resizeImage;
 
+/**
+ * Class for the Cell values of the maze
+ */
 public class Cell extends JLabel {
     private Cell parents;
     private final int row;
@@ -33,7 +36,11 @@ public class Cell extends JLabel {
     private boolean eastWall = true;
     private boolean westWall = true;
 
-
+    /**
+     * Cell class for the maze
+     * @param row The row this cell is in
+     * @param column The column this cell is in
+     */
     public Cell(int row, int column) {
         this.row = row;
         this.column = column;
@@ -80,6 +87,10 @@ public class Cell extends JLabel {
         });
     }
 
+    /**
+     * Draws the start image for the start cell
+     * @param start Start image for the start cell
+     */
     public void drawStart(ImageIcon start) {
         start = (resizeImage(start, mazeGrid.getCellSize(), mazeGrid.getCellSize()));
         if (this.isStart) {
@@ -122,6 +133,10 @@ public class Cell extends JLabel {
         }
     }
 
+    /**
+     * Draws end image for the end cell
+     * @param end The image we want for the end cell
+     */
     public void drawEnd(ImageIcon end) {
         end = (resizeImage(end, mazeGrid.getCellSize(), mazeGrid.getCellSize()));
         if (this.isEnd) {
@@ -164,6 +179,10 @@ public class Cell extends JLabel {
         }
     }
 
+    /**
+     * Draws the Logo
+     * @param logo The logo image we want to draw
+     */
     public void drawLogo(ImageIcon logo) {
         if (logo != null) {
             logo = (resizeImage(logo, mazeGrid.getCellSize(), mazeGrid.getCellSize()));
@@ -207,6 +226,9 @@ public class Cell extends JLabel {
         }
     }
 
+    /**
+     * Draws all the walls of the cell
+     */
     public void drawAllWalls() {
         this.isWall[0] = true;
         this.isWall[1] = true;
@@ -242,6 +264,9 @@ public class Cell extends JLabel {
 
     }
 
+    /**
+     * Erases the walls of the cell
+     */
     public void eraseAllWalls() {
         this.isWall[0] = false;
         this.isWall[1] = false;
@@ -274,6 +299,9 @@ public class Cell extends JLabel {
         } catch (Exception ignored) {}
     }
 
+    /**
+     * Draw the top wall of the cell
+     */
     public void drawTopWall() {
         if (!isWall[0]) {
             drawWall[0] = strokeSize;
@@ -297,6 +325,9 @@ public class Cell extends JLabel {
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
 
+    /**
+     * Draws the left wall of the cell
+     */
     public void drawLeftWall() {
         if (!isWall[1]) {
             drawWall[1] = strokeSize;
@@ -320,6 +351,9 @@ public class Cell extends JLabel {
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
 
+    /**
+     * Draws the bottom wall of the cell
+     */
     public void drawDownWall() {
         if (!isWall[2]) {
             drawWall[2] = strokeSize;
@@ -342,6 +376,9 @@ public class Cell extends JLabel {
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
 
+    /**
+     * Draws the right wall of the cell
+     */
     public void drawRightWall() {
         if (!isWall[3]) {
             drawWall[3] = strokeSize;
@@ -365,6 +402,9 @@ public class Cell extends JLabel {
         this.setBorder(new MatteBorder(drawWall[0], drawWall[1], drawWall[2], drawWall[3], Color.black));
     }
 
+    /**
+     * Resets cell so it is empty
+     */
     public void resetCell() {
         eraseAllWalls();
 
@@ -387,38 +427,75 @@ public class Cell extends JLabel {
         this.removeAll();
     }
 
+    /**
+     * Set image that we want to use
+     * @param image The image file
+     * @param cellSize The size of the cell so we can scale the image
+     */
     public void setImage(ImageIcon image, int cellSize) {
         this.setIcon(resizeImage(image, cellSize, cellSize));
     }
 
+    /**
+     * Getter for if this is the start cell
+     * @return Boolean value depending on if this is the start cell
+     */
     public boolean isStart() {
         return isStart;
     }
 
+    /**
+     * Getter for if this is the end cell
+     * @return Boolean value depending on if this is the end cell
+     */
     public boolean isEnd() {
         return isEnd;
     }
 
+    /**
+     * Getter for if this is a logo cell
+     * @return Boolean value depending on if this is a logo cell
+     */
     public boolean isLogo() {
         return isLogo;
     }
 
+    /**
+     * Getter if the top wall is drawn on this cell
+     * @return Boolean if top wall is drawn on this cell
+     */
     public boolean isTopWall() {
         return isWall[0];
     }
 
+    /**
+     * Getter if the left wall is drawn on this cell
+     * @return Boolean if left wall is drawn on this cell
+     */
     public boolean isLeftWall() {
         return isWall[1];
     }
 
+    /**
+     * Getter if the bottom wall is drawn on this cell
+     * @return Boolean if bottom wall is drawn on this cell
+     */
     public boolean isDownWall() {
         return isWall[2];
     }
 
+    /**
+     *Getter if the right wall is drawn on this cell
+     * @return Boolean if right wall is drawn on this cell
+     */
     public boolean isRightWall() {
         return isWall[3];
     }
 
+    /**
+     * Removes the wall from the cell
+     * @param wall Integer value for which direction wall is being removed (1,2,3,4)=(N,S,W,E)
+     */
     public void setWall(int wall) {
         if (wall == 1) {
             northWall = false;
@@ -431,6 +508,11 @@ public class Cell extends JLabel {
         }
     }
 
+    /**
+     * Getter to return if the cell has a wall in the direction given
+     * @param wall Integer value for which direction wall is being returned (1,2,3,4)=(N,S,W,E)
+     * @return Boolean value if the wall is present or not in that direction
+     */
     public boolean getWall(int wall) {
         if (wall == 1) {
             return northWall;
@@ -444,50 +526,95 @@ public class Cell extends JLabel {
         return false;
     }
 
+    /**
+     * Getter for this cells row position
+     * @return Integer value for this cells row
+     */
     public int getRow() {
         return this.row;
     }
 
+    /**
+     * Getter for this cells column position
+     * @return Integer value for this cells column
+     */
     public int getColumn() {
         return this.column;
     }
 
+    /**
+     * Set if this cell has been visited or not
+     * @param bool Boolean value to set whether the cell has been visited or not
+     */
     public void setVisited(boolean bool) {
         this.visited = bool;
     }
 
+    /**
+     * Getter for if this cell has been visited or not
+     * @return Boolean value for if this cell has been visited or not
+     */
     public boolean getVisited() {
         return visited;
     }
 
+    /**
+     * Set the parent of this cell
+     * @param parent The parent cell of this cell
+     */
     public void setParents(Cell parent) {
         this.parents = parent;
     }
 
+    /**
+     * Get parent cell of this cell
+     * @return The parent cell of this cell
+     */
     public Cell getParents() {
         return parents;
     }
 
+    /**
+     * Set that this cell is a logo cell
+     */
     public void setLogo() {
         this.isLogo = true;
     }
 
+    /**
+     * Return if this cell is a logo cell or not
+     * @return Boolean value indicating whether this cell is a logo cell or not
+     */
     public boolean getLogo() {
         return this.isLogo;
     }
 
+    /**
+     * Set that this cell is the start cell
+     */
     public void setStart() {
         this.isStart = true;
     }
 
+    /**
+     * Return if this cell is a start cell or not
+     * @return Boolean value indicating whether this cell is the start cell or not
+     */
     public boolean getStart() {
         return this.isStart;
     }
 
+    /**
+     * Set that this cell is the end cell
+     */
     public void setEnd() {
         this.isEnd = true;
     }
 
+    /**
+     * Return if this cell is an end cell or not
+     * @return Boolean value indicating whether this end is the start cell or not
+     */
     public boolean getEnd() {
         return this.isEnd;
     }

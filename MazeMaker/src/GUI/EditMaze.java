@@ -11,6 +11,9 @@ import java.io.IOException;
 import static Util.Images.*;
 import static Util.MazeFile.saveMaze;
 
+/**
+ * GUI for the edit maze page
+ */
 public class EditMaze extends JFrame {
     public JPanel mazePanel = new JPanel();
     public JPanel sideBar = new JPanel();
