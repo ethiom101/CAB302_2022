@@ -66,7 +66,7 @@ public class MazeFile {
         JFileChooser fileChooser = new JFileChooser();
         int option = fileChooser.showOpenDialog(null);
         File file = fileChooser.getSelectedFile();
-        if ((option == JFileChooser.APPROVE_OPTION && (file.getAbsolutePath().endsWith(".maze")))) {
+        if (option == JFileChooser.APPROVE_OPTION && (file.getAbsolutePath().endsWith(".maze"))) {
             BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()));
             String line;
             new EditMaze();
