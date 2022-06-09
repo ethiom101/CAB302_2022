@@ -1,7 +1,5 @@
 package GUI;
 
-import Maze.MazeSolver;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,8 +7,8 @@ public class BrowseMaze extends JFrame {
     JScrollPane browseArea = new JScrollPane();
     JPanel Mazes = new JPanel();
     // distance between each maze area
-    private int height = 225;
-    private int count = 0;
+    private static final int height = 225;
+    private static int count = 0;
 
     public BrowseMaze() {
         init();
