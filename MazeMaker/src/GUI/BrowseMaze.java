@@ -13,6 +13,11 @@ public class BrowseMaze extends JFrame {
     public BrowseMaze() {
         init();
         pack();
+        addMaze("test", "test", "test", "test");
+        addMaze("test", "test", "test", "test");
+        addMaze("test", "test", "test", "test");
+        addMaze("test", "test", "test", "test");
+        addMaze("test", "test", "test", "test");
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
