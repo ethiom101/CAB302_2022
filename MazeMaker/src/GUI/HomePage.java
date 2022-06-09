@@ -39,13 +39,14 @@ public class HomePage extends JFrame {
         importMaze.setPreferredSize(new Dimension(200, 200));
         importMaze.addActionListener(e -> {
             try {
-                openMaze();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            this.dispose();
-        });
+                boolean maze = openMaze();
+                if (maze) {
+                    this.dispose();
+                }
 
+
+            } catch (IOException ignored) {}
+        });
         this.setVisible(true);
     }
 }
