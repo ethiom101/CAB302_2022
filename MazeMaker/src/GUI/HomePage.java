@@ -10,6 +10,10 @@ import static Util.MazeFile.openMaze;
  * GUI for the home maze page
  */
 public class HomePage extends JFrame {
+
+    // Page variables
+    public static EditMaze mazeEditor;
+
     JButton newMaze = new JButton("New Maze");
     JButton browseMaze = new JButton("Browse Mazes");
     JButton importMaze = new JButton("Import Maze");
@@ -28,11 +32,12 @@ public class HomePage extends JFrame {
         newMaze.setPreferredSize(new Dimension(200, 200));
         newMaze.addActionListener(e -> {
             this.dispose();
-            new EditMaze();
+            mazeEditor = new EditMaze();
         });
         this.add(browseMaze);
         browseMaze.setPreferredSize(new Dimension(200, 200));
         browseMaze.addActionListener(e->{
+            this.dispose();
             new BrowseMaze();
         });
         this.add(importMaze);

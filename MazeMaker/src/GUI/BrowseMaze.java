@@ -7,9 +7,6 @@ import java.awt.*;
  * GUI for the browse maze page
  */
 public class BrowseMaze extends JFrame {
-    public static void main(String[] args){
-        new BrowseMaze();
-    }
 
     public BrowseMaze(){
         initUI();

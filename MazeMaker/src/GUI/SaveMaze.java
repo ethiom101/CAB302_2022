@@ -8,10 +8,6 @@ import java.awt.*;
  */
 public class SaveMaze extends JFrame {
 
-    public static void main(String[] args){
-        new SaveMaze();
-    }
-
     public SaveMaze(){
         initUI();
     }

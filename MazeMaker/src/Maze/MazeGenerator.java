@@ -8,16 +8,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class MazeGenerator {
 
-    //Grid size
     private final int gridX;
     private final int gridY;
-
-    //Grid to contain the maze
-    public Cell[][] cells;
-
-    //Start and End values
-    int startX = 0;
-    int startY = 0;
+    private Cell[][] cells;
 
     /**
      * Initialisation of the MazeGenerator Class
@@ -184,7 +177,7 @@ public class MazeGenerator {
      * @param current current cell
      * @return the parent cell
      */
-    public static Cell backward(Cell current) {
+    public Cell backward(Cell current) {
         return current.getParents();
     }
 
@@ -275,22 +268,5 @@ public class MazeGenerator {
         return cells;
     }
 
-    /**
-     * Sets the Start X position of the maze
-     *
-     * @param positionX integer position you want to set it to
-     */
-    public void setStartX(int positionX) {
-        startX = positionX;
-    }
-
-    /**
-     * Sets the Start Y position of the maze
-     *
-     * @param positionY integer position you want to set it to
-     */
-    public void setStartY(int positionY) {
-        startY = positionY;
-    }
 }
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static GUI.EditMaze.*;
+import static GUI.HomePage.mazeEditor;
 import static Maze.Grid.grid;
 import static Util.Images.resizeImage;
 
@@ -25,12 +26,11 @@ public class Cell extends JLabel {
     private boolean isEnd;
     private boolean isLogo;
     private boolean visited = false;
-    public ArrayList<Cell> next;
+    private final ArrayList<Cell> next;
     public static ImageIcon start = new ImageIcon("arrow.png");
     public static ImageIcon end = new ImageIcon("arrow.png");
     public static ImageIcon logo = null;
     public int strokeSize = 1;
-
     private boolean northWall = true;
     private boolean southWall = true;
     private boolean eastWall = true;
@@ -54,29 +54,29 @@ public class Cell extends JLabel {
                     System.out.println("Start: " + isStart);
                     System.out.println("End: " + isEnd);
                     System.out.println(Arrays.toString(isWall));
-                    if (itemSelector.getSelectedItem() == "Start") {
+                    if (mazeEditor.itemSelector.getSelectedItem() == "Start") {
                         drawStart(start);
                     }
 
-                    if (itemSelector.getSelectedItem() == "End") {
+                    if (mazeEditor.itemSelector.getSelectedItem() == "End") {
                         drawEnd(end);
                     }
 
-                    if (itemSelector.getSelectedItem() == "Wall") {
-                        if ((topWall.isSelected())) {
+                    if (mazeEditor.itemSelector.getSelectedItem() == "Wall") {
+                        if ((mazeEditor.topWall.isSelected())) {
                             drawTopWall();
                         }
-                        if ((leftWall.isSelected())) {
+                        if ((mazeEditor.leftWall.isSelected())) {
                             drawLeftWall();
                         }
-                        if ((downWall.isSelected())) {
+                        if ((mazeEditor.downWall.isSelected())) {
                             drawDownWall();
                         }
-                        if ((rightWall.isSelected())) {
+                        if ((mazeEditor.rightWall.isSelected())) {
                             drawRightWall();
                         }
                     }
-                    if (itemSelector.getSelectedItem() == "Logo") {
+                    if (mazeEditor.itemSelector.getSelectedItem() == "Logo") {
                         drawLogo(logo);
                     }
                 }
@@ -617,5 +617,9 @@ public class Cell extends JLabel {
      */
     public boolean getEnd() {
         return this.isEnd;
+    }
+
+    public ArrayList<Cell> getNext() {
+        return next;
     }
 }

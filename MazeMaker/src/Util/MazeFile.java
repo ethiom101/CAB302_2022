@@ -1,14 +1,13 @@
 package Util;
 
 import GUI.EditMaze;
-import GUI.HomePage;
 import Maze.Cell;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.io.*;
 import java.sql.*;
+
 import static Maze.Grid.grid;
 
 

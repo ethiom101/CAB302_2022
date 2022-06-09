@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 
 import static Util.Images.*;
-import static Util.MazeFile.saveMaze;
 
 /**
  * GUI for the edit maze page
@@ -20,9 +19,9 @@ public class EditMaze extends JFrame {
 
     // Maze Components
     public static Grid mazeGrid;
-    public int cellSize = 50;
-    public int mazeWidth = 10;
-    public int mazeHeight = 10;
+    private int cellSize = 50;
+    private int mazeWidth = 10;
+    private int mazeHeight = 10;
 
 
     // Side Bar Components
@@ -36,15 +35,15 @@ public class EditMaze extends JFrame {
     // item picker
     public ImageIcon IMG = new ImageIcon("arrow.png");
     public JPanel itemPicker = new JPanel();
-    public static String[] items = {"Start", "End", "Wall", "Logo",};
-    public static JComboBox<String> itemSelector = new JComboBox<>(items);
+    public String[] items = {"Start", "End", "Wall", "Logo",};
+    public JComboBox<String> itemSelector = new JComboBox<>(items);
     public JButton changeImage = new JButton("Change");
     public JButton resetImage = new JButton("Reset");
     public JButton rotateImage = new JButton("Rotate");
-    public static JRadioButton topWall = new JRadioButton("Top");
-    public static JRadioButton downWall = new JRadioButton("Down");
-    public static JRadioButton leftWall = new JRadioButton("Left");
-    public static JRadioButton rightWall = new JRadioButton("Right");
+    public JRadioButton topWall = new JRadioButton("Top");
+    public JRadioButton downWall = new JRadioButton("Down");
+    public JRadioButton leftWall = new JRadioButton("Left");
+    public JRadioButton rightWall = new JRadioButton("Right");
     public ButtonGroup wallSelections = new ButtonGroup();
     public JPanel selectedImage = new JPanel();
     ImageIcon startIMG = Cell.start;
@@ -55,7 +54,7 @@ public class EditMaze extends JFrame {
     // generate maze
     public JButton generateMaze = new JButton("Generate New Maze");
     // toggle solution
-    public static JButton toggleSolution = new JButton("Toggle Solution");
+    public JButton toggleSolution = new JButton("Toggle Solution");
     // statistics
     public JPanel statistics = new JPanel();
     public JLabel percentageTravel = new JLabel("% of Cells To Win:");
@@ -65,7 +64,7 @@ public class EditMaze extends JFrame {
     public JButton save = new JButton("Save");
     public JButton export = new JButton("Export");
     public JButton exit = new JButton("Exit");
-    String[] answers = {"Save", "Don't Save", "Cancel"};
+    public String[] answers = {"Save", "Don't Save", "Cancel"};
 
 
     public EditMaze() {

@@ -55,13 +55,6 @@ public class MazeTest {
     }
 
     @Test
-    public void testMazeGeneratorSetters() throws Exception{
-        MazeGenerator maze = new MazeGenerator(10,10);
-        maze.setStartX(0);
-        maze.setStartY(0);
-    }
-
-    @Test
     public void testDirectionValue() throws Exception{
         assertThrows(Exception.class, () -> {
             maze.directionValue("A");

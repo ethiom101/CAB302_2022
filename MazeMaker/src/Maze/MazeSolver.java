@@ -60,7 +60,7 @@ public class MazeSolver extends Thread {
     /**
      * Solves the maze
      */
-    public void solveMaze() {
+    private void solveMaze() {
         while (!finished) {
             System.out.println(current.getRow() + " " + current.getColumn());
             Cell next = getNextCell(current);
@@ -108,7 +108,7 @@ public class MazeSolver extends Thread {
             next.setParents(current);
         }
         if (current != null)
-            current.next.add(next);
+            current.getNext().add(next);
     }
 
     /**

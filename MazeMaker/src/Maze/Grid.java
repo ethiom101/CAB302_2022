@@ -4,14 +4,14 @@ import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 
-import static GUI.EditMaze.*;
+import static GUI.HomePage.mazeEditor;
 
 /**
  * Class for the grid of the maze
  */
 public class Grid extends JPanel {
-    private static int rows;
-    private static int columns;
+    private final int rows;
+    private final int columns;
     private int cellSize;
     public static Cell[][] grid;
     private Cell start;
@@ -60,13 +60,13 @@ public class Grid extends JPanel {
     public void drawMaze(int rows, int columns) throws Exception {
         maze = new MazeGenerator(columns, rows);
         Cell[][] cells = maze.getGrid();
-        System.out.println(Grid.rows);
-        System.out.println(Grid.columns);
-        for (int row = 0; row < Grid.rows; row++) {
-            for (int col = 0; col < Grid.columns; col++) {
+        System.out.println(rows);
+        System.out.println(columns);
+        for (int row = 0; row < this.rows; row++) {
+            for (int col = 0; col < this.columns; col++) {
                 // grid[col][row].setText(col+" "+row);
 
-                if (cells[col][row].getColumn() == Grid.rows - 1) {
+                if (cells[col][row].getColumn() == this.rows - 1) {
                     grid[row][col].drawWall[2] = 2;
                     grid[row][col].isWall[2] = true;
                     grid[row][col].setBorder(new MatteBorder(grid[row][col].drawWall[0], grid[row][col].drawWall[1], grid[row][col].drawWall[2], grid[row][col].drawWall[3], Color.black));
@@ -76,7 +76,7 @@ public class Grid extends JPanel {
                     grid[row][col].drawTopWall();
                 }
 
-                if (cells[col][row].getRow() == Grid.columns - 1) {
+                if (cells[col][row].getRow() == this.columns - 1) {
                     grid[row][col].drawWall[3] = 2;
                     grid[row][col].isWall[3] = true;
                     grid[row][col].setBorder(new MatteBorder(grid[row][col].drawWall[0], grid[row][col].drawWall[1], grid[row][col].drawWall[2], grid[row][col].drawWall[3], Color.black));
@@ -149,7 +149,7 @@ public class Grid extends JPanel {
      * Return the number of columns this grid has
      * @return Integer value of the number of columns
      */
-    public static int getColumns() {
+    public int getColumns() {
         return columns;
     }
 
@@ -157,7 +157,7 @@ public class Grid extends JPanel {
      * Return the number of rows this grid has
      * @return Integer value of the number of rows
      */
-    public static int getRows() {
+    public int getRows() {
         return rows;
     }
 
@@ -191,7 +191,7 @@ public class Grid extends JPanel {
      */
     public void setStart(Cell start) {
         this.start = start;
-        toggleSolution.setEnabled((start != null) && (this.end != null));
+        mazeEditor.toggleSolution.setEnabled((start != null) && (this.end != null));
         if (this.solver != null) {
             solver.clearSolution();
             toggle = true;
@@ -213,7 +213,7 @@ public class Grid extends JPanel {
      */
     public void setEnd(Cell end) {
         this.end = end;
-        toggleSolution.setEnabled((end != null) && (this.start != null));
+        mazeEditor.toggleSolution.setEnabled((end != null) && (this.start != null));
         if (this.solver != null) {
             solver.clearSolution();
             toggle = true;

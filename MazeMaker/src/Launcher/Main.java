@@ -1,3 +1,5 @@
+package Launcher;
+
 import GUI.HomePage;
 import Maze.Grid;
 
