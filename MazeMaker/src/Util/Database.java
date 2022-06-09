@@ -16,8 +16,8 @@ public class Database {
         String DB_URL = "jdbc:mariadb://localhost:3306";
 
         //  Database credentials
-        String USER = "root";
-        String PASS = "root";
+        String USER = "user";
+        String PASS = "hdsajkhd";
 
         try {
             // Register JDBC driver
@@ -29,25 +29,25 @@ public class Database {
             stmt = db.createStatement();
             System.out.println("Connected to server successfully!");
 
-            System.out.println("Checking if database 'mazedb' exists...");
+            System.out.println("Checking if database 'mazeco' exists...");
             String sql = "SHOW DATABASES";
             ResultSet res = stmt.executeQuery(sql);
             boolean exists = false;
             while(res.next()){
                 String result = res.getString("Database");
-                if (Objects.equals(result, "mazedb")){
+                if (Objects.equals(result, "mazeco")){
                     exists = true;
-                    System.out.println("Database 'mazedb' exists!");
+                    System.out.println("Database 'mazeco' exists!");
                     break;
                 }
             }
             if (!exists){
-                System.out.println("Database 'mazedb' does not exist, initialising...");
-                sql = "CREATE DATABASE `mazedb`";
+                System.out.println("Database 'mazeco' does not exist, initialising...");
+                sql = "CREATE DATABASE `mazeco`";
                 stmt.executeUpdate(sql);
                 System.out.println("Done!");
             }
-            sql = "USE mazedb";
+            sql = "USE mazeco";
             stmt.executeUpdate(sql);
 
             System.out.println("Checking if table 'Mazes' exists...");

@@ -1,6 +1,7 @@
 package Util;
 
 import GUI.EditMaze;
+import GUI.HomePage;
 import Maze.Cell;
 
 import javax.swing.*;
@@ -66,7 +67,7 @@ public class MazeFile {
         if (option == JFileChooser.APPROVE_OPTION && (file.getAbsolutePath().endsWith(".maze"))) {
             BufferedReader reader = new BufferedReader(new FileReader(file.getAbsolutePath()));
             String line;
-            new EditMaze();
+            HomePage.mazeEditor = new EditMaze();
             for (int i = 0; i < 10; i++) {
                 System.out.println("here");
                 for (int j = 0; j < 10; j++) {
@@ -158,8 +159,10 @@ public class MazeFile {
             }
             reader.close();
             return true;
+        } else if (option == JFileChooser.APPROVE_OPTION) {
+            JOptionPane.showMessageDialog(null, "'" + file + "' is not a .maze file", "Invalid File Type", JOptionPane.WARNING_MESSAGE);
+            return false;
         } else {
-            JOptionPane.showMessageDialog(null, file + "' is not a .maze file", "Invalid File Type'", JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }

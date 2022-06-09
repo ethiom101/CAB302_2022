@@ -2,6 +2,10 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import static Util.Database.disconnectFromDB;
 
 public class BrowseMaze extends JFrame {
     JScrollPane browseArea = new JScrollPane();
@@ -25,8 +29,8 @@ public class BrowseMaze extends JFrame {
 
     // Initialise frame
     public void init() {
-        this.setTitle("Maze Maker");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Browse Mazes");
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
 
@@ -36,6 +40,13 @@ public class BrowseMaze extends JFrame {
         browseArea.setViewportView(Mazes);
         Mazes.setBackground(new Color(234, 234, 234));
         this.add(browseArea);
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e){
+                new HomePage();
+            }
+        });
     }
 
     // details for a maze

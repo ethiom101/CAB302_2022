@@ -70,7 +70,7 @@ public class EditMaze extends JFrame {
     public EditMaze() {
 
         // Frame
-        this.setTitle("Edit Maze");
+        this.setTitle("untitled maze");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(250, 725));
         this.setResizable(false);
