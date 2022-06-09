@@ -23,13 +23,8 @@ public class Images {
 
     public static ImageIcon resizeImage(ImageIcon image, int width, int height) {
         Image imageImage = image.getImage();
-        if (width > 5) {
-            Image resizedImage = imageImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-            return new ImageIcon(resizedImage);
-        } else {
-            Image resizedImage = imageImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-            return new ImageIcon(resizedImage);
-        }
+        Image resizedImage = imageImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedImage);
 
     }
     

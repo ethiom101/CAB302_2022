@@ -64,8 +64,6 @@ public class Grid extends JPanel {
     public void drawMaze(int rows, int columns) throws Exception {
         maze = new MazeGenerator(columns, rows);
         Cell[][] cells = maze.getGrid();
-        System.out.println(rows);
-        System.out.println(columns);
         for (int row = 0; row < this.rows; row++) {
             for (int col = 0; col < this.columns; col++) {
                 // grid[col][row].setText(col+" "+row);
@@ -147,22 +145,6 @@ public class Grid extends JPanel {
      */
     public String getDeadEnds() {
         return maze.deadEnds(rows, columns);
-    }
-
-    /**
-     * Return the number of columns this grid has
-     * @return Integer value of the number of columns
-     */
-    public int getColumns() {
-        return columns;
-    }
-
-    /**
-     * Return the number of rows this grid has
-     * @return Integer value of the number of rows
-     */
-    public int getRows() {
-        return rows;
     }
 
     /**

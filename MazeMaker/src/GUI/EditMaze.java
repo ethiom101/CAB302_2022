@@ -19,7 +19,7 @@ public class EditMaze extends JFrame {
 
     // Maze Components
     public static Grid mazeGrid;
-    private int cellSize = 50;
+    private int cellSize = 70;
     private int mazeWidth = 10;
     private int mazeHeight = 10;
 
@@ -31,11 +31,12 @@ public class EditMaze extends JFrame {
     public JSpinner mazeColumns = new JSpinner(new SpinnerNumberModel(mazeHeight, 5, 100, 1));
     public JButton resetGrid = new JButton("New Grid");
     // cell slider
-    public JSlider cellSlider = new JSlider(0, 100, 50);
+    public JSlider cellSlider = new JSlider(0, 100, cellSize);
     // item picker
     public ImageIcon IMG = new ImageIcon("arrow.png");
     public JPanel itemPicker = new JPanel();
     public String[] items = {"Start", "End", "Wall", "Logo",};
+    public String selectedItem;
     public JComboBox<String> itemSelector = new JComboBox<>(items);
     public JButton changeImage = new JButton("Change");
     public JButton resetImage = new JButton("Reset");
@@ -59,7 +60,6 @@ public class EditMaze extends JFrame {
     public JPanel statistics = new JPanel();
     public JLabel percentageTravel = new JLabel("% of Cells To Win:");
     public JLabel percentageDeadEnd = new JLabel("% of Dead Ends:");
-    public JLabel difficulty = new JLabel("Difficulty:");
     // others
     public JButton save = new JButton("Save");
     public JButton export = new JButton("Export");
@@ -75,7 +75,6 @@ public class EditMaze extends JFrame {
         this.setMinimumSize(new Dimension(250, 725));
         this.setResizable(false);
         this.setLayout(new BorderLayout());
-        this.setLocationRelativeTo(null);
 
         // Adding components to frame
         this.add(sideBar, BorderLayout.WEST);
@@ -101,25 +100,14 @@ public class EditMaze extends JFrame {
         newGrid.setPreferredSize(new Dimension(230, 150));
         newGrid.add(new JLabel("Rows:"));
         newGrid.add(mazeRows);
-        mazeRows.addChangeListener(e -> {
-            // Rows change listener implementation
-            System.out.println(mazeRows.getValue());
-
-        });
         mazeRows.setPreferredSize(new Dimension(50, 25));
         newGrid.add(new JLabel("Columns:"));
         newGrid.add(mazeColumns);
-        mazeColumns.addChangeListener(e -> {
-            // Columns change listener implementation
-            System.out.println(mazeColumns.getValue());
-
-        });
         mazeColumns.setPreferredSize(new Dimension(50, 25));
         newGrid.add(resetGrid);
         resetGrid.setPreferredSize(new Dimension(200, 25));
         resetGrid.addActionListener(e -> {
                     // update grid implementation
-                    System.out.println("New Grid");
                     this.mazeWidth = (int) mazeRows.getValue();
                     this.mazeHeight = (int) mazeColumns.getValue();
                     this.cellSize = cellSlider.getValue();
@@ -150,7 +138,7 @@ public class EditMaze extends JFrame {
         );
 
         // Cell size slider
-        JLabel cellSizeLabel = new JLabel("50");
+        JLabel cellSizeLabel = new JLabel(String.valueOf(cellSize));
         newGrid.add(cellSizeLabel);
         cellSizeLabel.setPreferredSize(new Dimension(25, 20));
         newGrid.add(cellSlider);
@@ -164,7 +152,6 @@ public class EditMaze extends JFrame {
             if (cellSlider.getValue() == 0) {
                 cellSlider.setValue(1);
             }
-            System.out.println(cellSlider.getValue());
             cellSizeLabel.setText(String.valueOf(cellSlider.getValue()));
             this.cellSize = cellSlider.getValue();
             mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
@@ -314,28 +301,12 @@ public class EditMaze extends JFrame {
 
         // wall selector
         itemPicker.add(topWall);
-        topWall.addActionListener(e -> {
-            // top radio button implementation
-            System.out.println("Top Wall Selected");
-        });
         topWall.setVisible(false);
         itemPicker.add(downWall);
-        downWall.addActionListener(e -> {
-            // down radio button implementation
-            System.out.println("Down Wall Selected");
-        });
         downWall.setVisible(false);
         itemPicker.add(leftWall);
-        leftWall.addActionListener(e -> {
-            // left radio button implementation
-            System.out.println("Left Wall Selected");
-        });
         leftWall.setVisible(false);
         itemPicker.add(rightWall);
-        rightWall.addActionListener(e -> {
-            // right radio button implementation
-            System.out.println("Right Wall Selected");
-        });
         rightWall.setVisible(false);
         wallSelections.add(topWall);
         wallSelections.add(downWall);
@@ -350,7 +321,6 @@ public class EditMaze extends JFrame {
 
         itemSelector.addActionListener(e -> {
             // item selector implementation
-            System.out.println(itemSelector.getSelectedItem());
             if (itemSelector.getSelectedItem() == "Wall") {
                 topWall.setVisible(true);
                 downWall.setVisible(true);
@@ -406,6 +376,7 @@ public class EditMaze extends JFrame {
         sideBar.add(generateMaze);
         generateMaze.setPreferredSize(new Dimension(150, 40));
         generateMaze.addActionListener(e -> {
+            // generate maze implementation
             this.mazeWidth = (int) mazeRows.getValue();
             this.mazeHeight = (int) mazeColumns.getValue();
             this.cellSize = cellSlider.getValue();
@@ -439,18 +410,6 @@ public class EditMaze extends JFrame {
             changeImage.setEnabled(true);
             rotateImage.setEnabled(true);
             this.pack();
-
-            // generate maze implementation
-
-            //mazePanel.removeAll();
-            //System.out.println("Generate New Maze");
-            //this.mazeGenerator = new MazeGenerator(mazeWidth, mazeHeight);
-            //this.maze = this.mazeGenerator.drawMaze();
-            //mazePanel.add(this.maze);
-            //percentageTravel.setText("% of Cells To Win: " + this.mazeGenerator.cellDistribution());
-            //this.maze.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            //this.revalidate();
-            //this.repaint();
         });
         // toggle solution
         sideBar.add(toggleSolution);
@@ -461,6 +420,7 @@ public class EditMaze extends JFrame {
             percentageTravel.setText("% of Cells To Win: " + mazeGrid.getCellDist());
             if (!mazeGrid.toggle) {
                 itemSelector.setEnabled(false);
+                selectedItem = (String) itemSelector.getSelectedItem();
                 itemSelector.setSelectedItem(null);
                 topWall.setEnabled(false);
                 leftWall.setEnabled(false);
@@ -474,6 +434,7 @@ public class EditMaze extends JFrame {
                 rotateImage.setEnabled(false);
             } else {
                 itemSelector.setEnabled(true);
+                itemSelector.setSelectedItem(selectedItem);
                 topWall.setEnabled(true);
                 leftWall.setEnabled(true);
                 downWall.setEnabled(true);
@@ -485,42 +446,20 @@ public class EditMaze extends JFrame {
                 changeImage.setEnabled(true);
                 rotateImage.setEnabled(true);
             }
-            //mazeGrid.drawSolution();
-            //percentageTravel.setText("% of Cells To Win: "+ mazeGrid.getCellDist());
-            //percentageDeadEnd.setText("% of Dead Ends: "+ mazeGrid.getDeadEnds());
-            // toggle solution implementation
-
-            // System.out.println("Toggle Solution");
-            // mazePanel.removeAll();
-            // this.mazeGenerator.toggleSolution();
-            // this.maze = this.mazeGenerator.drawMaze();
-            // mazePanel.add(this.maze);
-            // this.maze.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
-            // this.revalidate();
-            // this.repaint();
         });
 
         // statistics
         sideBar.add(statistics);
         statistics.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
-        statistics.setPreferredSize(new Dimension(230, 70));
+        statistics.setPreferredSize(new Dimension(230, 50));
         statistics.add(percentageTravel);
         percentageTravel.setPreferredSize(new Dimension(200, 15));
         statistics.add(percentageDeadEnd);
         percentageDeadEnd.setPreferredSize(new Dimension(200, 15));
-        statistics.add(difficulty);
-        difficulty.setPreferredSize(new Dimension(200, 15));
 
         // others
         sideBar.add(save);
-        save.addActionListener(e -> {
-            new SaveMaze();
-//            try {
-//                saveMaze();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-        });
+        save.addActionListener(e -> new SaveMaze());
         sideBar.add(export);
         export.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -537,7 +476,6 @@ public class EditMaze extends JFrame {
         sideBar.add(exit);
 
         exit.addActionListener(e -> {
-            System.out.println("Exit");
             int answer = JOptionPane.showOptionDialog(
                     null,
                     "Would you like to save before exiting?",
@@ -549,11 +487,10 @@ public class EditMaze extends JFrame {
                     0);
             if (answer == 0) {
                 // save the maze
-                System.out.println("Save");
+                System.out.println("Save"); // TODO
             }
             if (answer == 1) {
                 // don't save and exit
-                System.out.println("Don't Save");
                 this.dispose();
                 new HomePage();
             }
@@ -571,6 +508,7 @@ public class EditMaze extends JFrame {
         changeImage.setEnabled(true);
         rotateImage.setEnabled(true);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }

@@ -50,10 +50,6 @@ public class Cell extends JLabel {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) { // left click
-                    System.out.println(row + " " + column);
-                    System.out.println("Start: " + isStart);
-                    System.out.println("End: " + isEnd);
-                    System.out.println(Arrays.toString(isWall));
                     if (mazeEditor.itemSelector.getSelectedItem() == "Start") {
                         drawStart(start);
                     }
@@ -535,7 +531,7 @@ public class Cell extends JLabel {
     }
 
     /**
-     * Getter for this cells column position
+     * Getter for this cell's column position
      * @return Integer value for this cells column
      */
     public int getColumn() {

@@ -237,7 +237,7 @@ public class MazeGenerator {
     /**
      * Return a pair of x y values which gives the direction of the next cell to go to given direction
      *
-     * @param direction direction which we wanna go
+     * @param direction direction which we want go
      * @return pair of integers
      */
     public int[] directionValue(String direction) {

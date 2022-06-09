@@ -62,11 +62,9 @@ public class MazeSolver extends Thread {
      */
     private void solveMaze() {
         while (!finished) {
-            System.out.println(current.getRow() + " " + current.getColumn());
             Cell next = getNextCell(current);
             setParents(current, next);
             if (next == end) {
-                System.out.println("Finished");
                 Path();
                 finished = true;
                 return;
