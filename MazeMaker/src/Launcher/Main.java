@@ -1,12 +1,9 @@
 package Launcher;
 
 import GUI.HomePage;
-import Maze.Grid;
 
-import javax.swing.*;
-import java.awt.*;
-
-public class Main{
+public class Main {
+    private static Object lock = new Object(); // TODO ??
     public static void main(String[] args) {
         new HomePage();
     }

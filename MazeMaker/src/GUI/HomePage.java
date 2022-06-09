@@ -1,9 +1,16 @@
 package GUI;
 
+import Util.MazeFile;
+import Util.Pair;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
+import static Util.Database.connectToDB;
+import static Util.Database.disconnectFromDB;
 import static Util.MazeFile.openMaze;
 
 /**
@@ -27,6 +34,12 @@ public class HomePage extends JFrame {
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         this.setLocationRelativeTo(null);
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent arg0){
+                disconnectFromDB();
+            }
+        });
         // Components
         this.add(newMaze);
         newMaze.setPreferredSize(new Dimension(200, 200));
@@ -53,5 +66,28 @@ public class HomePage extends JFrame {
             } catch (IOException ignored) {}
         });
         this.setVisible(true);
+        boolean loop = true;
+        Pair<Integer, String> result = connectToDB();
+        while (loop){
+            if (result.first() < 0) {
+                String[] options = {"Yes", "No", "Retry"};
+                int confirm = JOptionPane.showOptionDialog(null,
+                        String.format("Error connecting to Database!\nError: %s\nDo you wish to continue?", result.second()),
+                        "Database Error",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                switch (confirm) {
+                    case (JOptionPane.YES_OPTION) -> loop = false;
+                    case (JOptionPane.CANCEL_OPTION) -> {
+                        result = connectToDB();
+                        continue;
+                    }
+                    default -> this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                }
+            }
+        }
     }
 }
