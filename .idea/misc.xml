@@ -18,15 +18,20 @@
     <mkdir dir="utestclasses" />
   </target>
 
-  <target name="testFile Maze" decription="Make a maze file and load it">
+  <target name="compile" depends="prepare" description="Compile source" >
+
+  </target>
+
+  <target name="compileTests" depends="compile" description="Compile tests" >
+
+  </target>
+
+  <target name="testFile" description="Make maze file">
 
   </target>
 
   <target name="clear" discription="Removes Test directories">
-    <delete dir="${testBase}"/>
-    <delete dir="${base}"/>
-    <delete dir="doc"/>
-    <delete dir="utestclasses"/>
+
   </target>
 
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
