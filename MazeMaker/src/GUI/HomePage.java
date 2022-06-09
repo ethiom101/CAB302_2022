@@ -1,7 +1,7 @@
 package GUI;
 
 import Util.MazeFile;
-import org.testng.internal.collections.Pair;
+import Util.Pair;
 
 import javax.swing.*;
 import java.awt.*;

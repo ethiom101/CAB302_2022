@@ -3,7 +3,6 @@ package Util;
 import GUI.EditMaze;
 import Maze.Cell;
 import Maze.Grid;
-import org.testng.internal.collections.Pair;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -305,7 +304,7 @@ public class MazeFile {
         try {
             stmt = db.createStatement();
         } catch (SQLException e) {
-            // TODO - Implement exception handling
+            e.printStackTrace();
         }
     }
 
