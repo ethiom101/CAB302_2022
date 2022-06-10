@@ -20,9 +20,6 @@ public class Database {
         String PASS = "hdsajkhd";
 
         try {
-            // Register JDBC driver
-//            Class.forName(JDBC_DRIVER);
-
             // Open a connection
             System.out.println("Connecting to server...");
             db = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -140,11 +137,20 @@ public class Database {
     }
 
 
-    public static void queryDB(String query) {
+    public static ResultSet queryDB(String query) {
         try {
             stmt = db.createStatement();
-        } catch (SQLException e) {
+            String sql = new String();
+            if (Objects.equals(query, "")){
+                sql = "SELECT * FROM Mazes";
+            }
+            else {
+                sql = query;
+            }
+            return stmt.executeQuery(sql);
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        return null; // If we've gotten here something's gone wrong with the DB connection
     }
 }

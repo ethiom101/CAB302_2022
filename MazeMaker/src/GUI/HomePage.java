@@ -1,5 +1,6 @@
 package GUI;
 
+import Launcher.Main;
 import Util.MazeFile;
 import Util.Pair;
 
@@ -68,20 +69,30 @@ public class HomePage extends JFrame {
         this.setVisible(true);
 
         Pair<Integer, String> result = connectToDB();
-        if (result.first() < 0) {
-            String[] options = {"Yes", "No", "Retry"};
-            int confirm = JOptionPane.showOptionDialog(null,
-                    String.format("Error connecting to Database!\nError: %s\nDo you wish to continue?", result.second()),
-                    "Database Error",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    null,
-                    options,
-                    options[1]);
-            if (confirm == JOptionPane.CANCEL_OPTION) {
-                result = connectToDB();
-            } else {
-                this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        boolean temp = true;
+        while (temp){
+            if (result.first() < 0) {
+                String[] options = {"Yes", "No", "Retry"};
+                int confirm = JOptionPane.showOptionDialog(null,
+                        String.format("Error connecting to Database!\nError: %s\nDo you wish to continue?", result.second()),
+                        "Database Error",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                switch (confirm){
+                    case JOptionPane.YES_OPTION:
+                        if (!Main.isDebug)
+                            browseMaze.setEnabled(false);
+                        temp = false;
+                        break;
+                    case JOptionPane.CANCEL_OPTION:
+                        result = connectToDB();
+                        break;
+                    default:
+                        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+                }
             }
         }
     }

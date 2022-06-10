@@ -1,9 +1,13 @@
 package GUI;
 
+import Util.Database;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static Util.Database.disconnectFromDB;
 
@@ -17,11 +21,23 @@ public class BrowseMaze extends JFrame {
     public BrowseMaze() {
         init();
         pack();
-        addMaze("test", "test", "test", "test");
-        addMaze("test", "test", "test", "test");
-        addMaze("test", "test", "test", "test");
-        addMaze("test", "test", "test", "test");
-        addMaze("test", "test", "test", "test");
+        try{
+            ResultSet res = Database.queryDB("");
+            if (res == null)
+                JOptionPane.showMessageDialog(null, "Can't connect to Database");
+            else{
+                while(res.next()){
+                    addMaze(res.getString("MazeName"),
+                            res.getString("Author"),
+                            res.getString("CreationTimestamp"),
+                            res.getString("LastModifiedTimestamp"));
+                }
+            }
+            res.close();
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Can't connect to Database");
+            e.printStackTrace();
+        }
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
