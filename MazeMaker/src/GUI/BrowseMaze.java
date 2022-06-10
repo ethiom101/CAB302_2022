@@ -1,95 +1,86 @@
 package GUI;
 
-import Util.Database;
+import Maze.Maze;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import static Util.Database.disconnectFromDB;
+import static GUI.HomePage.data;
+import static GUI.HomePage.mazeBrowser;
 
 public class BrowseMaze extends JFrame {
-    JScrollPane browseArea = new JScrollPane();
-    JPanel Mazes = new JPanel();
+    public JScrollPane browseArea = new JScrollPane();
+    public JPanel Mazes = new JPanel();
     // distance between each maze area
     private static final int height = 225;
     private static int count = 0;
 
     public BrowseMaze() {
-        init();
-        pack();
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        try{
-            ResultSet res = Database.queryDB("");
-            if (res == null) {
-                JOptionPane.showMessageDialog(null, "Can't connect to Database");
-                this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-            }
-            else{
-                while(res.next()){
-                    addMaze(res.getString("MazeName"),
-                            res.getString("Author"),
-                            res.getString("CreationTimestamp"),
-                            res.getString("LastModifiedTimestamp"));
-                }
-                res.close();
-            }
-        } catch (SQLException | NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Can't connect to Database");
-            e.printStackTrace();
-        }
-
     }
 
     // Initialise frame
-    public void init() {
+    public void open() {
+
+        // Setting up frame
         this.setTitle("Browse Mazes");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.setLayout(new BorderLayout());
 
+        // Scrollable area
         browseArea.setPreferredSize(new Dimension(800, 700));
         browseArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         browseArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         browseArea.setViewportView(Mazes);
-        Mazes.setBackground(new Color(234, 234, 234));
-        this.add(browseArea);
 
+        // Mazes
+        Mazes.setBackground(new Color(234, 234, 234));
+
+        for (int ID : data.getIDs()) {
+            Maze maze = data.get(ID);
+            maze.setID(ID);
+            mazeBrowser.addMaze(maze);
+        }
+
+        // Adding to frame
+        this.add(browseArea);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e){
                 new HomePage();
             }
         });
+
+        pack();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
     }
 
     // details for a maze
-    public void addMaze(String title, String author, String dateCreated, String lastEdited) {
-        JPanel maze = new JPanel();
-        maze.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 5));
-        maze.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
-        maze.setBackground(Color.white);
-        maze.setPreferredSize(new Dimension(700, 220));
+    public void addMaze(Maze maze) {
+        JPanel mazeSection = new JPanel();
+        mazeSection.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 5));
+        mazeSection.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
+        mazeSection.setBackground(Color.white);
+        mazeSection.setPreferredSize(new Dimension(700, 220));
 
         JLabel mazeDetails = new JLabel();
         mazeDetails.setPreferredSize(new Dimension(210, 160));
         mazeDetails.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
         // details section
-        JLabel mazeTitle = new JLabel("Title: " + title);
+        JLabel mazeTitle = new JLabel("Title: " + maze.getName());
         mazeTitle.setPreferredSize(new Dimension(1000, 35));
 
-        JLabel mazeAuthor = new JLabel("Author: " + author);
+        JLabel mazeAuthor = new JLabel("Author: " + maze.getAuthor());
         mazeAuthor.setPreferredSize(new Dimension(1000, 35));
 
-        JLabel mazeDateCreated = new JLabel("Date Created: " + dateCreated);
+        JLabel mazeDateCreated = new JLabel("Date Created: " + maze.getDateCreated());
         mazeDateCreated.setPreferredSize(new Dimension(1000, 35));
 
-        JLabel mazeLastEdited = new JLabel("Last Edited: " + lastEdited);
+        JLabel mazeLastEdited = new JLabel("Last Edited: " + maze.getDateLastModified());
         mazeLastEdited.setPreferredSize(new Dimension(1000, 35));
 
         mazeDetails.add(mazeTitle);
@@ -108,27 +99,39 @@ public class BrowseMaze extends JFrame {
         buttons.setPreferredSize(new Dimension(200, 200));
         buttons.setLayout(new FlowLayout(FlowLayout.LEFT, 100, 20));
 
-        JButton open = new JButton("Open");
-        open.setPreferredSize(new Dimension(100, 40));
-
         JButton edit = new JButton("Edit");
         edit.setPreferredSize(new Dimension(100, 40));
+        edit.addActionListener(e -> {
+            // open maze to edit TODO
+        });
+
+        JButton delete = new JButton("Delete");
+        delete.setPreferredSize(new Dimension(100, 40));
+        delete.addActionListener(e -> {
+            // delete from database & browse maze
+            data.remove(maze.getID());
+            Mazes.remove(mazeSection);
+            repaint();
+        });
 
         JButton export = new JButton("Export");
         export.setPreferredSize(new Dimension(100, 40));
+        export.addActionListener(e -> {
+            // Export maze as image (include solution or not option) TODO
+        });
 
-        buttons.add(open);
         buttons.add(edit);
+        buttons.add(delete);
         buttons.add(export);
 
         // adding components
-        maze.add(mazeDetails);
-        maze.add(mazeImage);
-        maze.add(buttons);
+        mazeSection.add(mazeDetails);
+        mazeSection.add(mazeImage);
+        mazeSection.add(buttons);
 
         // adding to scroll panel screen
         count++;
         Mazes.setPreferredSize(new Dimension(800, (height * count) + 20)); // 20 is an offset to allow space at bottom of frame
-        Mazes.add(maze);
+        Mazes.add(mazeSection);
     }
 }

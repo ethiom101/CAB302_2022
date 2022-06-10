@@ -1,4 +1,4 @@
-package Util;
+package Tests;
 
 import Maze.Cell;
 import org.junit.jupiter.api.BeforeEach;

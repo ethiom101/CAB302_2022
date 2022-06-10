@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static GUI.EditMaze.*;
 import static GUI.HomePage.mazeEditor;
@@ -27,8 +26,8 @@ public class Cell extends JLabel {
     private boolean isLogo;
     private boolean visited = false;
     private final ArrayList<Cell> next;
-    public static ImageIcon start = new ImageIcon("arrow.png");
-    public static ImageIcon end = new ImageIcon("arrow.png");
+    public static ImageIcon start = new ImageIcon("MazeMaker/arrow.png");
+    public static ImageIcon end = new ImageIcon("MazeMaker/arrow.png");
     public static ImageIcon logo = null;
     public int strokeSize = 1;
     private boolean northWall = true;

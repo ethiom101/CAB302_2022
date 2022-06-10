@@ -5,11 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Changing style of save maze and adding more javadoc comments">
-      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/db.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Database/BrowseMazeData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Database/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Database/MazeDataJDBC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Database/MazeDataSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/db.props" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/db.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/MazeMaker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/MazeMaker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/BrowseMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/BrowseMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/EditMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/SaveMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/SaveMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Launcher/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Launcher/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Tests/CellTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/GridTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Tests/GridTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/MazeDataJDBC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/MazeDataSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/MazeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Tests/MazeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/Pair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/db.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/BrowseMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/BrowseMaze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/SaveMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/SaveMaze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeSolver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/Images.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Util/Images.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/MazeFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Util/MazeFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/MazeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/arrow.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,26 +86,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "C:/Users/Ethan/Google Drive/2022/CAB302/Assignment/CAB302_2022/mariadb-java-client-3.0.5.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\phill\Documents\Files\University\Year 2\Semester 1\CAB302\Assignment\CAB302_2022\MazeMaker" />
+      <recent name="C:\Users\phill\Documents\Files\University\Year 2\Semester 1\CAB302\Assignment\CAB302_2022\MazeMaker\src" />
       <recent name="C:\Users\steve\IdeaProjects\CAB302_2022" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Launcher.Main">
-    <configuration name="BrowseMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Util.GridTest" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Launcher.Main" />
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Util.*" />
+          <option name="PATTERN" value="Database.Database" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -79,15 +110,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Launcher.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Launcher.Main" />
+    <configuration name="GridTest.testGetEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Util.*" />
+          <option name="PATTERN" value="Tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.GridTest" />
+      <option name="METHOD_NAME" value="testGetEnd" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -96,7 +130,7 @@
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Util.*" />
+          <option name="PATTERN" value="Database.Database" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,7 +146,7 @@
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Util.*" />
+          <option name="PATTERN" value="Database.Database" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -128,7 +162,7 @@
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Util.*" />
+          <option name="PATTERN" value="Database.Database" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,19 +175,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.BrowseMaze" />
       <item itemvalue="Application.Launcher.Main" />
       <item itemvalue="JUnit.GridTest.testGetID" />
       <item itemvalue="JUnit.GridTest.testGetLogo" />
       <item itemvalue="JUnit.GridTest.testGetStart" />
+      <item itemvalue="JUnit.GridTest.testGetEnd" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher.Main" />
+        <item itemvalue="JUnit.GridTest.testGetEnd" />
         <item itemvalue="JUnit.GridTest.testGetID" />
         <item itemvalue="JUnit.GridTest.testGetLogo" />
         <item itemvalue="JUnit.GridTest.testGetStart" />
-        <item itemvalue="Application.BrowseMaze" />
       </list>
     </recent_temporary>
   </component>
@@ -351,15 +385,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="Changing style of save maze and adding more javadoc comments" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/MazeMaker/src/Util/Database.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="mazeBrowser" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XPathView.XPathProjectComponent">
     <history />

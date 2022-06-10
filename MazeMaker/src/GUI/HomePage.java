@@ -1,17 +1,12 @@
 package GUI;
 
-import Launcher.Main;
-import Util.MazeFile;
-import Util.Pair;
+import Database.BrowseMazeData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-
-import static Util.Database.connectToDB;
-import static Util.Database.disconnectFromDB;
 import static Util.MazeFile.openMaze;
 
 /**
@@ -21,6 +16,9 @@ public class HomePage extends JFrame {
 
     // Page variables
     public static EditMaze mazeEditor;
+    public static BrowseMaze mazeBrowser = new BrowseMaze();
+    public static BrowseMazeData data = new BrowseMazeData();
+
     JButton newMaze = new JButton("New Maze");
     JButton browseMaze = new JButton("Browse Mazes");
     JButton importMaze = new JButton("Import Maze");
@@ -37,7 +35,8 @@ public class HomePage extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent arg0) {
-                disconnectFromDB();
+                data.persist();
+                System.exit(0);
             }
         });
         // Components
@@ -51,7 +50,7 @@ public class HomePage extends JFrame {
         browseMaze.setPreferredSize(new Dimension(200, 200));
         browseMaze.addActionListener(e -> {
             this.dispose();
-            new BrowseMaze();
+            mazeBrowser.open();
         });
         this.add(importMaze);
         importMaze.setPreferredSize(new Dimension(200, 200));
@@ -61,39 +60,9 @@ public class HomePage extends JFrame {
                 if (maze) {
                     this.dispose();
                 }
-
-
             } catch (IOException ignored) {
             }
         });
         this.setVisible(true);
-
-        Pair<Integer, String> result = connectToDB();
-        boolean temp = true;
-        while (temp){
-            if (result.first() < 0) {
-                String[] options = {"Yes", "No", "Retry"};
-                int confirm = JOptionPane.showOptionDialog(null,
-                        String.format("Error connecting to Database!\nError: %s\nDo you wish to continue?", result.second()),
-                        "Database Error",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.WARNING_MESSAGE,
-                        null,
-                        options,
-                        options[1]);
-                switch (confirm){
-                    case JOptionPane.YES_OPTION:
-                        if (!Main.isDebug)
-                            browseMaze.setEnabled(false);
-                        temp = false;
-                        break;
-                    case JOptionPane.CANCEL_OPTION:
-                        result = connectToDB();
-                        break;
-                    default:
-                        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-                }
-            }
         }
     }
-}

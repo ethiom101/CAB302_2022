@@ -14,6 +14,7 @@ import static Util.Images.*;
  * GUI for the edit maze page
  */
 public class EditMaze extends JFrame {
+
     public JPanel mazePanel = new JPanel();
     public JPanel sideBar = new JPanel();
 
@@ -33,7 +34,7 @@ public class EditMaze extends JFrame {
     // cell slider
     public JSlider cellSlider = new JSlider(0, 100, cellSize);
     // item picker
-    public ImageIcon IMG = new ImageIcon("arrow.png");
+    public ImageIcon IMG = new ImageIcon("MazeMaker/arrow.png");
     public JPanel itemPicker = new JPanel();
     public String[] items = {"Start", "End", "Wall", "Logo",};
     public String selectedItem;
@@ -510,5 +511,13 @@ public class EditMaze extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+    public int returnHeight() {
+        return this.mazeHeight;
+    }
+
+    public int returnWidth() {
+        return this.mazeWidth;
     }
 }

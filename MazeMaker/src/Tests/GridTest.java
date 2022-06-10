@@ -1,4 +1,4 @@
-package Util;
+package Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,11 +54,5 @@ public class GridTest {
     public void testGetLogo() {
         Grid grid = new Grid(10,10,10);
         grid.getLogo();
-    }
-
-    @Test
-    public void testGetID() {
-        Grid grid = new Grid(10,10,10);
-        assertEquals(-1,grid.getID());
     }
 }
