@@ -17,6 +17,7 @@ public class HomePage extends JFrame {
     // Page variables
     public static EditMaze mazeEditor;
     public static BrowseMaze mazeBrowser = new BrowseMaze();
+    // the data instance from the database
     public static BrowseMazeData data = new BrowseMazeData();
 
     JButton newMaze = new JButton("New Maze");

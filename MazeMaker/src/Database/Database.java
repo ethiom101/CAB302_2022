@@ -14,9 +14,9 @@ public class Database {
     public static Connection instance = null;
 
     /**
-     * Constructor initializes the connection.
+     * METHOD MODIFIED FROM CAB302 LECTURE 6 CODE
+     * The singleton instance of the database connection.
      */
-    // METHOD TAKEN FROM CAB302 LECTURE 6 CODE
     private Database() throws IOException, SQLException {
         Properties props = new Properties();
         FileInputStream in;
@@ -80,11 +80,11 @@ public class Database {
     }
 
         /**
+         * METHOD TAKEN FROM CAB302 LECTURE 6 CODE
          * Provides global access to the singleton instance of the UrlSet.
          *
          * @return a handle to the singleton instance of the UrlSet.
          */
-        // METHOD TAKEN FROM CAB302 LECTURE 6 CODE
         public static Connection getInstance () {
             if (instance == null) {
                 try {

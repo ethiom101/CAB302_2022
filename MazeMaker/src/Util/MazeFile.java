@@ -11,10 +11,16 @@ import java.io.*;
 
 import static Maze.Grid.grid;
 
-
+/**
+ * Functionality for saving mazes to a .txt (.maze) and opening them
+ */
 public class MazeFile {
 
-
+    /**
+     * Saves the maze by outputting an integer that correlates to a type of cell in the grid
+     *
+     * @throws IOException
+     */
     public static void saveMaze() throws IOException {
         JFileChooser fileChooser = new JFileChooser();
         int response = fileChooser.showSaveDialog(null);
@@ -60,6 +66,14 @@ public class MazeFile {
         }
     }
 
+    /**
+     * Opens the maze from a .maze file saved by the previous method
+     * and uses other methods to draw the maze out based on the integer
+     * read from the .maze file. Works by reading each line of the file
+     *
+     * @return whether the maze was opened successfully or npt
+     * @throws IOException
+     */
     public static boolean openMaze() throws IOException {
         JFileChooser fileChooser = new JFileChooser();
         int option = fileChooser.showOpenDialog(null);

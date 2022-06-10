@@ -10,6 +10,9 @@ import java.awt.event.WindowEvent;
 import static GUI.HomePage.data;
 import static GUI.HomePage.mazeBrowser;
 
+/**
+ * GUI for browsing mazes extracted from the database
+ */
 public class BrowseMaze extends JFrame {
     public JScrollPane browseArea = new JScrollPane();
     public JPanel Mazes = new JPanel();
@@ -17,10 +20,15 @@ public class BrowseMaze extends JFrame {
     private static final int height = 225;
     private static int count = 0;
 
+    /**
+     * Empty constructor
+     */
     public BrowseMaze() {
     }
 
-    // Initialise frame
+    /**
+     * Used to open the browse maze page
+     */
     public void open() {
 
         // Setting up frame
@@ -38,6 +46,9 @@ public class BrowseMaze extends JFrame {
         // Mazes
         Mazes.setBackground(new Color(234, 234, 234));
 
+        // adds and retrieves each maze from the database to the screen
+        // and creates and instance of each of those mazes in the application
+        // to be edited directly
         for (int ID : data.getIDs()) {
             Maze maze = data.get(ID);
             maze.setID(ID);

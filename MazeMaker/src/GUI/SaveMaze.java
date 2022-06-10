@@ -39,8 +39,10 @@ public class SaveMaze extends JFrame {
         this.setTitle("Save Maze");
 
         saveButton.addActionListener(e -> {
+            // Checks if both fields have been inputed
             if ((nameInput.getText() != null) && !(nameInput.getText().equals(("")))
             && (authorInput.getText() != null) && !(authorInput.getText().equals(("")))) {
+                // Creates a new maze
                 Maze maze = new Maze(
                         authorInput.getText(),
                         nameInput.getText(),
@@ -52,7 +54,9 @@ public class SaveMaze extends JFrame {
                         null,
                         null,
                         null);
+                // adds the maze to the database
                 data.add(maze);
+                // updates the instance of the data used in the current application
                 data = new BrowseMazeData();
                 this.dispose();
                 JOptionPane.showMessageDialog(null,
@@ -66,7 +70,6 @@ public class SaveMaze extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         });
-
         this.setVisible(true);
     }
 }

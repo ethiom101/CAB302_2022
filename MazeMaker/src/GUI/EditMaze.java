@@ -15,8 +15,8 @@ import static Util.Images.*;
  */
 public class EditMaze extends JFrame {
 
-    public JPanel mazePanel = new JPanel();
-    public JPanel sideBar = new JPanel();
+    private final JPanel mazePanel = new JPanel();
+    private final JPanel sideBar = new JPanel();
 
     // Maze Components
     public static Grid mazeGrid;
@@ -27,45 +27,45 @@ public class EditMaze extends JFrame {
 
     // Side Bar Components
     //  new grid
-    public JPanel newGrid = new JPanel();
-    public JSpinner mazeRows = new JSpinner(new SpinnerNumberModel(mazeWidth, 5, 100, 1));
-    public JSpinner mazeColumns = new JSpinner(new SpinnerNumberModel(mazeHeight, 5, 100, 1));
-    public JButton resetGrid = new JButton("New Grid");
+    private final JPanel newGrid = new JPanel();
+    private final JSpinner mazeRows = new JSpinner(new SpinnerNumberModel(mazeWidth, 5, 100, 1));
+    private final JSpinner mazeColumns = new JSpinner(new SpinnerNumberModel(mazeHeight, 5, 100, 1));
+    private final JButton resetGrid = new JButton("New Grid");
     // cell slider
-    public JSlider cellSlider = new JSlider(0, 100, cellSize);
+    private final JSlider cellSlider = new JSlider(0, 100, cellSize);
     // item picker
-    public ImageIcon IMG = new ImageIcon("MazeMaker/arrow.png");
-    public JPanel itemPicker = new JPanel();
-    public String[] items = {"Start", "End", "Wall", "Logo",};
-    public String selectedItem;
+    private final ImageIcon IMG = new ImageIcon("MazeMaker/arrow.png");
+    private final JPanel itemPicker = new JPanel();
+    private final String[] items = {"Start", "End", "Wall", "Logo",};
+    private String selectedItem;
     public JComboBox<String> itemSelector = new JComboBox<>(items);
-    public JButton changeImage = new JButton("Change");
-    public JButton resetImage = new JButton("Reset");
-    public JButton rotateImage = new JButton("Rotate");
+    private final JButton changeImage = new JButton("Change");
+    private final JButton resetImage = new JButton("Reset");
+    private final JButton rotateImage = new JButton("Rotate");
     public JRadioButton topWall = new JRadioButton("Top");
     public JRadioButton downWall = new JRadioButton("Down");
     public JRadioButton leftWall = new JRadioButton("Left");
     public JRadioButton rightWall = new JRadioButton("Right");
-    public ButtonGroup wallSelections = new ButtonGroup();
-    public JPanel selectedImage = new JPanel();
-    ImageIcon startIMG = Cell.start;
-    ImageIcon endIMG = Cell.end;
+    private final ButtonGroup wallSelections = new ButtonGroup();
+    private final JPanel selectedImage = new JPanel();
+    private final ImageIcon startIMG = Cell.start;
+    private final ImageIcon endIMG = Cell.end;
     public JLabel startImage = new JLabel();
-    public JLabel endImage = new JLabel();
-    public JLabel logoImage = new JLabel();
+    private final JLabel endImage = new JLabel();
+    private final JLabel logoImage = new JLabel();
     // generate maze
-    public JButton generateMaze = new JButton("Generate New Maze");
+    private final JButton generateMaze = new JButton("Generate New Maze");
     // toggle solution
     public JButton toggleSolution = new JButton("Toggle Solution");
     // statistics
-    public JPanel statistics = new JPanel();
-    public JLabel percentageTravel = new JLabel("% of Cells To Win:");
-    public JLabel percentageDeadEnd = new JLabel("% of Dead Ends:");
+    private final JPanel statistics = new JPanel();
+    private final JLabel percentageTravel = new JLabel("% of Cells To Win:");
+    private final JLabel percentageDeadEnd = new JLabel("% of Dead Ends:");
     // others
-    public JButton save = new JButton("Save");
-    public JButton export = new JButton("Export");
-    public JButton exit = new JButton("Exit");
-    public String[] answers = {"Save", "Don't Save", "Cancel"};
+    private final JButton save = new JButton("Save");
+    private final JButton export = new JButton("Export");
+    private final JButton exit = new JButton("Exit");
+    private final String[] answers = {"Save", "Don't Save", "Cancel"};
 
 
     public EditMaze() {

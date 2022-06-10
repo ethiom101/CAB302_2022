@@ -10,6 +10,10 @@ import java.sql.Statement;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * CLASS MODIFIED FROM CAB302 LECTURE 6
+ * Class for retrieving data from the XML file holding the maze's list.
+ */
 public class MazeDataJDBC implements MazeDataSource {
 
     public static final String CREATE_TABLE =
@@ -64,6 +68,8 @@ public class MazeDataJDBC implements MazeDataSource {
         }
     }
 
+    // TODO add the currently uploaded images of the maze to the database (do last)
+    // TODO add the maze file to the database
     @Override
     public void addMaze(Maze maze) {
         try {
@@ -93,6 +99,7 @@ public class MazeDataJDBC implements MazeDataSource {
         }
     }
 
+    // TODO continue updating this as you add more stuff that is saved to the data base
     @Override
     public Maze getMaze(int ID) {
         Maze maze = new Maze();
@@ -146,6 +153,4 @@ public class MazeDataJDBC implements MazeDataSource {
             e.printStackTrace();
         }
     }
-
-
 }
