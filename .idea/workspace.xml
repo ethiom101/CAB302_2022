@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Changing style of save maze and adding more javadoc comments">
+      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/GUI/BrowseMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/GUI/BrowseMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/CellTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/GridTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/GridTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/BrowseMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/BrowseMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/MazeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Util/MazeTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/db.props" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/db.props" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,20 +52,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="Downloaded.Files.Path.Enabled" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mariadb-java-client-3.0.5.jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "C:/Users/Ethan/Google Drive/2022/CAB302/Assignment/CAB302_2022/mariadb-java-client-3.0.5.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\steve\IdeaProjects\CAB302_2022" />
@@ -357,6 +349,17 @@
     <MESSAGE value="Fix ANT" />
     <MESSAGE value="Changing style of save maze and adding more javadoc comments" />
     <option name="LAST_COMMIT_MESSAGE" value="Changing style of save maze and adding more javadoc comments" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/MazeMaker/src/Util/Database.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XPathView.XPathProjectComponent">
     <history />

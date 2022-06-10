@@ -2,22 +2,39 @@ package Util;
 
 import Maze.Grid;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Objects;
+import java.util.Properties;
 
 
 public class Database {
     public static Connection db = null;
     private static Statement stmt = null;
 
+
     public static Pair<Integer, String> connectToDB() {
-        // Currently hard coded, link to db.props
-//        String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+//        Properties prop = new Properties();
+//        try {
+//            prop.load(Database.class.getResourceAsStream("db.props"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//         // Currently hard coded, link to db.props
+//        String DB_URL = prop.getProperty("jdbc.url");
+//
+//        //  Database credentials
+//        String USER = prop.getProperty("jdbc.username");
+//        String PASS = prop.getProperty("jdbc.password");
+
         String DB_URL = "jdbc:mariadb://localhost:3306";
 
         //  Database credentials
-        String USER = "user";
-        String PASS = "hdsajkhd";
+        String USER = "root";
+        String PASS = "root";
+
 
         try {
             // Open a connection
