@@ -4,11 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Fix ANT">
-      <change afterPath="$PROJECT_DIR$/.idea/ant.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="5049fb24-c88e-424a-a542-433942507222" name="Changes" comment="Changing style of save maze and adding more javadoc comments">
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Util/CellTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MazeMaker/src/Util/GridTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/Util/MazeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/Util/MazeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MazeMaker/src/db.props" beforeDir="false" afterPath="$PROJECT_DIR$/MazeMaker/src/db.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/BrowseMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/BrowseMaze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/EditMaze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/HomePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/GUI/SaveMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/GUI/SaveMaze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Cell$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/CellOld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/MazeSolver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Maze/cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/Images.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Util/Images.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/Mariadb.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/MazeFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Util/MazeFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/Util/MazeTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment/Util/MazeTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/maze.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment/start.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +80,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/MazeMaker/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mariadb-java-client-3.0.5.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -70,41 +90,8 @@
       <recent name="C:\Users\steve\IdeaProjects\CAB302_2022" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="BrowseMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GUI.BrowseMaze" />
-      <module name="Assignment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Assignment" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SaveMaze" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GUI.SaveMaze" />
-      <module name="Assignment" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MazeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GridTest">
+    <configuration name="GridTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
@@ -113,13 +100,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Util" />
-      <option name="MAIN_CLASS_NAME" value="Util.MazeTest" />
+      <option name="MAIN_CLASS_NAME" value="Util.GridTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MazeTest.testCellDistribution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GridTest.testGetEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment" />
       <extension name="coverage">
         <pattern>
@@ -128,8 +115,56 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Util" />
-      <option name="MAIN_CLASS_NAME" value="Util.MazeTest" />
-      <option name="METHOD_NAME" value="testCellDistribution" />
+      <option name="MAIN_CLASS_NAME" value="Util.GridTest" />
+      <option name="METHOD_NAME" value="testGetEnd" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GridTest.testGetID" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Util" />
+      <option name="MAIN_CLASS_NAME" value="Util.GridTest" />
+      <option name="METHOD_NAME" value="testGetID" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GridTest.testGetLogo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Util" />
+      <option name="MAIN_CLASS_NAME" value="Util.GridTest" />
+      <option name="METHOD_NAME" value="testGetLogo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GridTest.testGetStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Assignment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Util" />
+      <option name="MAIN_CLASS_NAME" value="Util.GridTest" />
+      <option name="METHOD_NAME" value="testGetStart" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,11 +172,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
-        <item itemvalue="JUnit.MazeTest" />
-        <item itemvalue="Application.BrowseMaze" />
-        <item itemvalue="Application.SaveMaze" />
-        <item itemvalue="JUnit.MazeTest.testCellDistribution" />
+        <item itemvalue="JUnit.GridTest" />
+        <item itemvalue="JUnit.GridTest.testGetID" />
+        <item itemvalue="JUnit.GridTest.testGetLogo" />
+        <item itemvalue="JUnit.GridTest.testGetEnd" />
+        <item itemvalue="JUnit.GridTest.testGetStart" />
       </list>
     </recent_temporary>
   </component>
@@ -287,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654741026924</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Changing style of save maze and adding more javadoc comments">
+      <created>1654752742608</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1654752742608</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,7 +370,19 @@
     <MESSAGE value="Adding more Unit tests and Javadocs" />
     <MESSAGE value="Adding more Unit tests and Javadocs and new SaveMaze GUI" />
     <MESSAGE value="Fix ANT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix ANT" />
+    <MESSAGE value="Changing style of save maze and adding more javadoc comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing style of save maze and adding more javadoc comments" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/MazeMaker/src/Maze/Grid.java</url>
+          <line>136</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XPathView.XPathProjectComponent">
     <history />

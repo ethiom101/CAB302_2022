@@ -7,11 +7,9 @@ import Maze.MazeSolver;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 
-import java.util.Stack;
-
 public class MazeTest {
     /*
-
+    Variables to set up
      */
     MazeGenerator maze;
     MazeSolver solver;
