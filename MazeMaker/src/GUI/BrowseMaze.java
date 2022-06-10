@@ -21,10 +21,14 @@ public class BrowseMaze extends JFrame {
     public BrowseMaze() {
         init();
         pack();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
         try{
             ResultSet res = Database.queryDB("");
-            if (res == null)
+            if (res == null) {
                 JOptionPane.showMessageDialog(null, "Can't connect to Database");
+                this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+            }
             else{
                 while(res.next()){
                     addMaze(res.getString("MazeName"),
@@ -32,14 +36,12 @@ public class BrowseMaze extends JFrame {
                             res.getString("CreationTimestamp"),
                             res.getString("LastModifiedTimestamp"));
                 }
+                res.close();
             }
-            res.close();
-        } catch (SQLException e){
+        } catch (SQLException | NullPointerException e){
             JOptionPane.showMessageDialog(null, "Can't connect to Database");
             e.printStackTrace();
         }
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
 
     }
 
