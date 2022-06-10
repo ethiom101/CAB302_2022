@@ -13,7 +13,7 @@ public class Database {
     public static Pair<Integer, String> connectToDB() {
         // Currently hard coded, link to db.props
 //        String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-        String DB_URL = "jdbc:mariadb://localhost:3307";
+        String DB_URL = "jdbc:mariadb://localhost:3306";
 
         //  Database credentials
         String USER = "user";
