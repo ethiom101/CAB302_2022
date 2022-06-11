@@ -43,6 +43,10 @@ public class BrowseMazeData {
         }
     }
 
+    public void update(Maze maze) {
+        mazeData.updateMaze(maze);
+    }
+
     /**
      * Based on the ID of a Maze in the maze list, delete the Maze.
      *

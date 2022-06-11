@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import static Util.MazeFile.openMaze;
 
 /**
  * GUI for the home maze page
@@ -22,13 +20,12 @@ public class HomePage extends JFrame {
 
     JButton newMaze = new JButton("New Maze");
     JButton browseMaze = new JButton("Browse Mazes");
-    JButton importMaze = new JButton("Import Maze");
 
     public HomePage() {
         // Frame
         this.setTitle("Maze Maker");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(700, 300);
+        this.setSize(500, 300);
         this.setResizable(false);
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         this.setLocationRelativeTo(null);
@@ -52,17 +49,6 @@ public class HomePage extends JFrame {
         browseMaze.addActionListener(e -> {
             this.dispose();
             mazeBrowser.open();
-        });
-        this.add(importMaze);
-        importMaze.setPreferredSize(new Dimension(200, 200));
-        importMaze.addActionListener(e -> {
-            try {
-                boolean maze = openMaze();
-                if (maze) {
-                    this.dispose();
-                }
-            } catch (IOException ignored) {
-            }
         });
         this.setVisible(true);
         }

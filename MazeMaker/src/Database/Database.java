@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-
+/**
+ * Class for connection to the Database from the application
+ */
 public class Database {
 
     public static Connection instance = null;

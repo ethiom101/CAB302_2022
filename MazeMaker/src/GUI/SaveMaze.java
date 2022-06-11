@@ -6,11 +6,14 @@ import java.awt.*;
 import Maze.Maze;
 import Database.BrowseMazeData;
 import static GUI.HomePage.*;
+import static Maze.MazeFile.saveMaze;
 
 /**
  * GUI for the save maze page
  */
 public class SaveMaze extends JFrame {
+
+    public JButton saveButton;
 
     public SaveMaze(){
         initUI();
@@ -21,7 +24,7 @@ public class SaveMaze extends JFrame {
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,10));
         panel.setLayout(new GridLayout(0,2));
-        JButton saveButton = new JButton("Save");
+        saveButton = new JButton("Save");
         JLabel name = new JLabel("Name");
         JLabel author = new JLabel("Author");
         JTextField nameInput = new JTextField();
@@ -49,7 +52,7 @@ public class SaveMaze extends JFrame {
                         mazeEditor.returnHeight(),
                         mazeEditor.returnWidth(),
                         String.valueOf(java.time.LocalDate.now()),
-                        null,
+                        saveMaze(mazeEditor.returnWidth(), mazeEditor.returnHeight()),
                         null,
                         null,
                         null,

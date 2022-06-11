@@ -1,14 +1,18 @@
 package GUI;
 
+import Database.BrowseMazeData;
 import Maze.Cell;
 import Maze.Grid;
+import Maze.Maze;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+import static GUI.HomePage.*;
 import static Util.Images.*;
+import static Maze.MazeFile.saveMaze;
 
 /**
  * GUI for the edit maze page
@@ -28,9 +32,9 @@ public class EditMaze extends JFrame {
     // Side Bar Components
     //  new grid
     private final JPanel newGrid = new JPanel();
-    private final JSpinner mazeRows = new JSpinner(new SpinnerNumberModel(mazeWidth, 5, 100, 1));
-    private final JSpinner mazeColumns = new JSpinner(new SpinnerNumberModel(mazeHeight, 5, 100, 1));
-    private final JButton resetGrid = new JButton("New Grid");
+    private JSpinner mazeRows;
+    private JSpinner mazeColumns;
+    private final JButton newGridButton = new JButton("New Grid");
     // cell slider
     private final JSlider cellSlider = new JSlider(0, 100, cellSize);
     // item picker
@@ -48,8 +52,6 @@ public class EditMaze extends JFrame {
     public JRadioButton rightWall = new JRadioButton("Right");
     private final ButtonGroup wallSelections = new ButtonGroup();
     private final JPanel selectedImage = new JPanel();
-    private final ImageIcon startIMG = Cell.start;
-    private final ImageIcon endIMG = Cell.end;
     public JLabel startImage = new JLabel();
     private final JLabel endImage = new JLabel();
     private final JLabel logoImage = new JLabel();
@@ -63,15 +65,103 @@ public class EditMaze extends JFrame {
     private final JLabel percentageDeadEnd = new JLabel("% of Dead Ends:");
     // others
     private final JButton save = new JButton("Save");
+    private final JButton update = new JButton("Update");
     private final JButton export = new JButton("Export");
     private final JButton exit = new JButton("Exit");
     private final String[] answers = {"Save", "Don't Save", "Cancel"};
 
-
+    // constructor for creating a new maze
     public EditMaze() {
+        this.setTitle("untitled maze");
+        initGUI();
+        update.setVisible(false);
+
+
+        exit.addActionListener(e -> {
+            int answer = JOptionPane.showOptionDialog(
+                    null,
+                    "Would you like to save before exiting?",
+                    "Untitled Maze",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.WARNING_MESSAGE,
+                    null,
+                    answers,
+                    0);
+            if (answer == 0) {
+                // save the maze
+                new SaveMaze();
+            }
+            if (answer == 1) {
+                // don't save and exit
+                this.dispose();
+                new HomePage();
+            }
+        });
+    }
+
+    // constructor for opening existing maze
+    public EditMaze(Maze maze) {
+        this.setTitle(maze.getName());
+        this.mazeWidth = maze.getWidth();
+        this.mazeHeight = maze.getHeight();
+        initGUI();
+        generateMaze.setVisible(false);
+        newGridButton.setVisible(false);
+        mazeRows.setEnabled(false);
+        mazeColumns.setEnabled(false);
+        save.setVisible(false);
+        update.setVisible(true);
+
+        update.addActionListener(e -> {
+            Maze mazeUpdated = new Maze(
+                    maze.getAuthor(),
+                    maze.getName(),
+                    maze.getHeight(),
+                    maze.getWidth(),
+                    String.valueOf(java.time.LocalDate.now()),
+                    saveMaze(maze.getWidth(), maze.getHeight()),
+                    null,
+                    null,
+                    null,
+                    null);
+            mazeUpdated.setID(maze.getID());
+            data.update(mazeUpdated);
+            data = new BrowseMazeData();
+            JOptionPane.showMessageDialog(null,
+                    maze.getName() + "saved",
+                    "Save Successful",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+
+        exit.addActionListener(e -> {
+            int answer = JOptionPane.showOptionDialog(
+                    null,
+                    "Would you like to save before exiting?",
+                    "Untitled Maze",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.WARNING_MESSAGE,
+                    null,
+                    answers,
+                    0);
+            if (answer == 0) {
+                // save the maze
+            }
+            if (answer == 1) {
+                // don't save and exit
+                this.dispose();
+                mazeBrowser = new BrowseMaze();
+                mazeBrowser.open();
+            }
+        });
+    }
+
+    public void initGUI() {
+        Cell.start = IMG;
+        Cell.end = IMG;
+        Cell.logo = null;
 
         // Frame
-        this.setTitle("untitled maze");
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(250, 725));
         this.setResizable(false);
@@ -100,14 +190,16 @@ public class EditMaze extends JFrame {
         newGrid.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
         newGrid.setPreferredSize(new Dimension(230, 150));
         newGrid.add(new JLabel("Rows:"));
+        mazeRows = new JSpinner(new SpinnerNumberModel(mazeWidth, 5, 100, 1));
         newGrid.add(mazeRows);
         mazeRows.setPreferredSize(new Dimension(50, 25));
         newGrid.add(new JLabel("Columns:"));
+        mazeColumns = new JSpinner(new SpinnerNumberModel(mazeHeight, 5, 100, 1));
         newGrid.add(mazeColumns);
         mazeColumns.setPreferredSize(new Dimension(50, 25));
-        newGrid.add(resetGrid);
-        resetGrid.setPreferredSize(new Dimension(200, 25));
-        resetGrid.addActionListener(e -> {
+        newGrid.add(newGridButton);
+        newGridButton.setPreferredSize(new Dimension(200, 25));
+        newGridButton.addActionListener(e -> {
                     // update grid implementation
                     this.mazeWidth = (int) mazeRows.getValue();
                     this.mazeHeight = (int) mazeColumns.getValue();
@@ -180,16 +272,16 @@ public class EditMaze extends JFrame {
         itemPicker.setPreferredSize(new Dimension(230, 100));
         itemPicker.add(new JLabel("Item Picker:"));
         itemPicker.add(itemSelector);
-        itemSelector.setPreferredSize(new Dimension(100, 25))
+        itemSelector.setPreferredSize(new Dimension(100, 25));
         // change image button
-        ;
         itemPicker.add(changeImage);
         selectedImage.add(startImage);
+        startImage.setIcon(resizeImage(IMG, 100, 100));
 
-        startImage.setIcon(resizeImage(startIMG, 100, 100));
         selectedImage.add(endImage);
+        endImage.setIcon(resizeImage(IMG, 100, 100));
 
-        endImage.setIcon(resizeImage(endIMG, 100, 100));
+
         changeImage.addActionListener(e -> {
             // change image implementation
             JFileChooser fileChooser = new JFileChooser();
@@ -318,6 +410,7 @@ public class EditMaze extends JFrame {
         selectedImage.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
         selectedImage.setPreferredSize(new Dimension(110, 110));
         selectedImage.add(logoImage);
+        logoImage.setIcon(null);
 
 
         itemSelector.addActionListener(e -> {
@@ -390,8 +483,8 @@ public class EditMaze extends JFrame {
             }
             mazePanel.add(mazeGrid);
 
-            percentageDeadEnd.setText("% of Dead Ends: " + mazeGrid.getDeadEnds());
-            percentageTravel.setText("% of Cells To Win: ");
+            percentageDeadEnd.setText("% of Dead Ends:");
+            percentageTravel.setText("% of Cells To Win:");
             mazeGrid.setPreferredSize(new Dimension(mazeWidth * cellSize, mazeHeight * cellSize));
             mazeGrid.setBorder(BorderFactory.createLineBorder(Color.lightGray));
             mazeGrid.revalidate();
@@ -419,6 +512,7 @@ public class EditMaze extends JFrame {
         toggleSolution.addActionListener(e -> {
             mazeGrid.Solve();
             percentageTravel.setText("% of Cells To Win: " + mazeGrid.getCellDist());
+            percentageDeadEnd.setText("% of Dead Ends: " + mazeGrid.getDeadEnds());
             if (!mazeGrid.toggle) {
                 itemSelector.setEnabled(false);
                 selectedItem = (String) itemSelector.getSelectedItem();
@@ -460,7 +554,9 @@ public class EditMaze extends JFrame {
 
         // others
         sideBar.add(save);
+        sideBar.add(update);
         save.addActionListener(e -> new SaveMaze());
+
         sideBar.add(export);
         export.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -476,26 +572,7 @@ public class EditMaze extends JFrame {
         });
         sideBar.add(exit);
 
-        exit.addActionListener(e -> {
-            int answer = JOptionPane.showOptionDialog(
-                    null,
-                    "Would you like to save before exiting?",
-                    "Untitled Maze",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    null,
-                    answers,
-                    0);
-            if (answer == 0) {
-                // save the maze
-                System.out.println("Save"); // TODO
-            }
-            if (answer == 1) {
-                // don't save and exit
-                this.dispose();
-                new HomePage();
-            }
-        });
+
         itemSelector.setEnabled(true);
         itemSelector.setSelectedItem("Start");
         topWall.setEnabled(true);

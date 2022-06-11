@@ -30,30 +30,6 @@ public class MazeGenerator {
     }
 
     /**
-     * Calculates the percentage of cells that are dead ends
-     *
-     * @return percentage value as String
-     */
-    public String deadEnds(int rows, int columns) {
-        int numDeadEnds = 0;
-        for (int i = 0; i < columns; i++) {
-            for (int j = 0; j < rows; j++) {
-                int numWalls = 0;
-                for (int k = 1; k < 5; k++) {
-                    if (cells[i][j].getWall(k)) {
-                        numWalls++;
-                    }
-                }
-                if (numWalls > 2) {
-                    numDeadEnds++;
-
-                }
-            }
-        }
-        return (Math.round(((numDeadEnds - 1.0) / (rows * columns) * 100.0) * 100.0) / 100.0 + "%");
-    }
-
-    /**
      * Function to create the maze
      *
      * @param grid 2D array of cells to be updated with the maze values

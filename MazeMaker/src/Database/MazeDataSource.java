@@ -18,6 +18,13 @@ public interface MazeDataSource {
     void addMaze(Maze maze);
 
     /**
+     * Updates an existing mazes data in the databse
+     *
+     * @param maze maze to update
+     */
+    void updateMaze(Maze maze);
+
+    /**
      * Extracts all the details of a Maze from the database based on the ID passed.
      *
      * @param ID The ID as an Integer to search for.

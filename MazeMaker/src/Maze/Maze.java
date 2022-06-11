@@ -15,7 +15,7 @@ public class Maze {
     private int width;
     private String dateCreated;
     private String dateLastModified;
-    private File mazeFile;
+    private String mazeCells;
     private ImageIcon startImage;
     private ImageIcon endImage;
     private ImageIcon logoImage;
@@ -27,7 +27,6 @@ public class Maze {
     public Maze() {
     }
 
-
     /**
      * Constructor setting values for a Maze's details
      * @param author author of the maze
@@ -35,21 +34,21 @@ public class Maze {
      * @param height height of the maze
      * @param width width of the maze
      * @param dateLastModified the date the maze was last edited/saved
-     * @param mazeFile the file the is used to open and edit the maze
+     * @param mazeCells the cell values used to draw the maze
      * @param startImage start image of the maze that was uploaded
      * @param endImage end image of the maze that was uploaded
      * @param logoImage logo image of the maze the was uploaded
      * @param mazePicture picture of the maze to use for reference when browsing
      */
     public Maze(String author, String name, int height, int width, String dateLastModified,
-                File mazeFile, ImageIcon startImage, ImageIcon endImage, ImageIcon logoImage, ImageIcon mazePicture) {
+                String mazeCells, ImageIcon startImage, ImageIcon endImage, ImageIcon logoImage, ImageIcon mazePicture) {
         this.author = author;
         this.name = name;
         this.height = height;
         this.width = width;
         this.dateCreated = String.valueOf(java.time.LocalDate.now());
         this.dateLastModified = dateLastModified;
-        this.mazeFile = mazeFile;
+        this.mazeCells = mazeCells;
         this.startImage = startImage;
         this.endImage = endImage;
         this.logoImage = logoImage;
@@ -155,5 +154,14 @@ public class Maze {
      */
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+
+    public String getMazeCells() {
+        return mazeCells;
+    }
+
+    public void setMazeCells(String mazeCells) {
+        this.mazeCells = mazeCells;
     }
 }

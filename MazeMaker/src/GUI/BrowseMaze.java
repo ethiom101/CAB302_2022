@@ -4,11 +4,9 @@ import Maze.Maze;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-import static GUI.HomePage.data;
-import static GUI.HomePage.mazeBrowser;
+import static GUI.HomePage.*;
+import static Maze.MazeFile.openMaze;
 
 /**
  * GUI for browsing mazes extracted from the database
@@ -57,12 +55,6 @@ public class BrowseMaze extends JFrame {
 
         // Adding to frame
         this.add(browseArea);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e){
-                new HomePage();
-            }
-        });
 
         pack();
         this.setVisible(true);
@@ -113,7 +105,8 @@ public class BrowseMaze extends JFrame {
         JButton edit = new JButton("Edit");
         edit.setPreferredSize(new Dimension(100, 40));
         edit.addActionListener(e -> {
-            // open maze to edit TODO
+            openMaze(maze);
+            this.dispose();
         });
 
         JButton delete = new JButton("Delete");

@@ -5,7 +5,6 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 import static GUI.HomePage.mazeEditor;
-
 /**
  * Class for the grid of the maze
  */
@@ -140,7 +139,7 @@ public class Grid extends JPanel {
      * @return String of the percentage of dead ends in the maze
      */
     public String getDeadEnds() {
-        return maze.deadEnds(rows, columns);
+        return solver.deadEnds(rows, columns);
     }
 
     /**

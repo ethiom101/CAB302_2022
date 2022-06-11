@@ -162,5 +162,28 @@ public class MazeSolver extends Thread {
         return cellDist;
     }
 
+    /**
+     * Calculates the percentage of cells that are dead ends
+     *
+     * @return percentage value as String
+     */
+    public String deadEnds(int rows, int columns) {
+        int numDeadEnds = 0;
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                int numWalls = 0;
+                for (int k = 0; k < 4; k++) {
+                    if (grid[i][j].isWall[k]) {
+                        numWalls++;
+                    }
+                }
+                if (numWalls > 2) {
+                    numDeadEnds++;
+                }
+            }
+        }
+        return (Math.round(((numDeadEnds - 1.0) / (rows * columns) * 100.0) * 100.0) / 100.0 + "%");
+    }
+
 
 }
