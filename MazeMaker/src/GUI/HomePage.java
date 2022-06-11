@@ -14,9 +14,10 @@ public class HomePage extends JFrame {
 
     // Page variables
     public static EditMaze mazeEditor;
-    public static BrowseMaze mazeBrowser = new BrowseMaze();
     // the data instance from the database
     public static BrowseMazeData data = new BrowseMazeData();
+    public static BrowseMaze mazeBrowser = new BrowseMaze();
+
 
     JButton newMaze = new JButton("New Maze");
     JButton browseMaze = new JButton("Browse Mazes");
@@ -48,6 +49,7 @@ public class HomePage extends JFrame {
         browseMaze.setPreferredSize(new Dimension(200, 200));
         browseMaze.addActionListener(e -> {
             this.dispose();
+            mazeBrowser = new BrowseMaze();
             mazeBrowser.open();
         });
         this.setVisible(true);

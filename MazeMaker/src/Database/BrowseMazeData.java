@@ -19,7 +19,6 @@ public class BrowseMazeData {
      * Constructor initializes the list model that holds names as Strings and
      * attempts to read any data saved from previous invocations of the
      * application.
-     *
      */
     public BrowseMazeData() {
         listModel = new DefaultListModel<>();
@@ -75,9 +74,77 @@ public class BrowseMazeData {
     }
 
     /**
-     * @return the number of mazes in the maze list.
+     * Retrieves Maze details from the model.
+     *
+     * @param key the name to retrieve.
+     * @return the Maze object related to the Maze Name.
+     */
+    public Maze getName(Object key) {
+        return mazeData.getMazeName((String) key);
+    }
+
+    /**
+     * Retrieves Author details from the model.
+     *
+     * @param key the author to retrieve.
+     * @return the Maze object related to the Author.
+     */
+    public Maze getAuthor(Object key) {
+        return mazeData.getMazeAuthor((String) key);
+    }
+
+    /**
+     * Retrieves date created details from the model.
+     *
+     * @param key the date created to retrieve.
+     * @return the Maze object related to the data created.
+     */
+    public Maze getCreated(Object key) {
+        return mazeData.getMazeCreated((String) key);
+    }
+
+    /**
+     * Retrieves date edited details from the model.
+     *
+     * @param key the date edited to retrieve.
+     * @return the Maze object related to the data edited.
+     */
+    public Maze getEdited(Object key) {
+        return mazeData.getMazeEdited((String) key);
+    }
+
+    /**
+     * @return the number of mazes in the maze list sorted by ID.
      */
     public Set<Integer> getIDs() {
         return mazeData.idSet();
+    }
+
+    /**
+     * @return the number of mazes in the maze list sorted by name.
+     */
+    public Set<String> getNames() {
+        return mazeData.nameSet();
+    }
+
+    /**
+     * @return the number of mazes in the maze list sorted by author.
+     */
+    public Set<String> getAuthors() {
+        return mazeData.authorSet();
+    }
+
+    /**
+     * @return the number of mazes in the maze list sorted by the date created.
+     */
+    public Set<String> getDatesCreated() {
+        return mazeData.createdSet();
+    }
+
+    /**
+     * @return the number of mazes in the maze list sorted by the date edited.
+     */
+    public Set<String> getDatesEdited() {
+        return mazeData.editedSet();
     }
 }

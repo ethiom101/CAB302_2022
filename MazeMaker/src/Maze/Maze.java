@@ -1,7 +1,8 @@
 package Maze;
 
 import javax.swing.*;
-import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Stores maze data to be added to the database
@@ -13,7 +14,7 @@ public class Maze {
     private String name;
     private int height;
     private int width;
-    private String dateCreated;
+    private String dateCreated = dateLastModified();
     private String dateLastModified;
     private String mazeCells;
     private ImageIcon startImage;
@@ -46,7 +47,6 @@ public class Maze {
         this.name = name;
         this.height = height;
         this.width = width;
-        this.dateCreated = String.valueOf(java.time.LocalDate.now());
         this.dateLastModified = dateLastModified;
         this.mazeCells = mazeCells;
         this.startImage = startImage;
@@ -138,6 +138,12 @@ public class Maze {
      */
     public void setDateLastModified(String date) {
         this.dateLastModified = date;
+    }
+
+    public static String dateLastModified() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        return format.format(date);
     }
 
     /**

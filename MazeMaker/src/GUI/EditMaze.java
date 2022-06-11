@@ -118,7 +118,7 @@ public class EditMaze extends JFrame {
                     maze.getName(),
                     maze.getHeight(),
                     maze.getWidth(),
-                    String.valueOf(java.time.LocalDate.now()),
+                    Maze.dateLastModified(),
                     saveMaze(maze.getWidth(), maze.getHeight()),
                     null,
                     null,
@@ -128,30 +128,15 @@ public class EditMaze extends JFrame {
             data.update(mazeUpdated);
             data = new BrowseMazeData();
             JOptionPane.showMessageDialog(null,
-                    maze.getName() + "saved",
+                    maze.getName() + " saved",
                     "Save Successful",
                     JOptionPane.INFORMATION_MESSAGE);
         });
 
         exit.addActionListener(e -> {
-            int answer = JOptionPane.showOptionDialog(
-                    null,
-                    "Would you like to save before exiting?",
-                    "Untitled Maze",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    null,
-                    answers,
-                    0);
-            if (answer == 0) {
-                // save the maze
-            }
-            if (answer == 1) {
-                // don't save and exit
                 this.dispose();
                 mazeBrowser = new BrowseMaze();
                 mazeBrowser.open();
-            }
         });
     }
 

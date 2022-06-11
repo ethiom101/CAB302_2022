@@ -40,14 +40,22 @@ public class MazeDataJDBC implements MazeDataSource {
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     public static final String UPDATE_MAZE = "UPDATE mazes SET " +
-            "Author = ?, MazeName = ?, Height = ?, Width = ?, DateCreated = ?, DateLastEdited = ?, MazeCells = ?, StartImage = ?, EndImage = ?, LogoImage = ?, MazePicture = ? " +
+            "Author = ?, MazeName = ?, Height = ?, Width = ?, DateLastEdited = ?, MazeCells = ?, StartImage = ?, EndImage = ?, LogoImage = ?, MazePicture = ? " +
             "WHERE ID=?;";
 
     private static final String GET_IDs = "SELECT ID FROM mazes";
+    private static final String GET_NAMES = "SELECT MazeName FROM mazes";
+    private static final String GET_AUTHORS = "SELECT Author FROM mazes";
+    private static final String GET_DATES_CREATED = "SELECT DateCreated FROM mazes";
+    private static final String GET_DATES_EDITED = "SELECT DateLastEdited FROM mazes";
 
     public static final String GET_ID = "SELECT MAX(ID) FROM mazes";
 
     private static final String GET_MAZE = "SELECT * FROM mazes WHERE ID=?";
+    private static final String GET_MAZE_NAME = "SELECT * FROM mazes WHERE MazeName=?";
+    private static final String GET_MAZE_AUTHOR = "SELECT * FROM mazes WHERE Author=?";
+    private static final String GET_MAZE_CREATED = "SELECT * FROM mazes WHERE DateCreated=?";
+    private static final String GET_MAZE_EDITED = "SELECT * FROM mazes WHERE DateLastEdited=?";
 
     private static final String DELETE_MAZE = "DELETE FROM mazes WHERE ID=?";
 
@@ -55,8 +63,16 @@ public class MazeDataJDBC implements MazeDataSource {
     private PreparedStatement addMaze;
     private PreparedStatement updateMaze;
     private PreparedStatement getIDList;
+    private PreparedStatement getNameList;
+    private PreparedStatement getAuthorList;
+    private PreparedStatement getCreatedList;
+    private PreparedStatement getEditedList;
     private PreparedStatement getID;
     private PreparedStatement getMaze;
+    private PreparedStatement getMazeName;
+    private PreparedStatement getAuthor;
+    private PreparedStatement getCreated;
+    private PreparedStatement getEdited;
     private PreparedStatement deleteMaze;
 
     public MazeDataJDBC() {
@@ -67,8 +83,16 @@ public class MazeDataJDBC implements MazeDataSource {
             addMaze = connection.prepareStatement(INSERT_MAZE);
             updateMaze = connection.prepareStatement(UPDATE_MAZE);
             getIDList = connection.prepareStatement(GET_IDs);
+            getNameList = connection.prepareStatement(GET_NAMES);
+            getAuthorList = connection.prepareStatement(GET_AUTHORS);
+            getCreatedList = connection.prepareStatement(GET_DATES_CREATED);
+            getEditedList = connection.prepareStatement(GET_DATES_EDITED);
             getID = connection.prepareStatement(GET_ID);
             getMaze = connection.prepareStatement(GET_MAZE);
+            getMazeName = connection.prepareStatement(GET_MAZE_NAME);
+            getAuthor = connection.prepareStatement(GET_MAZE_AUTHOR);
+            getCreated = connection.prepareStatement(GET_MAZE_CREATED);
+            getEdited = connection.prepareStatement(GET_MAZE_EDITED);
             deleteMaze = connection.prepareStatement(DELETE_MAZE);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,21 +136,19 @@ public class MazeDataJDBC implements MazeDataSource {
             updateMaze.setString(2, maze.getName());
             updateMaze.setString(3, String.valueOf(maze.getHeight()));
             updateMaze.setString(4, String.valueOf(maze.getWidth()));
-            updateMaze.setString(5, maze.getDateCreated());
-            updateMaze.setString(6, maze.getDateLastModified());
-            updateMaze.setString(7, maze.getMazeCells());
+            updateMaze.setString(5, maze.getDateLastModified());
+            updateMaze.setString(6, maze.getMazeCells());
+            updateMaze.setString(7, null);
             updateMaze.setString(8, null);
             updateMaze.setString(9, null);
             updateMaze.setString(10, null);
-            updateMaze.setString(11, null);
-            updateMaze.setInt(12, maze.getID());
+            updateMaze.setInt(11, maze.getID());
             updateMaze.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    // TODO continue updating this as you add more stuff that is saved to the data base
     @Override
     public Maze getMaze(int ID) {
         Maze maze = new Maze();
@@ -148,6 +170,88 @@ public class MazeDataJDBC implements MazeDataSource {
         return maze;
     }
 
+    public Maze getMazeName(String name) {
+        Maze maze = new Maze();
+        ResultSet rs;
+        try {
+            getMazeName.setString(1, name);
+            rs = getMazeName.executeQuery();
+            rs.next();
+            maze.setAuthor(rs.getString("Author"));
+            maze.setName(rs.getString("MazeName"));
+            maze.setHeight(rs.getInt("Height"));
+            maze.setWidth(rs.getInt("Width"));
+            maze.setDateCreated(rs.getString("DateCreated"));
+            maze.setDateLastModified(rs.getString("DateLastEdited"));
+            maze.setMazeCells(rs.getString("MazeCells"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maze;
+    }
+
+    public Maze getMazeAuthor(String author) {
+        Maze maze = new Maze();
+        ResultSet rs;
+        try {
+            getAuthor.setString(1, author);
+            rs = getAuthor.executeQuery();
+            rs.next();
+            maze.setAuthor(rs.getString("Author"));
+            maze.setName(rs.getString("MazeName"));
+            maze.setHeight(rs.getInt("Height"));
+            maze.setWidth(rs.getInt("Width"));
+            maze.setDateCreated(rs.getString("DateCreated"));
+            maze.setDateLastModified(rs.getString("DateLastEdited"));
+            maze.setMazeCells(rs.getString("MazeCells"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maze;
+    }
+
+    public Maze getMazeCreated(String dateCreated) {
+        Maze maze = new Maze();
+        ResultSet rs;
+        try {
+            getCreated.setString(1, dateCreated);
+            rs = getCreated.executeQuery();
+            rs.next();
+            maze.setAuthor(rs.getString("Author"));
+            maze.setName(rs.getString("MazeName"));
+            maze.setHeight(rs.getInt("Height"));
+            maze.setWidth(rs.getInt("Width"));
+            maze.setDateCreated(rs.getString("DateCreated"));
+            maze.setDateLastModified(rs.getString("DateLastEdited"));
+            maze.setMazeCells(rs.getString("MazeCells"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maze;
+    }
+
+    public Maze getMazeEdited(String dateEdited) {
+        Maze maze = new Maze();
+        ResultSet rs;
+        try {
+            getEdited.setString(1, dateEdited);
+            rs = getEdited.executeQuery();
+            rs.next();
+            maze.setAuthor(rs.getString("Author"));
+            maze.setName(rs.getString("MazeName"));
+            maze.setHeight(rs.getInt("Height"));
+            maze.setWidth(rs.getInt("Width"));
+            maze.setDateCreated(rs.getString("DateCreated"));
+            maze.setDateLastModified(rs.getString("DateLastEdited"));
+            maze.setMazeCells(rs.getString("MazeCells"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maze;
+    }
+
+
+
     @Override
     public Set<Integer> idSet() {
         Set<Integer> IDs = new TreeSet<>();
@@ -161,6 +265,62 @@ public class MazeDataJDBC implements MazeDataSource {
             return IDs;
         }
         return IDs;
+    }
+
+    public Set<String> nameSet() {
+        Set<String> names = new TreeSet<>();
+        ResultSet rs;
+        try {
+            rs = getNameList.executeQuery();
+            while (rs.next()) {
+                names.add(rs.getString("MazeName"));
+            }
+        } catch (SQLException e) {
+            return names;
+        }
+        return names;
+    }
+
+    public Set<String> authorSet() {
+        Set<String> authors = new TreeSet<>();
+        ResultSet rs;
+        try {
+            rs = getAuthorList.executeQuery();
+            while (rs.next()) {
+                authors.add(rs.getString("Author"));
+            }
+        } catch (SQLException e) {
+            return authors;
+        }
+        return authors;
+    }
+
+    public Set<String> createdSet() {
+        Set<String> datesCreated = new TreeSet<>();
+        ResultSet rs;
+        try {
+            rs = getCreatedList.executeQuery();
+            while (rs.next()) {
+                datesCreated.add(rs.getString("DateCreated"));
+            }
+        } catch (SQLException e) {
+            return datesCreated;
+        }
+        return datesCreated;
+    }
+
+    public Set<String> editedSet() {
+        Set<String> datesEdited = new TreeSet<>();
+        ResultSet rs;
+        try {
+            rs = getEditedList.executeQuery();
+            while (rs.next()) {
+                datesEdited.add(rs.getString("DateLastEdited"));
+            }
+        } catch (SQLException e) {
+            return datesEdited;
+        }
+        return datesEdited;
     }
 
     @Override

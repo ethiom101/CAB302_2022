@@ -14,9 +14,14 @@ import static Maze.MazeFile.openMaze;
 public class BrowseMaze extends JFrame {
     public JScrollPane browseArea = new JScrollPane();
     public JPanel Mazes = new JPanel();
+    public JButton back = new JButton("Back");
+    public JButton sortName = new JButton("Sort By Title");
+    public JButton sortAuthor = new JButton("Sort By Author");
+    public JButton sortDateCreated = new JButton("Sort By Date Created");
+    public JButton sortDateModified = new JButton("Sort By Date Edited");
     // distance between each maze area
     private static final int height = 225;
-    private static int count = 0;
+    private int count = 0;
 
     /**
      * Empty constructor
@@ -36,13 +41,86 @@ public class BrowseMaze extends JFrame {
         this.setLayout(new BorderLayout());
 
         // Scrollable area
-        browseArea.setPreferredSize(new Dimension(800, 700));
+        browseArea.setPreferredSize(new Dimension(800, 800));
         browseArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         browseArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         browseArea.setViewportView(Mazes);
 
         // Mazes
         Mazes.setBackground(new Color(234, 234, 234));
+
+        Mazes.add(back);
+        back.setPreferredSize(new Dimension(100, 50));
+        back.addActionListener(e -> {
+            new HomePage();
+            this.dispose();
+        });
+
+        Mazes.add(sortName);
+        sortName.setPreferredSize(new Dimension(120, 50));
+        sortName.addActionListener(e -> {
+            Mazes.removeAll();
+            Mazes.add(back);
+            Mazes.add(sortName);
+            Mazes.add(sortAuthor);
+            Mazes.add(sortDateCreated);
+            Mazes.add(sortDateModified);
+            for (String name : data.getNames()) {
+                Maze maze = data.getName(name);
+                mazeBrowser.addMaze(maze);
+            }
+            revalidate();
+        });
+
+        Mazes.add(sortAuthor);
+        sortAuthor.setPreferredSize(new Dimension(120, 50));
+        sortAuthor.addActionListener(e -> {
+            Mazes.removeAll();
+            Mazes.add(back);
+            Mazes.add(sortName);
+            Mazes.add(sortAuthor);
+            Mazes.add(sortDateCreated);
+            Mazes.add(sortDateModified);
+            for (String author : data.getAuthors()) {
+
+                Maze maze = data.getAuthor(author);
+                mazeBrowser.addMaze(maze);
+            }
+            revalidate();
+        });
+
+        Mazes.add(sortDateCreated);
+        sortDateCreated.setPreferredSize(new Dimension(160, 50));
+        sortDateCreated.addActionListener(e -> {
+            Mazes.removeAll();
+            Mazes.add(back);
+            Mazes.add(sortName);
+            Mazes.add(sortAuthor);
+            Mazes.add(sortDateCreated);
+            Mazes.add(sortDateModified);
+            for (String dateCreated : data.getDatesCreated()) {
+                Maze maze = data.getCreated(dateCreated);
+                mazeBrowser.addMaze(maze);
+            }
+            revalidate();
+        });
+
+        Mazes.add(sortDateModified);
+        sortDateModified.setPreferredSize(new Dimension(160, 50));
+        sortDateModified.addActionListener(e -> {
+            Mazes.removeAll();
+            Mazes.add(back);
+            Mazes.add(sortName);
+            Mazes.add(sortAuthor);
+            Mazes.add(sortDateCreated);
+            Mazes.add(sortDateModified);
+            for (String dateEdited : data.getDatesEdited()) {
+                Maze maze = data.getEdited(dateEdited);
+                mazeBrowser.addMaze(maze);
+            }
+            revalidate();
+        });
+
 
         // adds and retrieves each maze from the database to the screen
         // and creates and instance of each of those mazes in the application
@@ -51,7 +129,12 @@ public class BrowseMaze extends JFrame {
             Maze maze = data.get(ID);
             maze.setID(ID);
             mazeBrowser.addMaze(maze);
+            count++;
         }
+        // an offset account for the space at the top of the frame and to allow space at the bottom of the frame
+        int offset = 80;
+        Mazes.setPreferredSize(new Dimension(800, (height * count) + offset));
+
 
         // Adding to frame
         this.add(browseArea);
@@ -116,6 +199,7 @@ public class BrowseMaze extends JFrame {
             data.remove(maze.getID());
             Mazes.remove(mazeSection);
             repaint();
+            revalidate();
         });
 
         JButton export = new JButton("Export");
@@ -133,9 +217,7 @@ public class BrowseMaze extends JFrame {
         mazeSection.add(mazeImage);
         mazeSection.add(buttons);
 
-        // adding to scroll panel screen
-        count++;
-        Mazes.setPreferredSize(new Dimension(800, (height * count) + 20)); // 20 is an offset to allow space at bottom of frame
+
         Mazes.add(mazeSection);
     }
 }

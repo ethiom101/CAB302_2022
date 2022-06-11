@@ -6,6 +6,7 @@ import java.awt.*;
 import Maze.Maze;
 import Database.BrowseMazeData;
 import static GUI.HomePage.*;
+import static Maze.Maze.dateLastModified;
 import static Maze.MazeFile.saveMaze;
 
 /**
@@ -51,7 +52,7 @@ public class SaveMaze extends JFrame {
                         nameInput.getText(),
                         mazeEditor.returnHeight(),
                         mazeEditor.returnWidth(),
-                        String.valueOf(java.time.LocalDate.now()),
+                        dateLastModified(),
                         saveMaze(mazeEditor.returnWidth(), mazeEditor.returnHeight()),
                         null,
                         null,
