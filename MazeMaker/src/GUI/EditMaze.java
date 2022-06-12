@@ -38,7 +38,9 @@ public class EditMaze extends JFrame {
     // cell slider
     private final JSlider cellSlider = new JSlider(0, 100, cellSize);
     // item picker
-    private final ImageIcon IMG = new ImageIcon("MazeMaker/arrow.png");
+    private ImageIcon startIMG = new ImageIcon("MazeMaker/arrow.png");
+    private ImageIcon endIMG = new ImageIcon("MazeMaker/arrow.png");
+    private ImageIcon logoIMG = null;
     private final JPanel itemPicker = new JPanel();
     private final String[] items = {"Start", "End", "Wall", "Logo",};
     private String selectedItem;
@@ -73,9 +75,9 @@ public class EditMaze extends JFrame {
     // constructor for creating a new maze
     public EditMaze() {
         this.setTitle("untitled maze");
-        Cell.start = IMG;
-        Cell.end = IMG;
-        Cell.logo = null;
+        Cell.start = startIMG;
+        Cell.end = endIMG;
+        Cell.logo = logoIMG;
         initGUI();
         update.setVisible(false);
 
@@ -110,6 +112,9 @@ public class EditMaze extends JFrame {
         Cell.start = maze.getStartImage();
         Cell.end = maze.getEndImage();
         Cell.logo = maze.getLogoImage();
+        this.startIMG = maze.getStartImage();
+        this.endIMG = maze.getEndImage();
+        this.logoIMG = maze.getLogoImage();
         initGUI();
         generateMaze.setVisible(false);
         newGridButton.setVisible(false);
@@ -139,9 +144,9 @@ public class EditMaze extends JFrame {
         });
 
         exit.addActionListener(e -> {
-                this.dispose();
-                mazeBrowser = new BrowseMaze();
-                mazeBrowser.open();
+            this.dispose();
+            mazeBrowser = new BrowseMaze();
+            mazeBrowser.open();
         });
     }
 
@@ -264,10 +269,10 @@ public class EditMaze extends JFrame {
         // change image button
         itemPicker.add(changeImage);
         selectedImage.add(startImage);
-        startImage.setIcon(resizeImage(IMG, 100, 100));
+        startImage.setIcon(resizeImage(startIMG, 100, 100));
 
         selectedImage.add(endImage);
-        endImage.setIcon(resizeImage(IMG, 100, 100));
+        endImage.setIcon(resizeImage(endIMG, 100, 100));
 
 
         changeImage.addActionListener(e -> {
@@ -303,37 +308,37 @@ public class EditMaze extends JFrame {
                         mazeGrid.getLogo().setIcon(resizeImage(imageLogo, this.cellSize, this.cellSize));
                     }
                 }
-                resetImage.setEnabled(true);
             }
         });
         // reset image button
         itemPicker.add(resetImage);
-        resetImage.setEnabled(false);
         resetImage.addActionListener(e -> {
             // remove logo implementation
             if (itemSelector.getSelectedItem() == "Start") {
-                startImage.setIcon(resizeImage(IMG, 100, 100));
+                startImage.setIcon(resizeImage(startIMG, 100, 100));
                 if (mazeGrid.getStart() != null) {
-                    mazeGrid.getStart().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
-                    Cell.start = IMG;
+                    mazeGrid.getStart().setIcon(resizeImage(startIMG, this.cellSize, this.cellSize));
+                    Cell.start = startIMG;
                 }
             }
             if (itemSelector.getSelectedItem() == "End") {
-                endImage.setIcon(resizeImage(IMG, 100, 100));
+                endImage.setIcon(resizeImage(endIMG, 100, 100));
                 if (mazeGrid.getEnd() != null) {
-                    mazeGrid.getEnd().setIcon(resizeImage(IMG, this.cellSize, this.cellSize));
-                    Cell.end = IMG;
+                    mazeGrid.getEnd().setIcon(resizeImage(endIMG, this.cellSize, this.cellSize));
+                    Cell.end = endIMG;
                 }
             }
             if (itemSelector.getSelectedItem() == "Logo") {
                 logoImage.setIcon(null);
                 Cell.logo = null;
                 if (mazeGrid.getLogo() != null) {
-                    mazeGrid.getLogo().resetCell();
-                    mazeGrid.getLogo().setIcon(null);
+                    if (logoIMG == null) {
+                        mazeGrid.getLogo().resetCell();
+                    } else {
+                        mazeGrid.getLogo().setIcon(logoIMG);
+                    }
                 }
             }
-            resetImage.setEnabled(false);
 
         });
         // rotate image button
