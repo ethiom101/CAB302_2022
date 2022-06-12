@@ -205,19 +205,52 @@ public class BrowseMaze extends JFrame {
         JButton export = new JButton("Export");
         export.setPreferredSize(new Dimension(100, 40));
         export.addActionListener(e -> {
-            mazeEditor = new EditMaze(maze);
-            openMaze(maze);
-            JFileChooser fileChooser = new JFileChooser();
-            int response = fileChooser.showSaveDialog(null); // select where to save file
-            if (response == JFileChooser.APPROVE_OPTION) {
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                try {
-                    exportImage(mazeGrid, file + ".png");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+
+            String[] answers = {"Export With Solution", "Export Without Solution",};
+            int answer = JOptionPane.showOptionDialog(
+                    null,
+                    "Would you like to export with the solution visible?",
+                    "Export with or without solution",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null,
+                    answers,
+                    0);
+            if (answer == 0) {
+                // with solution
+                mazeEditor = new EditMaze(maze);
+                mazeEditor.setVisible(false);
+                openMaze(maze);
+                mazeGrid.Solve();
+                JFileChooser fileChooser = new JFileChooser();
+                int response = fileChooser.showSaveDialog(null); // select where to save file
+                if (response == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                    try {
+                        exportImage(mazeGrid, file + ".png");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
+                mazeEditor.dispose();
             }
-            mazeEditor.dispose();
+            else if (answer == 1) {
+                // without solution
+                mazeEditor = new EditMaze(maze);
+                mazeEditor.setVisible(false);
+                openMaze(maze);
+                JFileChooser fileChooser = new JFileChooser();
+                int response = fileChooser.showSaveDialog(null); // select where to save file
+                if (response == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                    try {
+                        exportImage(mazeGrid, file + ".png");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                mazeEditor.dispose();
+            }
         });
 
         buttons.add(edit);
