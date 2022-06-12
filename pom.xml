@@ -18,8 +18,8 @@
         <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
     </build>
     <properties>
-         <maven.compiler.source>1.9</maven.compiler.source>
-         <maven.compiler.target>1.9</maven.compiler.target>
+         <maven.compiler.source>3.8.1</maven.compiler.source>
+         <maven.compiler.target>3.8.1</maven.compiler.target>
     </properties>
     <groupId>Group_070</groupId>
     <artifactId>MajorProject</artifactId>
