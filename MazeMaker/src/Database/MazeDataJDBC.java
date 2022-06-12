@@ -98,7 +98,6 @@ public class MazeDataJDBC implements MazeDataSource {
         }
     }
 
-    // TODO add the currently uploaded images of the maze to the database (do last)
     @Override
     public void addMaze(Maze maze) {
         try {
