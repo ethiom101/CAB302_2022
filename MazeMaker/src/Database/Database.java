@@ -1,6 +1,8 @@
 package Database;
 
 import javax.swing.*;
+import javax.swing.filechooser.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,80 +24,71 @@ public class Database {
     private Database() throws IOException, SQLException {
         Properties props = new Properties();
         FileInputStream in;
-        try {
-            in = new FileInputStream("MazeMaker/db.props");
-            props.load(in);
-            in.close();
+        String filepath = "MazeMaker/db.props";
+        File propsFile = new File(filepath);
+        while (true) {
+            try {
+                if (!propsFile.getAbsolutePath().endsWith("props"))
+                    throw new FileNotFoundException("Not a properties file");
+                in = new FileInputStream(propsFile);
+                props.load(in);
+                in.close();
+            } catch (FileNotFoundException e) {
+                String[] answers = {"Select File", "Exit"};
+                JOptionPane.showConfirmDialog(null, String.format("Issue with db.props\nError Reads: \"%s\"", e.getMessage()));
+                System.exit(0);
+            }
 
             // specify the data source, username and password
             String url = props.getProperty("jdbc.url");
-
             String username = props.getProperty("jdbc.username");
             String password = props.getProperty("jdbc.password");
             String schema = props.getProperty("jdbc.schema");
 
-            // get a connection
-            instance = DriverManager.getConnection(url + "/" + schema, username,
-                    password);
-        } catch (SQLException | FileNotFoundException SQL) {
-            String[] answers = {"Select File", "Exit"};
-            int answer = JOptionPane.showOptionDialog(
-                    null,
-                    "Issue with 'db.props', could not find file or username/password is incorrect or schema is incorrect or port is wrong, would you like to select a file from your device?",
-                    "Database File Not Found",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE,
-                    null,
-                    answers,
-                    0);
-            if (answer == 0) {
-                // Search for file
-                JFileChooser fileChooser = new JFileChooser();
-                int option = fileChooser.showOpenDialog(null);
-                File file = fileChooser.getSelectedFile();
-                // Retry
-                if (option == JFileChooser.APPROVE_OPTION && (file.getAbsolutePath().endsWith(".props"))) {
-                    in = new FileInputStream(file.getAbsolutePath());
-                    props.load(in);
-                    in.close();
 
-                    // specify the data source, username and password
-                    String url = props.getProperty("jdbc.url");
-
-                    String username = props.getProperty("jdbc.username");
-                    String password = props.getProperty("jdbc.password");
-                    String schema = props.getProperty("jdbc.schema");
-
-                    // get a connection
-                    instance = DriverManager.getConnection(url + "/" + schema, username,
-                            password);
-                } else {
-                    // Exit
-                    JOptionPane.showMessageDialog(null,
-                            "File selected was not a '.props file'",
-                            "Invalid File Type",
-                            JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
+            try {
+                instance = DriverManager.getConnection(url , username, password);
+                Statement stmt = instance.createStatement();
+                stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS mazeco");
+                stmt.executeUpdate("USE mazeco");
+            } catch (SQLException e) {
+                String[] answers = {"Retry Connection", "Exit"};
+                int answer = JOptionPane.showOptionDialog(
+                        null,
+                        String.format("Issue connecting to database\nError Reads: \"%s\"", e.getMessage()),
+                        "Error Connecting to DB",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE,
+                        null,
+                        answers,
+                        JOptionPane.CANCEL_OPTION);
+                switch (answer) {
+                    case JOptionPane.YES_OPTION:
+                        continue;
+                    case JOptionPane.NO_OPTION:
+                        System.exit(0);
                 }
             }
+            break;
         }
     }
 
-        /**
-         * METHOD TAKEN FROM CAB302 LECTURE 6 CODE
-         * Provides global access to the singleton instance of the UrlSet.
-         *
-         * @return a handle to the singleton instance of the UrlSet.
-         */
-        public static Connection getInstance () {
-            if (instance == null) {
-                try {
-                    new Database();
-                } catch (IOException | SQLException e) {
-                    e.printStackTrace();
-                }
+
+    /**
+     * METHOD TAKEN FROM CAB302 LECTURE 6 CODE
+     * Provides global access to the singleton instance of the UrlSet.
+     *
+     * @return a handle to the singleton instance of the UrlSet.
+     */
+    public static Connection getInstance() {
+        if (instance == null) {
+            try {
+                new Database();
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
             }
-            return instance;
         }
+        return instance;
     }
+}
 
