@@ -4,9 +4,13 @@ import Maze.Maze;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
+import static GUI.EditMaze.mazeGrid;
 import static GUI.HomePage.*;
 import static Maze.MazeFile.openMaze;
+import static Util.Images.exportImage;
 
 /**
  * GUI for browsing mazes extracted from the database
@@ -174,11 +178,6 @@ public class BrowseMaze extends JFrame {
         mazeDetails.add(mazeDateCreated);
         mazeDetails.add(mazeLastEdited);
 
-        // maze image section
-        JLabel mazeImage = new JLabel();
-        mazeImage.setPreferredSize(new Dimension(190, 190));
-        mazeImage.setBorder(BorderFactory.createLineBorder(new Color(181, 181, 181), 2, true));
-
         // buttons
         JLabel buttons = new JLabel();
         buttons.setBackground(Color.red);
@@ -188,6 +187,7 @@ public class BrowseMaze extends JFrame {
         JButton edit = new JButton("Edit");
         edit.setPreferredSize(new Dimension(100, 40));
         edit.addActionListener(e -> {
+            mazeEditor = new EditMaze(maze);
             openMaze(maze);
             this.dispose();
         });
@@ -205,7 +205,19 @@ public class BrowseMaze extends JFrame {
         JButton export = new JButton("Export");
         export.setPreferredSize(new Dimension(100, 40));
         export.addActionListener(e -> {
-            // Export maze as image (include solution or not option) TODO
+            mazeEditor = new EditMaze(maze);
+            openMaze(maze);
+            JFileChooser fileChooser = new JFileChooser();
+            int response = fileChooser.showSaveDialog(null); // select where to save file
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                try {
+                    exportImage(mazeGrid, file + ".png");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            mazeEditor.dispose();
         });
 
         buttons.add(edit);
@@ -214,7 +226,6 @@ public class BrowseMaze extends JFrame {
 
         // adding components
         mazeSection.add(mazeDetails);
-        mazeSection.add(mazeImage);
         mazeSection.add(buttons);
 
 
