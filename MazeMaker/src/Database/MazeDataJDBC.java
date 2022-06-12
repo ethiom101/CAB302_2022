@@ -167,7 +167,7 @@ public class MazeDataJDBC implements MazeDataSource {
             maze.setImage(1, rs.getBinaryStream("StartImage"));
             maze.setImage(2, rs.getBinaryStream("EndImage"));
             maze.setImage(3, rs.getBinaryStream("LogoImage"));
-            maze.setImage(4, rs.getBinaryStream("MazeImage"));
+            maze.setImage(4, rs.getBinaryStream("MazePicture"));
 
         } catch (SQLException e) {
             e.printStackTrace();
