@@ -35,10 +35,10 @@
         </dependency>
     </dependencies>
     <build>    
-        <sourceDirectory>${basedir}/MazeMaker/src/</sourceDirectory>
+        <!--sourceDirectory>${basedir}/MazeMaker/src/</sourceDirectory>
         <testSourceDirectory>${basedir}/MazeMaker/src/Tests</testSourceDirectory>
         <outputDirectory>${basedir}/target/classes</outputDirectory>
-        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory-->
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
