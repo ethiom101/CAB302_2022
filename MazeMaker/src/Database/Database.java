@@ -47,7 +47,7 @@ public class Database {
 
 
             try {
-                instance = DriverManager.getConnection(url , username, password);
+                instance = DriverManager.getConnection(url, username, password);
                 Statement stmt = instance.createStatement();
                 stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS mazeco");
                 stmt.executeUpdate("USE mazeco");
