@@ -29,18 +29,17 @@ public class MazeDataJDBC implements MazeDataSource {
                     "`StartImage` MEDIUMBLOB NULL DEFAULT NULL," +
 	                "`EndImage` MEDIUMBLOB NULL DEFAULT NULL," +
 	                "`LogoImage` MEDIUMBLOB NULL DEFAULT NULL," +
-	                "`MazePicture` MEDIUMBLOB NULL DEFAULT NULL," +
                     "PRIMARY KEY (`ID`) USING BTREE," +
                     "UNIQUE INDEX `ID` (`ID`) USING BTREE" +
                     ");";
 
 
     public static final String INSERT_MAZE = "INSERT INTO mazes " +
-            "(Author, MazeName, Height, Width, DateCreated, DateLastEdited, MazeCells, StartImage, EndImage, LogoImage, MazePicture) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            "(Author, MazeName, Height, Width, DateCreated, DateLastEdited, MazeCells, StartImage, EndImage, LogoImage) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     public static final String UPDATE_MAZE = "UPDATE mazes SET " +
-            "Author = ?, MazeName = ?, Height = ?, Width = ?, DateLastEdited = ?, MazeCells = ?, StartImage = ?, EndImage = ?, LogoImage = ?, MazePicture = ? " +
+            "Author = ?, MazeName = ?, Height = ?, Width = ?, DateLastEdited = ?, MazeCells = ?, StartImage = ?, EndImage = ?, LogoImage = ?, " +
             "WHERE ID=?;";
 
     private static final String GET_IDs = "SELECT ID FROM mazes";
@@ -112,8 +111,11 @@ public class MazeDataJDBC implements MazeDataSource {
             addMaze.setString(7, maze.getMazeCells());
             addMaze.setBinaryStream(8, maze.getImage(1));
             addMaze.setBinaryStream(9, maze.getImage(2));
-            addMaze.setBinaryStream(10, maze.getImage(3));
-            addMaze.setBinaryStream(11, maze.getImage(4));
+            if (maze.getImage(3) != null) {
+                addMaze.setBinaryStream(10, maze.getImage(3));
+            } else {
+                addMaze.setBinaryStream(10, null);
+            }
             addMaze.execute();
             // Gets the latest ID from the database
             ResultSet rs;
@@ -141,8 +143,7 @@ public class MazeDataJDBC implements MazeDataSource {
             updateMaze.setBinaryStream(7, maze.getImage(1));
             updateMaze.setBinaryStream(8, maze.getImage(2));
             updateMaze.setBinaryStream(9, maze.getImage(3));
-            updateMaze.setBinaryStream(10, maze.getImage(4));
-            updateMaze.setInt(11, maze.getID());
+            updateMaze.setInt(10, maze.getID());
             updateMaze.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -167,7 +168,6 @@ public class MazeDataJDBC implements MazeDataSource {
             maze.setImage(1, rs.getBinaryStream("StartImage"));
             maze.setImage(2, rs.getBinaryStream("EndImage"));
             maze.setImage(3, rs.getBinaryStream("LogoImage"));
-            maze.setImage(4, rs.getBinaryStream("MazeImage"));
 
         } catch (SQLException e) {
             e.printStackTrace();

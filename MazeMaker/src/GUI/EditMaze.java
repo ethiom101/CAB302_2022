@@ -73,6 +73,9 @@ public class EditMaze extends JFrame {
     // constructor for creating a new maze
     public EditMaze() {
         this.setTitle("untitled maze");
+        Cell.start = IMG;
+        Cell.end = IMG;
+        Cell.logo = null;
         initGUI();
         update.setVisible(false);
 
@@ -104,6 +107,9 @@ public class EditMaze extends JFrame {
         this.setTitle(maze.getName());
         this.mazeWidth = maze.getWidth();
         this.mazeHeight = maze.getHeight();
+        Cell.start = maze.getStartImage();
+        Cell.end = maze.getEndImage();
+        Cell.logo = maze.getLogoImage();
         initGUI();
         generateMaze.setVisible(false);
         newGridButton.setVisible(false);
@@ -120,10 +126,9 @@ public class EditMaze extends JFrame {
                     maze.getWidth(),
                     Maze.dateLastModified(),
                     saveMaze(maze.getWidth(), maze.getHeight()),
-                    null,
-                    null,
-                    null,
-                    null);
+                    Cell.start,
+                    Cell.end,
+                    Cell.logo);
             mazeUpdated.setID(maze.getID());
             data.update(mazeUpdated);
             data = new BrowseMazeData();
@@ -141,9 +146,7 @@ public class EditMaze extends JFrame {
     }
 
     public void initGUI() {
-        Cell.start = IMG;
-        Cell.end = IMG;
-        Cell.logo = null;
+
 
         // Frame
 

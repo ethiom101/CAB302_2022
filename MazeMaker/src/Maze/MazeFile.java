@@ -60,7 +60,6 @@ public class MazeFile {
      * @param maze the maze to open
      */
     public static void openMaze(Maze maze) {
-        mazeEditor = new EditMaze(maze);
         String mazeCells = maze.getMazeCells();
         int cellCounter = 0;
         char cellType = mazeCells.charAt(cellCounter);

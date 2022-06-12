@@ -28,7 +28,6 @@ public class Maze {
     private ImageIcon startImage;
     private ImageIcon endImage;
     private ImageIcon logoImage;
-    private ImageIcon mazePicture;
 
     /**
      * Empty constructor
@@ -47,10 +46,9 @@ public class Maze {
      * @param startImage start image of the maze that was uploaded
      * @param endImage end image of the maze that was uploaded
      * @param logoImage logo image of the maze the was uploaded
-     * @param mazePicture picture of the maze to use for reference when browsing
      */
     public Maze(String author, String name, int height, int width, String dateLastModified,
-                String mazeCells, ImageIcon startImage, ImageIcon endImage, ImageIcon logoImage, ImageIcon mazePicture) {
+                String mazeCells, ImageIcon startImage, ImageIcon endImage, ImageIcon logoImage) {
         this.author = author;
         this.name = name;
         this.height = height;
@@ -60,7 +58,6 @@ public class Maze {
         this.startImage = startImage;
         this.endImage = endImage;
         this.logoImage = logoImage;
-        this.mazePicture = mazePicture;
     }
 
     /**
@@ -179,6 +176,21 @@ public class Maze {
         this.mazeCells = mazeCells;
     }
 
+    public ImageIcon getStartImage() {
+        return this.startImage;
+    }
+
+    public ImageIcon getEndImage() {
+        return this.endImage;
+    }
+
+    public ImageIcon getLogoImage() {
+        if (this.logoImage != null) {
+            return this.logoImage;
+        }
+        else return null;
+    }
+
     /*
      *  Returns a binary stream of the image data for saving into DB
      *  Takes int relating to image number as follows:
@@ -188,7 +200,7 @@ public class Maze {
      *      4 - Maze Image
      */
     public ByteArrayInputStream getImage(int imageNumber){
-        ImageIcon currImage = new ImageIcon();
+        ImageIcon currImage;
         switch (imageNumber){
             case 1:
                 currImage = this.startImage;
@@ -199,11 +211,12 @@ public class Maze {
             case 3:
                 currImage = this.logoImage;
                 break;
-            case 4:
-                currImage = this.mazePicture;
-                break;
             default:
                 return null;
+        }
+
+        if (currImage == null) {
+            return null;
         }
 
         BufferedImage buffImage = new BufferedImage(currImage.getIconWidth(), currImage.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -212,14 +225,10 @@ public class Maze {
         g2d.dispose();
 
         try (ByteArrayOutputStream bo = new ByteArrayOutputStream()){
-            ImageOutputStream ios = ImageIO.createImageOutputStream(bo);
-            try{
+            try (ImageOutputStream ios = ImageIO.createImageOutputStream(bo)) {
                 ImageIO.write(buffImage, "png", ios);
-            } finally {
-                ios.close();
             }
-            ByteArrayInputStream bi = new ByteArrayInputStream(bo.toByteArray());
-            return bi;
+            return new ByteArrayInputStream(bo.toByteArray());
         } catch (IOException ex){
             ex.printStackTrace();
             return null;
@@ -235,37 +244,38 @@ public class Maze {
      *      4 - Maze Image
      */
 
-    public void setImage(int imageNumber, InputStream imageData){
-        ByteArrayOutputStream bo = new ByteArrayOutputStream();
-        try{
-            while (true){
-                int result = imageData.read();
-                if (result < 0){
-                    imageData.close();
-                    break;
+    public void setImage(int imageNumber, InputStream imageData) {
+        if (imageData != null) {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            try {
+                while (true) {
+                    int result = imageData.read();
+                    if (result < 0) {
+                        imageData.close();
+                        break;
+                    }
+                    bo.write(result);
                 }
-                bo.write(result);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        ImageIcon currImage = new ImageIcon(bo.toByteArray());
+            ImageIcon currImage = new ImageIcon(bo.toByteArray());
 
-        switch (imageNumber){
-            case 1:
-                this.startImage = currImage;
-                break;
-            case 2:
-                this.endImage = currImage;
-                break;
-            case 3:
-                this.logoImage = currImage;
-                break;
-            case 4:
-                this.mazePicture = currImage;
-                break;
-            default:
-                break;
+            switch (imageNumber) {
+                case 1 -> this.startImage = currImage;
+                case 2 -> this.endImage = currImage;
+                case 3 -> this.logoImage = currImage;
+                default -> {
+                }
+            }
+        } else {
+            switch (imageNumber) {
+                case 1 -> this.startImage = null;
+                case 2 -> this.endImage = null;
+                case 3 -> this.logoImage = null;
+                default -> {
+                }
+            }
         }
     }
 }

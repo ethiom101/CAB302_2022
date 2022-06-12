@@ -5,6 +5,7 @@ import java.awt.*;
 
 import Maze.Maze;
 import Database.BrowseMazeData;
+import Maze.Cell;
 import static GUI.HomePage.*;
 import static Maze.Maze.dateLastModified;
 import static Maze.MazeFile.saveMaze;
@@ -54,10 +55,9 @@ public class SaveMaze extends JFrame {
                         mazeEditor.returnWidth(),
                         dateLastModified(),
                         saveMaze(mazeEditor.returnWidth(), mazeEditor.returnHeight()),
-                        null,
-                        null,
-                        null,
-                        null);
+                        Cell.start,
+                        Cell.end,
+                        Cell.logo);
                 // adds the maze to the database
                 data.add(maze);
                 // updates the instance of the data used in the current application
