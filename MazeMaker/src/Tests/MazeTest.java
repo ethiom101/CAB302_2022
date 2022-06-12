@@ -45,13 +45,6 @@ public class MazeTest {
     }
 
     @Test
-    public void testDeadEnds() throws Exception {
-        MazeGenerator maze = new MazeGenerator(10,10);
-        String test = solver.deadEnds(10,10);
-        assertTrue(test instanceof String);
-    }
-
-    @Test
     public void testDirectionValue() throws Exception{
         assertThrows(Exception.class, () -> {
             maze.directionValue("A");
