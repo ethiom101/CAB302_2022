@@ -17,6 +17,10 @@
         <outputDirectory>${basedir}/target/classes</outputDirectory>
         <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
     </build>
+    <properties>
+         <maven.compiler.source>1.8</maven.compiler.source>
+         <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <groupId>Group_070</groupId>
     <artifactId>MajorProject</artifactId>
     <version>1.0</version>
