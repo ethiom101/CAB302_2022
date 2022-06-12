@@ -11,6 +11,12 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+    <build>
+        <sourceDirectory>${basedir}/MazeMaker/src/</sourceDirectory>
+        <testSourceDirectory>${basedir}/MazeMaker/src/Tests</testSourceDirectory>
+        <outputDirectory>${basedir}/target/classes</outputDirectory>
+        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+    </build>
     <groupId>Group_070</groupId>
     <artifactId>MajorProject</artifactId>
     <version>1.0</version>
