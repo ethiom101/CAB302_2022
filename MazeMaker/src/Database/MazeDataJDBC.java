@@ -110,10 +110,10 @@ public class MazeDataJDBC implements MazeDataSource {
             addMaze.setString(5, maze.getDateCreated());
             addMaze.setString(6, maze.getDateLastModified());
             addMaze.setString(7, maze.getMazeCells());
-            addMaze.setString(8, null);
-            addMaze.setString(9, null);
-            addMaze.setString(10, null);
-            addMaze.setString(11, null);
+            addMaze.setBinaryStream(8, maze.getImage(1));
+            addMaze.setBinaryStream(9, maze.getImage(2));
+            addMaze.setBinaryStream(10, maze.getImage(3));
+            addMaze.setBinaryStream(11, maze.getImage(4));
             addMaze.execute();
             // Gets the latest ID from the database
             ResultSet rs;
@@ -138,10 +138,10 @@ public class MazeDataJDBC implements MazeDataSource {
             updateMaze.setString(4, String.valueOf(maze.getWidth()));
             updateMaze.setString(5, maze.getDateLastModified());
             updateMaze.setString(6, maze.getMazeCells());
-            updateMaze.setString(7, null);
-            updateMaze.setString(8, null);
-            updateMaze.setString(9, null);
-            updateMaze.setString(10, null);
+            updateMaze.setBinaryStream(7, maze.getImage(1));
+            updateMaze.setBinaryStream(8, maze.getImage(2));
+            updateMaze.setBinaryStream(9, maze.getImage(3));
+            updateMaze.setBinaryStream(10, maze.getImage(4));
             updateMaze.setInt(11, maze.getID());
             updateMaze.execute();
         } catch (SQLException ex) {
@@ -164,6 +164,11 @@ public class MazeDataJDBC implements MazeDataSource {
             maze.setDateCreated(rs.getString("DateCreated"));
             maze.setDateLastModified(rs.getString("DateLastEdited"));
             maze.setMazeCells(rs.getString("MazeCells"));
+            maze.setImage(1, rs.getBinaryStream("StartImage"));
+            maze.setImage(2, rs.getBinaryStream("EndImage"));
+            maze.setImage(3, rs.getBinaryStream("LogoImage"));
+            maze.setImage(4, rs.getBinaryStream("MazeImage"));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

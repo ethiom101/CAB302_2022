@@ -1,6 +1,14 @@
 package Maze;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -169,5 +177,95 @@ public class Maze {
 
     public void setMazeCells(String mazeCells) {
         this.mazeCells = mazeCells;
+    }
+
+    /*
+     *  Returns a binary stream of the image data for saving into DB
+     *  Takes int relating to image number as follows:
+     *      1 - Start image
+     *      2 - End Image
+     *      3 - Logo Image
+     *      4 - Maze Image
+     */
+    public ByteArrayInputStream getImage(int imageNumber){
+        ImageIcon currImage = new ImageIcon();
+        switch (imageNumber){
+            case 1:
+                currImage = this.startImage;
+                break;
+            case 2:
+                currImage = this.endImage;
+                break;
+            case 3:
+                currImage = this.logoImage;
+                break;
+            case 4:
+                currImage = this.mazePicture;
+                break;
+            default:
+                return null;
+        }
+
+        BufferedImage buffImage = new BufferedImage(currImage.getIconWidth(), currImage.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = buffImage.createGraphics();
+        currImage.paintIcon(null, g2d, 0, 0);
+        g2d.dispose();
+
+        try (ByteArrayOutputStream bo = new ByteArrayOutputStream()){
+            ImageOutputStream ios = ImageIO.createImageOutputStream(bo);
+            try{
+                ImageIO.write(buffImage, "png", ios);
+            } finally {
+                ios.close();
+            }
+            ByteArrayInputStream bi = new ByteArrayInputStream(bo.toByteArray());
+            return bi;
+        } catch (IOException ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /*
+     *  Sets an image in the maze from a byte array returned from the DB
+     *  Takes int relating to image number as follows:
+     *      1 - Start image
+     *      2 - End Image
+     *      3 - Logo Image
+     *      4 - Maze Image
+     */
+
+    public void setImage(int imageNumber, InputStream imageData){
+        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+        try{
+            while (true){
+                int result = imageData.read();
+                if (result < 0){
+                    imageData.close();
+                    break;
+                }
+                bo.write(result);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        ImageIcon currImage = new ImageIcon(bo.toByteArray());
+
+        switch (imageNumber){
+            case 1:
+                this.startImage = currImage;
+                break;
+            case 2:
+                this.endImage = currImage;
+                break;
+            case 3:
+                this.logoImage = currImage;
+                break;
+            case 4:
+                this.mazePicture = currImage;
+                break;
+            default:
+                break;
+        }
     }
 }
