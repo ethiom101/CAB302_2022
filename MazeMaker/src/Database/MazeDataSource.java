@@ -4,8 +4,8 @@ import Maze.Maze;
 
 import java.util.Set;
 
+// CLASS MODIFIED FROM CAB302 LECTURE 6
 /**
- * CLASS MODIFIED FROM CAB302 LECTURE 6
  * Provides functionality needed by any data source for the Maze Maker application
  */
 public interface MazeDataSource {

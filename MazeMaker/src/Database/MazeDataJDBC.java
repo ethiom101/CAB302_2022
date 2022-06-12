@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.Set;
 import java.util.TreeSet;
 
+// CLASS MODIFIED FROM CAB302 LECTURE 6
 /**
- * CLASS MODIFIED FROM CAB302 LECTURE 6
  * Class for retrieving data from the XML file holding the maze's list.
  */
 public class MazeDataJDBC implements MazeDataSource {

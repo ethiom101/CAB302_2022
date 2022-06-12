@@ -1,13 +1,9 @@
 package Maze;
 
-import GUI.EditMaze;
-import Maze.Cell;
-import Maze.Maze;
 
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 
-import static GUI.HomePage.mazeEditor;
 import static Maze.Grid.grid;
 
 /**

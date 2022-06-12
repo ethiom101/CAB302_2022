@@ -6,6 +6,9 @@ import java.util.Stack;
 
 import static Maze.Grid.grid;
 
+/**
+ * Class for finding a path from the start to the end of the grid
+ */
 public class MazeSolver extends Thread {
 
     private final Cell start;

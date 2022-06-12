@@ -167,23 +167,37 @@ public class Maze {
         this.ID = ID;
     }
 
-
+    /**
+     * @return String used to iterate over and draw the cells of the maze
+     */
     public String getMazeCells() {
         return mazeCells;
     }
 
+    /**
+     * @param mazeCells maze cells String
+     */
     public void setMazeCells(String mazeCells) {
         this.mazeCells = mazeCells;
     }
 
+    /**
+     * @return the start image of the maze
+     */
     public ImageIcon getStartImage() {
         return this.startImage;
     }
 
+    /**
+     * @return the end image of the maze
+     */
     public ImageIcon getEndImage() {
         return this.endImage;
     }
 
+    /**
+     * @return the logo image of the maze if one exists
+     */
     public ImageIcon getLogoImage() {
         if (this.logoImage != null) {
             return this.logoImage;
@@ -191,13 +205,16 @@ public class Maze {
         else return null;
     }
 
-    /*
+    /**
      *  Returns a binary stream of the image data for saving into DB
      *  Takes int relating to image number as follows:
      *      1 - Start image
      *      2 - End Image
      *      3 - Logo Image
      *      4 - Maze Image
+     *
+     * @param imageNumber the corresponding image number
+     * @return the binary stream of the image data
      */
     public ByteArrayInputStream getImage(int imageNumber){
         ImageIcon currImage;
@@ -235,15 +252,17 @@ public class Maze {
         }
     }
 
-    /*
+    /**
      *  Sets an image in the maze from a byte array returned from the DB
      *  Takes int relating to image number as follows:
      *      1 - Start image
      *      2 - End Image
      *      3 - Logo Image
      *      4 - Maze Image
+     *
+     * @param imageNumber the corresponding image number
+     * @param imageData image data from the database
      */
-
     public void setImage(int imageNumber, InputStream imageData) {
         if (imageData != null) {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();

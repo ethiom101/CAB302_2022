@@ -6,8 +6,8 @@ import javax.swing.*;
 
 import java.util.Set;
 
+// CLASS MODIFIED FROM CAB302 LECTURE 6
 /**
- * CLASS MODIFIED FROM CAB302 LECTURE 6
  * This version uses an MazeDataSource and its methods to retrieve data
  */
 public class BrowseMazeData {

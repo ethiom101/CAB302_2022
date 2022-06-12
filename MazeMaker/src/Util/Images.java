@@ -7,7 +7,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Class for manipulating images
+ */
 public class Images {
     /**
      * Method to export image of the maze generated

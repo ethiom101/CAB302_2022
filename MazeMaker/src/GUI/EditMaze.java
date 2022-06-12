@@ -72,7 +72,11 @@ public class EditMaze extends JFrame {
     private final JButton exit = new JButton("Exit");
     private final String[] answers = {"Save", "Don't Save", "Cancel"};
 
-    // constructor for creating a new maze
+    /**
+     * Constructor for creating a default maze with default values such as
+     * arrows as start and end and no logo currently set.
+     * Dimensions will be 10x10 will a cell size of 70
+     */
     public EditMaze() {
         this.setTitle("untitled maze");
         Cell.start = startIMG;
@@ -104,7 +108,15 @@ public class EditMaze extends JFrame {
         });
     }
 
-    // constructor for opening existing maze
+    /**
+     * Constructs a version of the GUI for editing an opened maze from the database.
+     * Will set the start, end and logo images to ones that correspond to the opened maze.
+     * Sets the dimensions and title that correspond to the open maze.
+     * Some buttons will be removed such as generating a new maze and creating a new grid,
+     * since this version is to simply view and edit a preexisting maze.
+     *
+     * @param maze the maze being opened from the database
+     */
     public EditMaze(Maze maze) {
         this.setTitle(maze.getName());
         this.mazeWidth = maze.getWidth();

@@ -17,8 +17,8 @@ public class Database {
 
     public static Connection instance = null;
 
+    // METHOD MODIFIED FROM CAB302 LECTURE 6 CODE
     /**
-     * METHOD MODIFIED FROM CAB302 LECTURE 6 CODE
      * The singleton instance of the database connection.
      */
     private Database() throws IOException, SQLException {
@@ -28,7 +28,7 @@ public class Database {
         File propsFile = new File(filepath);
         while (true) {
             try {
-                if (!propsFile.getAbsolutePath().endsWith("props"))
+                if (!propsFile.getAbsolutePath().endsWith(".props"))
                     throw new FileNotFoundException("Not a properties file");
                 in = new FileInputStream(propsFile);
                 props.load(in);
@@ -73,9 +73,8 @@ public class Database {
         }
     }
 
-
+    // METHOD TAKEN FROM CAB302 LECTURE 6 CODE
     /**
-     * METHOD TAKEN FROM CAB302 LECTURE 6 CODE
      * Provides global access to the singleton instance of the UrlSet.
      *
      * @return a handle to the singleton instance of the UrlSet.
