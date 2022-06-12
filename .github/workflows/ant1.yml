@@ -20,6 +20,6 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'temurin'
-    - name: Test with Maven
-      run: mvn -B test --file .idea/misc.xml
+        distribution: 'adopt'
+        - name: Build with Ant
+          run: ant -noinput -buildfile build.xml
